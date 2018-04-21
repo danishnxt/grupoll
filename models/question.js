@@ -11,7 +11,7 @@ const mQuestion = new Schema ({
   voice_link: String,
   post_time: Timestamp,
   category_id: ObjectId,
-  answerTimeLim: Timestamp,
+  answer_time_lim : Timestamp,
   user_seen: Bool
 })
 

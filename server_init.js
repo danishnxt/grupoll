@@ -1,15 +1,23 @@
 `use strict`;
 
 const express = require('express');
-const app = express();
 const fileUpload = require('express-fileupload');
+const log = require('./server_logger');
+const http = require('http');
+
+const app = express();
+const httpServer = http.Server(app);
 
 const initialize = () => {
 	app.get('/', (req, res) => {
 		res.sendFile(__dirname + '/index.html');
 	});
 
+	log.logEntry("Initialized express server.");
+
 	app.use(express.static('content'));
+
+	log.logEntry("Initialized content management module.");
 };
 
 const initializeUpload = () => {
@@ -30,4 +38,16 @@ const initializeUpload = () => {
 			res.send('File upload success');
 		});
 	});
+
+	log.logEntry("Initialized content upload module.");
 };
+
+const launchServer = () => {
+	httpServer.listen(3000, () => {
+		log.logEntry("Server listening on post 3000.");
+	});
+};
+
+initialize();
+initializeUpload();
+launchServer();

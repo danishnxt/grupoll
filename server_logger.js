@@ -1,25 +1,41 @@
+module.exports = {
+	logEntry : str => {
+		const date = new Date();
+		const dateStamp = date.toLocaleDateString();
+		const timeStamp = date.toLocaleTimeString();
 
-const logEntry = str => {
-	const timeStamp = new Date().toLocaleDateString();
-	console.log('[' + timeStamp + ']: ' + str);
-};
+		console.log('[' + dateStamp + ', ' + timeStamp + ']: ' + str);
+	},
 
-const logUserConnect = (username, ID) => {
-	logEntry('User with name ' + username + ' and ID ' + ID + ' connected.');
-};
+	logError : str => {
+		logEntry('[Error]: ' + str);
+	},
 
-const logUserDisconnect = (username, ID) => {
-	logEntry('User with name ' + username + ' and ID ' + ID + ' disconnected');
-};
+	logDatabaseEntry : str => {
+		logEntry('[Database]: ' + str);
+	},
 
-const logUserQuestionPost = (username, ID, questionID) => {
-	logEntry('User with name ' + username + ' and ID ' + ID + ' posted question with ID ' + questionID);
-};
+	logDatabaseError : str => {
+		logError('[Database]: ' + str);
+	},
 
-const logUserQuestionResponse = (username, ID, questionID) => {
-	logEntry('User with name ' + username + ' and ID ' + ID + ' responded to question with ID ' + questionID);
-};
+	logUserConnect : (username, ID) => {
+		logEntry('User with name ' + username + ' and ID ' + ID + ' connected.');
+	},
 
-const logUserQuestionFeedback = (username, ID, questionID) => {
-	logEntry('User with name ' + username + ' and ID ' + ID + ' returned feedbak on question with ID ' + questionID);
+	logUserDisconnect : (username, ID) => {
+		logEntry('User with name ' + username + ' and ID ' + ID + ' disconnected');
+	},
+
+	logUserQuestionPost : (username, ID, questionID) => {
+		logEntry('User with name ' + username + ' and ID ' + ID + ' posted question with ID ' + questionID);
+	},
+
+	logUserQuestionResponse : (username, ID, questionID) => {
+		logEntry('User with name ' + username + ' and ID ' + ID + ' responded to question with ID ' + questionID);
+	},
+
+	logUserQuestionFeedback : (username, ID, questionID) => {
+		logEntry('User with name ' + username + ' and ID ' + ID + ' returned feedbak on question with ID ' + questionID);
+	}
 };
