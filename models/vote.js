@@ -3,9 +3,9 @@ Schema = mgs.Schema
 
 
 const mVote = new Schema ({
-  question_id: ObjectId,
-  user_id: ObjectId,
-  value: Int64
+  question_id: {type: Schema.ObjectId, ref: 'mQuestion'},
+  user_id: {type: Schema.ObjectId, ref: 'mUser'},
+  value: Number
 })
 
 module.exports = mgs.model('mVote', mVote)

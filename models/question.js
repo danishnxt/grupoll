@@ -2,17 +2,17 @@ const mgs = require('mongoose')
 Schema = mgs.Schema
 
 const mQuestion = new Schema ({
-  question_type: Bool,
+  question_type: Boolean,
   statement: String,
-  user_id: ObjectId,
-  contains_image: Bool,
-  contains_voice: Bool,
+  user_id: {type: Schema.ObjectId, ref: 'mUser'},
+  contains_image: Boolean,
+  contains_voice: Boolean,
   image_link: String,
   voice_link: String,
-  post_time: Timestamp,
-  category_id: ObjectId,
-  answer_time_lim : Timestamp,
-  user_seen: Bool
+  post_time: Date,
+  category_id: {type: Schema.ObjectId, ref: 'mCategory'},
+  answer_time_lim : Date,
+  user_seen: Boolean
 })
 
 module.exports = mgs.model('mQuestion', mQuestion)

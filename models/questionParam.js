@@ -2,11 +2,11 @@ const mgs = require('mongoose')
 Schema = mgs.Schema
 
 const mQuesParam = new Schema ({
-  question_id: ObjectId,
-  age_rangeSt: Int64,
-  age_rangeEnd: Int64,
-  gender: Int32,
-  locality: Int32
+  question_id: {type: Schema.ObjectId, ref: 'mQuestion'},
+  age_rangeSt: Number,
+  age_rangeEnd: Number,
+  gender: Number,
+  locality: Number
 })
 
 module.exports = mgs.model('mQuesParam', mQuesParam)

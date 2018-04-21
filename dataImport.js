@@ -3,14 +3,14 @@ var mongoose = require('mongoose');
 
 const mUser = require('./models/user')
 const mQuestion = require('./models/question')
-// const mVote = require('./models/vote')
-// const mVoteWeight = require('./models/voteWeight')
-// const mFriend = reqiuire('./models/friend')
-// const mCategory = require('./models/category')
-// const mComment = require('./models/comment')
-// const mQuesParam = require('./models/questionParam')
-// const mUserQues = require('./models/userQuestion')
-// const mAnswer = require('./models/answer')
+const mVote = require('./models/vote')
+const mVoteWeight = require('./models/voteWeight')
+const mFriend = require('./models/friend')
+const mCategory = require('./models/category')
+const mComment = require('./models/comment')
+const mQuesParam = require('./models/questionParam')
+const mUserQues = require('./models/userQuestion')
+const mAnswer = require('./models/answer')
 
 const log = require('./server_logger');
 
@@ -20,7 +20,7 @@ mongoose.connect(uri)
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-function pushUser(uName, uemail, fName, lName, cntry, gndr, hash) {
+const pushUser = (uName, uemail, fName, lName, cntry, gndr, hash) => {
 
   const newUser = new mUser({username: uName, email: uemail, first_name: fName, last_name: lName, country: cntry, gender: gndr, passwordHash: hash, question_cnt: 0})
 
@@ -34,6 +34,12 @@ function pushUser(uName, uemail, fName, lName, cntry, gndr, hash) {
 }
 
 const pushQuestion = (userID, questionStatement, questionType, containsImage, containsVoice, imageLink, voiceLink, postTime, categoryID, answerTimeLimit, userSeen) => {
+
+  // look up UserID reference
+  // potenial required change -> having to move all references to users to ObjItem references
+
+
+
 	const newQuestion = new mQuestion({
 		user_id : userID,
 		question_type : questionType,
@@ -57,4 +63,5 @@ const pushQuestion = (userID, questionStatement, questionType, containsImage, co
 	});
 }
 
-createUser("dani", "danish", "farid", "danishnxt@gmail.com", "pak", 1, "thetye")
+pushQuestion("dani", "What is life?", 1, )
+mongoose.connection.close()
