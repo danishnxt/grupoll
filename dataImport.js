@@ -137,8 +137,9 @@ const pullParamUsers = (questionID) => {
   // we will probably have to have 5 global zones and have a list of countries in each
 }
 
-
 // single value pulls =============================
 
 const getUserID (userID) => mUser.findOne({ username: userID }, '_id', function (err, res) {if (!err) {return res._id;}});
 const getCatID (catID) => mCategory.findOne({ username: category }, _id, function (err, res) {if (!err) {return res._id;}});
+
+export { }
