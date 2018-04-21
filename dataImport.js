@@ -20,63 +20,65 @@ mongoose.connect(uri)
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// pushes ============================
+// pushes =====================================================================================================================
 
-const pushUser = (uName, uemail, fName, lName, cntry, gndr, hash) => {
+const pushUser = (uName, uemail, fName, lName, cntry, gndr, hash) => new Promise((resolve, reject) => {
 
   const newUser = new mUser({username: uName, email: uemail, first_name: fName, last_name: lName, country: cntry, gender: gndr, passwordHash: hash, question_cnt: 0})
 
-  newUser.save((err) => {
+  newUser.save((err, obj) => {
     if(err) {
       log.logDatabaseError(err);
+      reject(err)
     } else {
       log.logDatabaseEntry("New User Record Added.")
+      resolve(obj)
     }
   });
-}
+})
 
-const pushQuestion = (userID, questionStatement, questionType, containsImage, containsVoice, imageLink, voiceLink, postTime, category, answerTimeLimit, userSeen) => {
+const pushQuestion = (userID, questionStatement, questionType, containsImage, containsVoice, imageLink, voiceLink, postTime, category, answerTimeLimit, userSeen) => new Promise((resolve, reject) => {
 
+  const newQuestion = new mQuestion({
+    user_id : uID,
+    question_type : questionType,
+    statement : questionStatement,
+    contains_image : containsImage,
+    contains_voice : containsVoice,
+    imae_link : imageLink,
+    voice_link : voiceLink,
+    post_time : postTime,
+    category_id : cID,
+    answer_time_lim : answerTimeLimit,
+    user_seen : userSeen
+  });
 
-	const newQuestion = new mQuestion({
-		user_id : uID,
-		question_type : questionType,
-		statement : questionStatement,
-		contains_image : containsImage,
-		contains_voice : containsVoice,
-		imae_link : imageLink,
-		voice_link : voiceLink,
-		post_time : postTime,
-		category_id : cID,
-		answer_time_lim : answerTimeLimit,
-		user_seen : userSeen
-	});
-
-	newQuestion.save(err => {
-		if (err) {log.logDatabaseError(err);} else {
-			log.logDatabaseEntry("New Question Record Added.");
-      mongoose.connection.close()
+  newQuestion.save((err, obj) => {
+    if (err) {log.logDatabaseError(err);
+      reject(err)
+    } else {
+      log.logDatabaseEntry("New Question Record Added.");
+      resolve(obj)
     }
   });
-}
+})
 
-const pushCategory = (cname) => {
+const pushCategory = (cname) => new Promise((resolve, reject) => {
 
   const newCategory = new mCategory({
     name: cname
   })
 
-  newCategory.save(err => {
-    if (err) {log.logDatabaseError(err);} else {
-      log.logDatabaseEntry("New Cateory Added")
+  newCategory.save((err, obj) => {
+    if (err) {log.logDatabaseError(err);
+      reject(err)
+    } else {
+      log.logDatabaseEntry("New Category Added")
     }
   })
-}
+})
 
 const pushFriend = (frnd1, frnd2) => {
-
-  faID =
-  fbID =
 
   const newFriend = new mFriend({
     user1_id: frnd1,
@@ -96,23 +98,28 @@ const pushVote = (uID, qID, value) => {
     user_id: qID
     value:
   })
-
 }
 
-}
 
-// full pulls ============================
 
-const pullUser = (objID) => {mUser.findOne({ _id: objID }, function (err, res) {if (!err) {console.log(res)}});}
-const pullQuestion = (objID) => {mQuestion.findOne({ _id: objID }, function (err, res){if (!err) {console.log(res)}});}
-const pullAnswers = (questionID) => {
-  mAnswer.findOne({question_id: questionID}, function (err, res) { if (!err) {console.log(res)}});
-}
+// full pulls ===================================================================================================================
 
-// queries ==========================
+const pullUser = (objID) => new Promise ((resolve,reject) => {
+  mUser.findOne({ _id: objID }, function (err, res) {if (!err) {resolve(res)} else {reject()}});
+})
+
+const pullQuestion = (objID) => new Promise ((resolve, reject) => {
+  mQuestion.findOne({ _id: objID }, function (err, res) {if (!err) {resolve(res)} else {reject()}});
+})
+
+const pullAnswers = (questionID) => new Promise ((resolve, reject) => {
+  mAnswer.findOne({question_id: questionID}, function (err, res) { if (!err) {resolve (res)} else {reject()}});
+})
+
+// queries =========================================================================================================================
 
 // pull friends of a user -> per user basis
-const pullFriend = (userID) => {
+const pullFriends = (userID) => {
 
   // two requests -> allowing for bi-directionality
   // q1 - user is left side
@@ -137,8 +144,6 @@ const pullParamUsers = (questionID) => {
   // we will probably have to have 5 global zones and have a list of countries in each
 }
 
+// Module Exports ==================================================================================================================
 
-// single value pulls =============================
-
-const getUserID (userID) => mUser.findOne({ username: userID }, '_id', function (err, res) {if (!err) {return res._id;}});
-const getCatID (catID) => mCategory.findOne({ username: category }, _id, function (err, res) {if (!err) {return res._id;}});
+export {pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswers, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
