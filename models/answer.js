@@ -2,6 +2,7 @@ const mgs = require('mongoose')
 Schema = mgs.Schema
 
 const mAnswer = new Schema ({
+  question_id: {type: Schema.ObjectId, ref: 'mQuestion'},
   option_1: String,
   option_2: String,
   option_3: String,

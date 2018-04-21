@@ -8,7 +8,7 @@ const mUser = new Schema({
   last_name: {type: String},
   country: {type: String},
   gender: {type: Number},
-  passwordHash: {type: String},
+  password_hash: {type: String},
   question_cnt: {type: Number}
 })
 

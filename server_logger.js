@@ -1,41 +1,40 @@
-module.exports = {
-	logEntry : str => {
-		const date = new Date();
-		const dateStamp = date.toLocaleDateString();
-		const timeStamp = date.toLocaleTimeString();
+module.exports = {};
 
-		console.log('[' + dateStamp + ', ' + timeStamp + ']: ' + str);
-	},
+module.exports.logEntry = str => {
+	const date = new Date();
+	const dateStamp = date.toLocaleDateString();
+	const timeStamp = date.toLocaleTimeString();
+	console.log('[' + dateStamp + ', ' + timeStamp + ']: ' + str);
+};
 
-	logError : str => {
-		logEntry('[Error]: ' + str);
-	},
+module.exports.logError = str => {
+	module.exports.logEntry('[Error]: ' + str);
+};
 
-	logDatabaseEntry : str => {
-		logEntry('[Database]: ' + str);
-	},
+module.exports.logDatabaseEntry = str => {
+	module.exports.logEntry('[Database]: ' + str);
+};
 
-	logDatabaseError : str => {
-		logError('[Database]: ' + str);
-	},
+module.exports.logDatabaseError = str => {
+	module.exports.logError('[Database]: ' + str);
+};
 
-	logUserConnect : (username, ID) => {
-		logEntry('User with name ' + username + ' and ID ' + ID + ' connected.');
-	},
+module.exports.logUserConnect = (username, ID) => {
+	module.exports.logEntry('User with name ' + username + ' and ID ' + ID + ' connected.');
+};
 
-	logUserDisconnect : (username, ID) => {
-		logEntry('User with name ' + username + ' and ID ' + ID + ' disconnected');
-	},
+module.exports.logUserDisconnect = (username, ID) => {
+	module.exports.logEntry('User with name ' + username + ' and ID ' + ID + ' disconnected');
+};
 
-	logUserQuestionPost : (username, ID, questionID) => {
-		logEntry('User with name ' + username + ' and ID ' + ID + ' posted question with ID ' + questionID);
-	},
+module.exports.logUserQuestionPost = (username, ID, questionID) => {
+	module.exports.logEntry('User with name ' + username + ' and ID ' + ID + ' posted question with ID ' + questionID);
+};
 
-	logUserQuestionResponse : (username, ID, questionID) => {
-		logEntry('User with name ' + username + ' and ID ' + ID + ' responded to question with ID ' + questionID);
-	},
+module.exports.logUserQuestionResponse = (username, ID, questionID) => {
+	module.exports.logEntry('User with name ' + username + ' and ID ' + ID + ' responded to question with ID ' + questionID);
+};
 
-	logUserQuestionFeedback : (username, ID, questionID) => {
-		logEntry('User with name ' + username + ' and ID ' + ID + ' returned feedbak on question with ID ' + questionID);
-	}
+module.exports.logUserQuestionFeedback = (username, ID, questionID) => {
+	module.exports.logEntry('User with name ' + username + ' and ID ' + ID + ' returned feedbak on question with ID ' + questionID);
 };
