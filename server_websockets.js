@@ -75,8 +75,26 @@ const handleQuestionVoteRequest = sock => {
 
 const handleAnswerPostRequest = sock => {
 	sock.on('msgAnswerPostRequest', msg => {
-		db.pushAnswer()
-	})
+		db.pushAnswer(
+			msg.questionID,
+			msg.option1,
+			msg.option2,
+			msg.option3,
+			msg.option1Link,
+			msg.option2Link,
+			msg.option3Link
+			).then(
+			result => {
+				sock.emit('msgAnswerPostRequestConfirmed', result);
+				log.logEntry('Answer to question with ID ' + msg.questionID + ' added');
+			},
+
+			err => {
+				sock.emit('msgAnswerPostRequestRejected', msg);
+				log.logError('Unable to post answer to question with ID ' + msg.questionID);
+			}
+		);
+	});
 };
 
 const initWebSocketConnection = () => {
@@ -88,6 +106,8 @@ const initWebSocketConnection = () => {
 		handleQuestionPostRequest(sock);
 
 		handleQuestionVoteRequest(sock);
+
+		handleAnswerPostRequest(sock);
 	})
 };
 

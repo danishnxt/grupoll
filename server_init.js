@@ -13,6 +13,10 @@ const initialize = () => {
 		res.sendFile(__dirname + '/index.html');
 	});
 
+	app.get('/question', (req, res) => {
+		res.sendFile(__dirname + '/question.html');
+	});
+
 	log.logEntry("Initialized express server.");
 
 	app.use(express.static('content'));
