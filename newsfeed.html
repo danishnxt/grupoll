@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Newsfeed</title>
+</head>
+<body>
+<div id="feed">Newsfeed</div>
+	<ul id= "newsfeed" style="list-style-type:none"></ul>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+
+	const addElement = ele => {
+		document.getElementById("newsfeed").innerHTML += "<li>" + ele + "</li>";
+	};
+
+	
+</script>
+
+</html>
