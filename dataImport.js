@@ -124,15 +124,33 @@ const pushVote = (uID, qID, vValue) => new Promise((resolve, reject) => {
 // to do -> requires the database logging? We're only querying here, do we actually need anything?
 
 const pullUser = (objID) => new Promise ((resolve,reject) => {
-  mUser.findOne({ _id: types.ObjectId(objID) }, (err, res) => {if (!err) {resolve(res)} else {reject(err)}});
+  mUser.findOne({ _id: types.ObjectId(objID) }, (err, res) => {
+    if (err) {
+      reject(err)
+    } else {
+      resolve(res)
+      }
+  });
 })
 
 const pullQuestion = (objID) => new Promise ((resolve, reject) => {
-  mQuestion.findOne({ _id: types.ObjectId(objID) }, (err, res) => {if (!err) {resolve(res)} else {reject(err)}});
+  mQuestion.findOne({ _id: types.ObjectId(objID) }, (err, res) => {
+    if (err) {
+      reject(err)
+    } else {
+      resolve(res)
+    }
+  });
 })
 
 const pullAnswers = (questionID) => new Promise ((resolve, reject) => {
-  mAnswer.findOne({question_id: types.ObjectId(questionID) }, (err, res) => {if (!err) {resolve(res)} else {reject(err)}});
+  mAnswer.find({question_id: types.ObjectId(questionID)}, (err, res) => {
+    if (err) {
+      reject(err)
+    } else {
+      resolve(res)
+    }
+  });
 })
 
 // queries =========================================================================================================================
@@ -211,9 +229,6 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
 // Module Exports ==================================================================================================================
 module.exports = {pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswers, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
 
-// pullFriends("5adb32fce1144d2c68430c95").then(data => {
-//   console.log("list acquired")
-//   console.log(data)
-//   mongoose.connection.close()
-// })
-// console.log("request sent")
+pullUser("5adb32fce1144d2c68430c95").then(data => {
+  console.log("we're done")
+})
