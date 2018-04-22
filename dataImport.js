@@ -100,6 +100,28 @@ const pushFriend = (fr1ID, fr2ID) => new Promise ((resolve, reject) => {
   })
 })
 
+const pushAnswer = (qID, opt1, opt2, opt3, opt1Link, opt2Link, opt3Link) => new Promise((resolve, reject) => {
+  const newAnswer = new mAnswer({
+    question_id : types.ObjectId(qID),
+    option_1 : opt1,
+    option_2 : opt2,
+    option_3 : opt3,
+    option1_Link : opt1Link,
+    option2_Link : opt2Link,
+    option3_Link : opt3Link
+  });
+
+  newAnswer.save((err, obj) => {
+    if (err) {
+      log.logDatabaseError(err);
+      reject(err);
+    } else {
+      log.logDatabaseEntry("New Answer Posted");
+      resolve(obj);
+    }
+  });
+});
+
 const pushVote = (uID, qID, vValue) => new Promise((resolve, reject) => {
 
   const newVote = new mVote({
@@ -209,7 +231,7 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
 })
 
 // Module Exports ==================================================================================================================
-module.exports = {pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswers, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
+module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswers, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
 
 // pullFriends("5adb32fce1144d2c68430c95").then(data => {
 //   console.log("list acquired")

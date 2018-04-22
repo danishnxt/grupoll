@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dummy Client</title>
+	<title>Question View</title>
 </head>
 <body>
-<h1>Default</h1>
+<div id="question_statement"></div>
+<div id="option_1"></div>
+<div id="option_2"></div>
+<div id="option_3"></div>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 	const socket = io();
+
+	const addQuestionStatement = statement => {
+		document.getElementById('question_statement').innerHTML = statement;
+	};
 
 	const myUserID = '5adb32fce1144d2c68430c95';
 	socket.emit('msgUserInitialization', { userID : myUserID });
@@ -28,12 +35,12 @@
 	};
 
 	socket.on('msgQuestionPostRequestConfirmed', result => {
-		generateQuestionView(result);
+		generateQuestionView(result.statement);
 
 		socket.emit('msgQuestionVoteRequest', { userID : myUserID, questionID : result._id, value : 1 });
 	});
 
 	socket.emit('msgQuestionPostRequest', msg);
-
 </script>
+
 </html>

@@ -11,11 +11,12 @@ const handleUserInitialization = sock => {
 		db.pullUser(msg.userID).then(
 			result => {
 				sock.emit('msgUserInitializationConfirmed', result);
-				log.logUserConnect(result.user_name, result.id);
+				log.logUserConnect(result.first_name + ' ' + result.last_name, result.id);
 			},
 
 			err => {
 				sock.emit('msgUserInitializationRejected', msg);
+				log.logWebSocketsError('Failed to initialize user with ID ' + msg.userID);
 			}
 		);
 	});
@@ -23,7 +24,7 @@ const handleUserInitialization = sock => {
 
 const handleQuestionPostRequest = sock => {
 	log.logEntry('Handing question post request');
-	
+
 	const date = new Date();
 
 	sock.on('msgQuestionPostRequest', msg => {
@@ -42,12 +43,12 @@ const handleQuestionPostRequest = sock => {
 		).then(
 			result => {
 				sock.emit('msgQuestionPostRequestConfirmed', result);
-				log.logDatabaseEntry('Question posting successful');
+				log.logWebSocketsEntry('Question posting successful');
 			},
 
 			err => {
 				sock.emit('msgQuestionPostRequestRejected', msg);
-				log.logDatabaseError('Question posting failed');
+				log.logWebSocketsError('Question posting failed');
 			}
 		);
 	});
@@ -62,6 +63,7 @@ const handleQuestionVoteRequest = sock => {
 		).then(
 			result => {
 				sock.emit('msgQuestionVoteRequestConfirmed', result);
+				log.logUserQuestionResponse(msg.userID, msg.questionID)
 			},
 
 			err => {
@@ -69,6 +71,12 @@ const handleQuestionVoteRequest = sock => {
 			}
 		);
 	});
+};
+
+const handleAnswerPostRequest = sock => {
+	sock.on('msgAnswerPostRequest', msg => {
+		db.pushAnswer()
+	})
 };
 
 const initWebSocketConnection = () => {
