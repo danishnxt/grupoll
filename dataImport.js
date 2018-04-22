@@ -183,7 +183,7 @@ const pullComments = (questionID) => new Promise ((resolve, reject) => {
 
 // pull votes for a question ->
 const pullVotes = (questionID) => new Promise ((resolve, reject) => {
-  mVote.find({question_id;types.ObjectId(questionID)},'user_id value', (err,res) => {
+  mVote.find({question_id : types.ObjectId(questionID)},'user_id value', (err,res) => {
     if (err){
       reject(err)
     } else {
@@ -209,11 +209,11 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
 })
 
 // Module Exports ==================================================================================================================
-// export {pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswers, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
+module.exports = {pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswers, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
 
-pullFriends("5adb32fce1144d2c68430c95").then(data => {
-  console.log("list acquired")
-  console.log(data)
-  mongoose.connection.close()
-})
-console.log("request sent")
+// pullFriends("5adb32fce1144d2c68430c95").then(data => {
+//   console.log("list acquired")
+//   console.log(data)
+//   mongoose.connection.close()
+// })
+// console.log("request sent")

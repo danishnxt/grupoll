@@ -48,6 +48,4 @@ const launchServer = () => {
 	});
 };
 
-initialize();
-initializeUpload();
-launchServer();
+module.exports = { initialize, initializeUpload, launchServer, httpServer };

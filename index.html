@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dummy Client</title>
+</head>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	const socket = io();
+
+	socket.emit('msgUserInitialization', { userID : '5adc5bdcedc3892a0c51a55f' });
+
+	const msg = {
+		userID : '5adc5bdcedc3892a0c51a55f',
+		questionStatement : 'Why can\'t Danish get a girlfriend?',
+		questionType : true,
+		containsImage : false,
+		containsVoice : false,
+		imageLink : '',
+		voiceLink : '',
+		categoryID : '5adb32fce1144d2c68430c95',
+		answerTimeLimit : Date.now(),
+		userSeen : false
+	};
+
+	socket.emit('msgQuestionPostRequest', msg);
+
+</script>
+</body>
+</html>

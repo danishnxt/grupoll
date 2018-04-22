@@ -8,10 +8,10 @@ const db = require('./dataImport');
 const handleUserInitialization = sock => {
 	sock.on('msgUserInitialization', msg => {
 		// retrieve user info from database
-		pullUser(msg.userID).then(
+		db.pullUser(msg.userID).then(
 			result => {
 				sock.emit('msgUserInitializationConfirmed', result);
-				log.logUserConnect(result.)
+				log.logUserConnect(result.user_name, result.id);
 			},
 
 			err => {
@@ -22,10 +22,12 @@ const handleUserInitialization = sock => {
 };
 
 const handleQuestionPostRequest = sock => {
+	log.logEntry('Handing question post request');
+	
 	const date = new Date();
 
 	sock.on('msgQuestionPostRequest', msg => {
-		pushQuestion(
+		db.pushQuestion(
 			msg.userID,
 			msg.questionStatement,
 			msg.questionType,
@@ -40,10 +42,12 @@ const handleQuestionPostRequest = sock => {
 		).then(
 			result => {
 				sock.emit('msgQuestionPostRequestConfirmed', result);
+				log.logDatabaseEntry('Question posting successful');
 			},
 
 			err => {
 				sock.emit('msgQuestionPostRequestRejected', msg);
+				log.logDatabaseError('Question posting failed');
 			}
 		);
 	});
@@ -51,7 +55,7 @@ const handleQuestionPostRequest = sock => {
 
 const handleQuestionVoteRequest = sock => {
 	sock.on('msgQuestionVoteRequest', msg => {
-		pushVote(
+		db.pushVote(
 			msg.userID,
 			msg.questionID,
 			msg.value
@@ -79,4 +83,4 @@ const initWebSocketConnection = () => {
 	})
 };
 
-export { initWebSocketConnection };
+module.exports = { initWebSocketConnection };
