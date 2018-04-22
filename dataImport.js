@@ -229,6 +229,3 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
 // Module Exports ==================================================================================================================
 module.exports = {pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswers, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
 
-pullUser("5adb32fce1144d2c68430c95").then(data => {
-  console.log("we're done")
-})
