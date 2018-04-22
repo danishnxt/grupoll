@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Post Question</title>
+</head>
+<body>
+
+  <div id="genericText"> What's your question? </div>
+  <input id="quesText" > </input>
+
+  <h4> How many answers would you like? </h4>
+
+  <div>
+    <select id = "selector" onChange = "enabler()">
+      <option> 2 </option>
+      <option> 3 </option>
+    </select>
+  </div>
+
+  <div>
+    <input id="option_1" > Answer 1 </input>
+    <input id="option_2" > Answer 2 </input>
+    <input id="option_3" disabled = true>Answer 3</input>
+  </div>
+
+  <button onClick="send()"> Send the question! </button>
+
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+
+  const socket = io();
+
+  const myUserID = '5adb32fce1144d2c68430c95';
+  const myGenericCat = "5adc5269e5ab8524681e7ff5";
+
+  const enabler = () => {
+    console.log(document.getElementById("selector").innerHTML)
+    if (document.getElementById("selector").innerHTML === "2") {
+      console.log("2")
+    } else {
+      console.log("3")
+    }
+  }
+
+  const send = () => {
+
+    sendValQ = {
+      userID: myUserID,
+      questionStatement: document.getElementById("quesText").value,
+      questionType: false,
+      containsImage: false,
+      containsVoice: false,
+      imageLink: "",
+      voiceLink: "",
+      date: Date.now()
+      categoryID: myGenericCat,
+      answerTimeLimit: Date.now()+300
+    }
+
+    socket.emit('msgQuestionPostRequest', sendValQ)
+    socket.on('msgQuestionPostRequestConfirmed', payload => {
+
+      if (document.getElementById('option_3').disabled === true){
+        ans3 = ""
+      } else {
+        ans3 = document.getElementById('option_3').value
+      }
+
+      sendValA = {
+        questionID: payload._id,
+        option1: document.getElementById('option_1').value,
+        option2: document.getElementById('option_2').value,
+        option3: ans3,
+        option1Link: "",
+        option2Link: "",
+        option3Link: ""
+      }
+
+      socket.emit('msgAnswerPostRequest', sendValA)
+
+    })
+
+    socket.on('msgQuestionPostRequestRejected', payload => {
+      alert('something went terribly wrong :( ')
+    })
+  }
+
+
+
+
+</script>
+</html>
