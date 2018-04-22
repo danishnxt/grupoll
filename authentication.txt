@@ -5,3 +5,28 @@ GruP@ll123
 <  - DB username login- >
 danishnxt
 LA1KewxpRjawxjVy
+
+
+=================================
+
+user -> "5adb32fce1144d2c68430c95" // "dani"
+user -> "5adc604f2bd79334dc4d0bca" // "Izy"
+user -> "5adc604f2bd79334dc4d0bcb" // "Molvi"
+user -> "5adc604f2bd79334dc4d0bcc" // "Tirmi"
+user -> "5adc604f2bd79334dc4d0bcd" // "Aleee"
+
+category -> 5adc520b13a17015c46f6631 // clothing
+category -> 5adc5269e5ab8524681e7ff5 // technology
+
+friends -> dani // Molvi
+friends -> Izy // Aleee
+friends -> dani // Aleee
+friends -> Izy // Tirmi
+friends -> dani // Izy
+
+a = pushFriend(dani // Molvi)
+b = pushFriend(Izy // Aleee)
+c = pushFriend(dani // Aleee)
+d = pushFriend(Izy // Tirmi)
+e = pushFriend(dani // Izy)
+f = pushFriend(5adc604f2bd79334dc4d0bcc // 5adb32fce1144d2c68430c95)
