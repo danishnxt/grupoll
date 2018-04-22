@@ -13,6 +13,14 @@ const initialize = () => {
 		res.sendFile(__dirname + '/index.html');
 	});
 
+	app.get('/browserfs.min.js', (req, res) => {
+		res.sendFile(__dirname + '/node_modules/browserfs/dist/browserfs.min.js');
+	});
+
+	app.get('/postQuestion', (req, res) => {
+		res.sendFile(__dirname + '/postQuestion.html');
+	});
+
 	app.get('/question', (req, res) => {
 		res.sendFile(__dirname + '/question.html');
 	});
