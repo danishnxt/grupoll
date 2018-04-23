@@ -46,7 +46,7 @@
   </div>
   <div id="third">
     <button class="answerbutton" > Answer 3:</button>
-    <input id= "option_3" class="answers" disabled = true> </input>
+    <input id= "option_3" class="answers"> </input>
   </div>
 
   <button class="sendbutton" onClick="send()"> Send question! </button>
@@ -178,21 +178,17 @@
   }
 
   const enabler = () => {
+    
     console.log(document.getElementById("selector").value)
+
     if (document.getElementById("selector").value === "2") {
       document.getElementById("option_3").disabled = true
       document.getElementById("option_3").style.visibility= "hidden" 
       document.getElementById("third").style.visibility="hidden"
-
-    } else if (document.getElementById("selector").value === "3") {
-      document.getElementById("option_3").disabled = true
+    } else  (document.getElementById("selector").value === "3") {
+      document.getElementById("option_3").disabled = false
       document.getElementById("option_3").style.visibility= "visible" 
       document.getElementById("third").style.visibility="visible"
-
-    } else {
-      document.getElementById("option_3").disabled = false
-
-    }
   }
 
   const socket = io()
