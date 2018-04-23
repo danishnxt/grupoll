@@ -23,7 +23,7 @@ const handleUserInitialization = sock => {
 };
 
 const handleQuestionPostRequest = sock => {
-	log.logEntry('Handing question post request');
+	log.logWebSocketsEntry('Handing question post request');
 
 	const date = new Date();
 
@@ -86,12 +86,12 @@ const handleAnswerPostRequest = sock => {
 			).then(
 			result => {
 				sock.emit('msgAnswerPostRequestConfirmed', result);
-				log.logEntry('Answer to question with ID ' + msg.questionID + ' added');
+				log.logWebSocketsEntry('Answer to question with ID ' + msg.questionID + ' added');
 			},
 
 			err => {
 				sock.emit('msgAnswerPostRequestRejected', msg);
-				log.logError('Unable to post answer to question with ID ' + msg.questionID);
+				log.logWebSocketsError('Unable to post answer to question with ID ' + msg.questionID);
 			}
 		);
 	});
@@ -102,15 +102,15 @@ const handleQuestionRetrieveRequest = sock => {
 		db.pullQuestion(msg.questionID).then(
 			result => {
 				sock.emit('msgQuestionRetrieveRequestConfirmed', result);
-				log.logEntry('Question retrieval for ID ' + msg.questionID + ' added');
+				log.logWebSocketsEntry('Question retrieval for ID ' + msg.questionID + ' added');
 			},
 
 			err => {
 				sock.emit('msgQuestionRetrieveRequestRejected', msg);
-				log.logError('Unable to retrieve question with ID ' + msg.questionID);
+				log.logWebSocketsError('Unable to retrieve question with ID ' + msg.questionID);
 			}
 
-			);
+		);
 	});
 };
 
@@ -119,29 +119,45 @@ const handleAnswerRetrieveRequest = sock => {
 		db.pullAnswerOptions(msg.questionID).then(
 			result => {
 				sock.emit('msgAnswerRetrieveRequestConfirmed', result);
-				log.logEntry('Answer retrieval for question with ID ' + msg.questionID + ' added');
+				log.logWebSocketsEntry('Answer retrieval for question with ID ' + msg.questionID + ' added');
 			},
 
 			err => {
 				sock.emit('msgAnswerRetrieveRequestRejected', msg);
-				log.logError('Unable to retrieve answer for question with ID ' + msg.questionID);
+				log.logWebSocketsError('Unable to retrieve answer for question with ID ' + msg.questionID);
 			}
 
-			);
+		);
+	});
+};
+
+const handleUserFeedRetrieveRequest = sock => {
+	sock.on('msgUserFeedRetrieveRequest', msg => {
+		db.pullRecentQuestions(10).then(
+			result => {
+				sock.emit('msgUserFeedRetrieveRequestConfirmed', result);
+				log.logWebSocketsEntry('User feed retrieval successful');
+			},
+
+			err => {
+				sock.emit('msgUserFeedRetrieveRequestRejected', msg);
+				log.logWebSocketsError('Unable to retrieve user feed.');
+			}
+		);
 	});
 };
 
 const initWebSocketConnection = () => {
 	io.on('connection', sock => {
-		log.logEntry('Client connected');
+		log.logWebSocketsEntry('Client connected');
 
 		handleUserInitialization(sock);
-		handleUserNewsFeed(sock);
 		handleQuestionPostRequest(sock);
 		handleQuestionVoteRequest(sock);
 		handleAnswerPostRequest(sock);
 		handleQuestionRetrieveRequest(sock);
 		handleAnswerRetrieveRequest(sock);
+		handleUserFeedRetrieveRequest(sock);
 	})
 };
 
