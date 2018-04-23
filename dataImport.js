@@ -262,13 +262,14 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
   })
 })
 
-const pullRecentQuestions = () =>  new Promise((resolve, reject) => {
+const pullRecentQuestions = (limitAsk) =>  new Promise((resolve, reject) => {
   // limit for 10 hard coded currently
-  mQuestion.find({answerTimeLimit:{ $gte:Date.now()}}, {limit: 2}, (err, res) => {
+  mQuestion.find({answer_time_lim:{$gte:Date.now()}},(err, res) => {
     if(err) {
       reject(err)
     } else {
-      resolve(res)
+      returnVal = res.slice(0,limitAsk)
+      resolve(returnVal)
     }
   })
 })
@@ -295,7 +296,7 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
   // a question but this is such an edge case that we can probably ignore it for the time being
 
   curTime = Date.Now()
-  mQuestion.findOne({user_id:types.ObjectId(uID), answerTimeLimit: {$gte:curTime}}, '_id', (err, res) => {
+  mQuestion.findOne({user_id:types.ObjectId(uID), answer_time_lim: {$gte:curTime}}, '_id', (err, res) => {
     if(err){
       reject(err)
     } else {
