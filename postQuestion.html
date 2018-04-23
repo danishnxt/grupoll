@@ -4,10 +4,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"><head>
 </head>
-<body>
-<div class="background">
+<body background="background.jpg">
+
   <header class="app_header"></header>
   <center>
+    <img src="logo.png" class="logo"></img>
     <div class="title1">Post Question</div>
   <div class="what" id="genericText" > What's your question? </div>
   <input id="quesText"  class="inputbar" > </input>
@@ -18,24 +19,24 @@
   </div>
 
   <div>
-     <h4 class="what"> How many answers would you like? </h4>
-      <select id = "selector" onChange = "enabler()">
-        <option> 2 </option>
-        <option> 3 </option>
+     <h4 class="how"> How many answers would you like? </h4>
+      <select id = "selector" class="qnumber" onChange = "enabler()">
+        <option class="optiontxt"> 3 </option>
+        <option class="optiontxt"> 2 </option>
       </select>
   </div>
 
   <div>
-    <input id="option_1" > Answer 1 </input>
+    <input id= "option_1" class="answers" > Answer 1 </input>
   </div>
   <div>
-    <input id="option_2" > Answer 2 </input>
+    <input id= "option_2" class="answers"> Answer 2 </input>
   </div>
-  <div>
-    <input id="option_3" disabled = true> Answer 3 </input>
+  <div id="third">
+    <input id= "option_3" class="answers" disabled = true> Answer 3 </input>
   </div>
 
-  <button onClick="send()"> Send the question! </button>
+  <button class="sendbutton" onClick="send()"> Send question! </button>
   <div class="footer"></div>
   </center>
   </div>
@@ -69,8 +70,12 @@
     console.log(document.getElementById("selector").value)
     if (document.getElementById("selector").value === "2") {
       document.getElementById("option_3").disabled = true
+      document.getElementById("option_3").style.visibility= "hidden" 
+      document.getElementById("third").style.visibility="hidden"
+
     } else {
       document.getElementById("option_3").disabled = false
+
     }
   }
 
