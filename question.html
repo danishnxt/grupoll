@@ -228,9 +228,13 @@ function vote3() {
 		document.getElementById('option_3').innerHTML = o3;
 	};
 
-	const myUserID = '5adb32fce1144d2c68430c95';
+	const myUserID = "";
 
-	// let myQuestionID = "5addaeefc2f104375037fff0";
+	fs.readFile('/current_user.txt', (err, contents) => {
+		myUserID = contents.toString();
+	});
+
+	let myQuestionID = "";
 
 	fs.readFile('/current_question.txt', (err, contents) => {
 		myQuestionID = contents.toString();
