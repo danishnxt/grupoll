@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+	<input id="username" placeholder="Username"></input>
+	<input id="password" placeholder="Password"></input>
+	<button id="login" onclick="handleLogin();">Login</button>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
+<script type="text/javascript">
+	BrowserFS.install(window);
+
+	BrowserFS.configure({
+		fs : "LocalStorage"
+	}, e => {
+		if (e) {
+			throw e;
+		}
+	});
+
+	const fs = require('fs');
+	const socket = io();
+
+	const handleLogin = () => {
+		const user_name = document.getElementById("username").value;
+		const passWord = document.getElementById("password").value;
+
+		socket.emit("msgUserLoginRequest", { userName : user_name, password : passWord });
+	};
+
+	socket.on('msgUserLoginRequestConfirmed', msg => {
+		fs.writeFile('current_user.txt', msg._id, err => {
+			if (err) {
+				console.log(err);
+				alert('Failed to locally store user with ID' + msg._id);
+			} else {
+				window.open("http://localhost:3000/profile", "_self");
+			}
+		});
+	});
+
+</script>
+</html>

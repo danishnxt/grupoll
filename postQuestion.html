@@ -56,10 +56,10 @@
   })
 
   const switchToQuestion = (questionID) => {
-    console.log(questionID)
     fs.writeFile('/current_question.txt', questionID, err => {
       if (err) {
         console.log(err)
+        alert('Failed to locally store question with ID ' + questionID);
       } else {
         window.open("http://localhost:3000/question", "_self")
       }

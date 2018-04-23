@@ -145,6 +145,23 @@ const handleUserFeedRetrieveRequest = sock => {
 	});
 };
 
+const handleUserLoginRequest = sock => {
+	sock.on('msgUserLoginRequest', msg => {
+		console.log('Username ' + msg.userName + ' password ' + msg.password);
+		db.pullUserAuthenticate(msg.userName, msg.password).then(
+			result => {
+				sock.emit('msgUserLoginRequestConfirmed', result);
+				log.logWebSocketsEntry('User login successful for username ' + msg.userName);
+			},
+
+			err => {
+				sock.emit('msgUserLoginRejected');
+				log.logWebSocketsError('User login failed for username ' + msg.password);
+			}
+		);
+	});
+};
+
 const initWebSocketConnection = () => {
 	io.on('connection', sock => {
 		log.logWebSocketsEntry('Client connected');
@@ -156,6 +173,7 @@ const initWebSocketConnection = () => {
 		handleQuestionRetrieveRequest(sock);
 		handleAnswerRetrieveRequest(sock);
 		handleUserFeedRetrieveRequest(sock);
+		handleUserLoginRequest(sock);
 	})
 };
 
