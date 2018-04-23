@@ -21,13 +21,14 @@
 
 	<div id = 'grupollImage'>
 		<center>
-			<img id='logo_img' src='logo.png'>
+			<img id='logo_img' src='logo.png'>			
 		</center>
-	</div>
 
+	</div>
+	
 
 	<div id="question_statement">
-	  <div id = "qbar" >
+	  <div id = "qbar" > 
 		  <div id="bar"></div>
 		  <div id="bar"></div>
 		  <div id="bar"></div>
@@ -38,55 +39,61 @@
 <!--      Here is our menu on the right side             -->
 
 <div id='rightMenu'>
-
+	
 
 	<div class="area"></div>
-
-
+	
+		
 		<nav class="main-menu">
 
             <ul>
-
+            	
                 <li>
                     <a href="#">
+                    	<div class='poll'>
                         <i class="fa fa-pencil fa-2x" style="font-size:48px;color:red; margin-left:15%"></i>
+                        </div>
                         <span class="nav-text">
                         </span>
                     </a>
-
+                  
                 </li>
                	<li>
                     <a href="#">
+                    	<div class='notifications'>
                         <i class="fa fa-bell-o " style="font-size:48px;color:red;margin-top:200%;margin-left:15%""></i>
+                        </div>
                         <span class="nav-text">
                         </span>
                     </a>
-
+                  
                 </li>
 
                	<li>
                     <a href="#">
-                    	<div class='settings'>
+                    	<div class='settingsButton'>
                         <i id="settings" class="material-icons fa-2x" style="font-size:55px;color:red;margin-top:250%;margin-left:27%">settings</i>
                         </div>
                         <span class="nav-text">
                         </span>
                     </a>
-
+                  
                 </li>
-
-
+                
+                
             </ul>
 
             <ul class="logout">
                 <li>
                    <a href="#">
-                         <i class="fa fa-power-off fa-2x" style="font-size:48px;color:red;margin-bottom:70%;margin-left:15%" ></i>
+                   		<div class = 'powerButton'>
+                         <i id="power" class="fa fa-power-off fa-2x" style="font-size:48px;color:red; margin-bottom:330%; margin-left:15%" ></i>
+                         </div>
                         <span class="nav-text">
-
+                            
                         </span>
                     </a>
-                </li>
+                </li>  
             </ul>
         </nav>
 
@@ -115,25 +122,39 @@
 	    <!-- nav-right -->
 	</nav>
 
-	  <a href="https://codepen.io/tonkec/" class="ua" target="_blank">
+	<!--   <a href="https://codepen.io/tonkec/" class="ua" target="_blank">
 	    <i class="fa fa-user"></i>
-	  </a>
+	  </a> -->
 
-
+<script>
+function vote1() {
+    document.getElementById("option_1").style.background = "red";
+}
+</script>
+<script>
+function vote2() {
+    document.getElementById("option_2").style.background = "red";
+}
+</script>
+<script>
+function vote3() {
+    document.getElementById("option_3").style.background = "red";
+}
+</script>
 
 <center>
 	<div>
-		<button id="option_1">...</button>
+		<button onclick="vote1()" id="option_1" onCLick>...</button>
 	</div>
-
+	
 		<span style="10px"></span>
-
+	
 	<div>
-		<button id="option_2">...</button>
+		<button onclick="vote2()" id="option_2">...</button>
 	</div>
-
+	
 	<div>
-		<button id="option_3">...</button>
+		<button onclick="vote3()" id="option_3">...</button>
 	</div>
 </center>
 
@@ -143,7 +164,7 @@
 </main>
 
 <div id='profileBar'>
-
+	
 
 	<div class="nav-right visible-xs">
 	  <div class="button" id="btn">
@@ -165,6 +186,14 @@
 
 
 </div>
+
+<!-- <a href="#">
+	<div id='backButton'>
+	        <i id="back" class="material-icons" style="font-size:55px; color:red;"> arrow_back</i> 
+	</div>
+</a> -->
+
+
 
 </body>
 
@@ -233,7 +262,7 @@
 	let open = 0;
 
 	function toggleLeftBar() {
-+		$("main").toggleClass("move-to-right");
+		$("main").toggleClass("move-to-right");
 	}
 
 	function toggleSidebar() {
