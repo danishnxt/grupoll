@@ -25,8 +25,6 @@ const handleUserInitialization = sock => {
 const handleQuestionPostRequest = sock => {
 	log.logWebSocketsEntry('Handing question post request');
 
-	const date = new Date();
-
 	sock.on('msgQuestionPostRequest', msg => {
 		db.pushQuestion(
 			msg.userID,
@@ -36,7 +34,7 @@ const handleQuestionPostRequest = sock => {
 			msg.containsVoice,
 			msg.imageLink,
 			msg.voiceLink,
-			date,
+			msg.date,
 			msg.categoryID,
 			msg.answerTimeLimit,
 			false
