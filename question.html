@@ -3,6 +3,8 @@
 <link rel="stylesheet" type="text/css" href="question.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head>
 	<title>Question View</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,6 +15,13 @@
 <main>
 
 	<div id='app_header'></div>
+
+	<div id = 'grupollImage'>
+		<center>
+			<img id='logo_img' src='logo.png'>			
+		</center>
+	</div>
+
 
 	<div id="question_statement">
 	  <div id = "qbar" > 
@@ -80,14 +89,7 @@
                     </a>
                 </li>
                
-                <li>
-                   <a href="#">
-                        <i class="fa fa-map-marker fa-2x"></i>
-                        <span class="nav-text">
-                            Maps
-                        </span>
-                    </a>
-                </li>
+                
             </ul>
 
             <ul class="logout">
@@ -196,13 +198,6 @@
 		document.getElementById('option_3').style.visibility = 'visible';
 						
 
-
-		// the for loop causes the problem
-		/*for(int i=0; i<3; i++){
-			document.getElementById(`option_${i+1}`).style.visibility = 'visible';
-
-		}*/
-
 	};
 	const addAnswerOptions = (o1, o2, o3) => {
 		document.getElementById('option_1').innerHTML = o1;
@@ -250,13 +245,6 @@
 
   	}
 
-  /*	$(".item-image").hover(function () {
-	    // mouseover event codes...
-		
-		}, function () {
-    	// mouseout event codes...
-	});
-*/
 
 
 
@@ -285,14 +273,14 @@
     	
   	});
 
-  	$(document).keyup(function(e) {
+  	/*$(document).keyup(function(e) {
     	$('.sidebar').css('opacity','0');
     	if (e.keyCode === 27) {
 	      	$('.sidebar').css('opacity','0');
 	      	toggleSidebar();
     	}
 
-  	});
+  	});*/
 
 
 </script>
