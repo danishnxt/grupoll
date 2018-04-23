@@ -17,6 +17,10 @@ const initialize = () => {
 		res.sendFile(__dirname + '/node_modules/browserfs/dist/browserfs.min.js');
 	});
 
+	app.get('/splash', (req, res) => {
+		res.sendFile(__dirname + '/splash.html');
+	});
+
 	app.get('/postQuestion', (req, res) => {
 		res.sendFile(__dirname + '/postQuestion.html');
 	});
@@ -26,7 +30,7 @@ const initialize = () => {
 	});
 
 	app.get('/newsFeed', (req, res) => {
-		res.sendFile(__dirname + '/newsFeed.html');
+		res.sendFile(__dirname + '/newsfeed.html');
 	});
 
 	app.get('/profile', (req, res) => {

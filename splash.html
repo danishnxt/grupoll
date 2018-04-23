@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Splash</title>
+</head>
+<body>
+	<button id="login" onclick="handleLogin();">Log In</button>
+	<button id="signup" onclick="handleSignup();">Sign Up</button>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
+<script type="text/javascript">
+	const handleLogin = () => {
+		window.open("http://localhost:3000/login", "_self");
+	};
+
+	const handleSignup = () => {
+		window.open("http://localhost:3000/signup", "_self");
+	};
+</script>
+</html>
