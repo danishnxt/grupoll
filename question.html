@@ -112,39 +112,22 @@
 		document.getElementById('option_2').innerHTML = o2;
 		document.getElementById('option_3').innerHTML = o3;
 	};
+
 	const myUserID = '5adb32fce1144d2c68430c95';
+	const myQuestionID = '5adda887751138239421eb27';
+
 	socket.emit('msgUserInitialization', { userID : myUserID });
-	const msg = {
-		userID : myUserID,
-		questionStatement : 'Why can\'t Danish get a girlfriend?',
-		questionType : true,
-		containsImage : false,
-		containsVoice : false,
-		imageLink : '',
-		voiceLink : '',
-		categoryID : '5adc5bdcedc3892a0c51a55f',
-		answerTimeLimit : Date.now(),
-		userSeen : false
-	};
-	const answerMsg = {
-		option1 : 'He\'s too hot',
-		option2 : 'He\'s too smart',
-		option3 : 'He\'s too nice',
-		option1Link : '',
-		option2Link : '',
-		option3Link : ''
-	};
-	socket.on('msgAnswerPostRequestConfirmed', result => {
-		addAnswerOptions(result.option_1, result.option_2, result.option_3);
+
+	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
+		addQuestionStatement(msg.statement);
 	});
-	socket.on('msgQuestionPostRequestConfirmed', result => {
-		addQuestionStatement(result.statement);
-		answerMsg.questionID = result._id;
-		socket.emit('msgAnswerPostRequest', answerMsg);
-		// socket.emit('msgQuestionVoteRequest', { userID : myUserID, questionID : result._id, value : 1 });
+
+	socket.on('msgAnswerRetrieveRequestConfirmed', msg => {
+		addAnswerOptions(msg.option_1, msg.option_2, msg.option_3);
 	});
-	
-	socket.emit('msgQuestionPostRequest', msg);
+
+	socket.emit('msgQuestionRetrieveRequest', { questionID : myQuestionID });
+	socket.emit('msgAnswerRetrieveRequest', { questionID : myQuestionID });
 
 	// side bar left
 

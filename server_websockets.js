@@ -102,7 +102,7 @@ const handleQuestionRetrieveRequest = sock => {
 		db.pullQuestion(msg.questionID).then(
 			result => {
 				sock.emit('msgQuestionRetrieveRequestConfirmed', result);
-				log.logEntry('Question retrieval for ID ' msg.questionID + ' added');
+				log.logEntry('Question retrieval for ID ' + msg.questionID + ' added');
 			},
 
 			err => {
