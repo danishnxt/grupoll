@@ -21,7 +21,7 @@
 </div>
 
 
- <nav>
+ 	<nav>
 	    <div class="nav-right hidden-xs">
 	      <div class="button" id="btn">
 	        <div class="bar top"></div>
@@ -30,7 +30,7 @@
 	      </div>
 	    </div>
 	    <!-- nav-right -->
-	  </nav>
+	</nav>
 
 	  <a href="https://codepen.io/tonkec/" class="ua" target="_blank">
 	    <i class="fa fa-user"></i>
@@ -53,6 +53,9 @@
 		<button id="option_3">...</button>
 	</div>
 </center>
+
+<div id='footer'></div>
+
 
 </main>
 
@@ -82,7 +85,6 @@
 
 
 
-<div id='footer'></div>
 
 
 </body>
@@ -114,7 +116,7 @@
 	};
 
 	const myUserID = '5adb32fce1144d2c68430c95';
-	const myQuestionID = '5adda887751138239421eb27';
+	const myQuestionID = '5addaeefc2f104375037ffea';
 
 	socket.emit('msgUserInitialization', { userID : myUserID });
 
@@ -140,20 +142,39 @@
 
 	// side bar right
 
+	let open = 0;
+
 	function toggleSidebar() {
 	    $(".button").toggleClass("active");
 	    $("main").toggleClass("move-to-left");
 	    $(".sidebar-item").toggleClass("active");
+
   	}
 
   	$(".button").on("click tap", function() {
+    	
+    	//$('.sidebar').css({'opacity','100'});
+    	if(open==0){
+    		$('.sidebar').css('opacity','100');
+    		open=1;
+    	}
+    	else if(open == 1){
+    		$('.sidebar').css('opacity','0');
+    		open=0;
+    	}
+
+
     	toggleSidebar();
+    	
   	});
 
   	$(document).keyup(function(e) {
+    	$('.sidebar').css('opacity','0');
     	if (e.keyCode === 27) {
-      	toggleSidebar();
+	      	$('.sidebar').css('opacity','0');
+	      	toggleSidebar();
     	}
+
   	});
 
 

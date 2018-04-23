@@ -56,7 +56,7 @@
 #app_header{
 
   background-color: #d46a6a;
-  height: 60px;
+  height: 80px;
   padding:0px;
   left: 0;
   top: 0;
@@ -178,7 +178,7 @@ main {
   z-index: 2;
   position: relative;
   height: 100%;
-  background-image: 
+  background-image: url('background.jpg')
   -webkit-transition: transform .7s ease-in-out;
   -moz-transition: transform .7s ease-in-out;
   -ms-transition: transform .7s ease-in-out;
@@ -282,6 +282,21 @@ main {
 nav {
   padding-top: 30px;
 }
+
+
+.sidebar{
+
+  visibility: visible;
+  opacity: 0;
+  -webkit-transition: all .5s .4s ease-in-out;
+  -moz-transition: all .5s .4s ease-in-out;
+  -ms-transition: all .5s .4s ease-in-out;
+  -o-transition: all .5s .4s ease-in-out;
+  transition: all .5s .4s ease-in-out;
+
+}
+
+
 
 .sidebar-list {
   padding: 0;
@@ -409,7 +424,7 @@ nav {
 
 @media (min-width: 768px) {
   .nav-right {
-    position: absolute;
+    position: hidden;
   }
   .hidden-xs {
     display: block;
