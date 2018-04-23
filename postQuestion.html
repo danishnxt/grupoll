@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Post Question</title>
+<link rel="stylesheet" type="text/css" href="postQuestion.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"><head>
 </head>
 <body>
-
-  <div id="genericText"> What's your question? </div>
-  <input id="quesText" > </input>
+<div class="background">
+  <header class="app_header"></header>
+  <center>
+    <div class="title1">Post Question</div>
+  <div class="what" id="genericText" > What's your question? </div>
+  <input id="quesText"  class="inputbar" > </input>
 
   <div>
-    <div> What is your user ID? </div>
-    <input id="userIDText"> </input>
+    <div class="what"> What is your user ID? </div>
+    <input id="userIDText" class="inputbar"> </input>
   </div>
 
   <div>
-     <h4> How many answers would you like? </h4>
+     <h4 class="what"> How many answers would you like? </h4>
       <select id = "selector" onChange = "enabler()">
         <option> 2 </option>
         <option> 3 </option>
@@ -23,19 +27,18 @@
 
   <div>
     <input id="option_1" > Answer 1 </input>
-    <button> Upload Media </button>
   </div>
   <div>
     <input id="option_2" > Answer 2 </input>
-    <button> Upload Media </button>
   </div>
   <div>
     <input id="option_3" disabled = true> Answer 3 </input>
-    <button id = "mediaOption3" disabled = true> Upload Media </button>
   </div>
 
   <button onClick="send()"> Send the question! </button>
-
+  <div class="footer"></div>
+  </center>
+  </div>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -45,10 +48,8 @@
     console.log(document.getElementById("selector").value)
     if (document.getElementById("selector").value === "2") {
       document.getElementById("option_3").disabled = true
-      document.getElementById("mediaOption3").disabled = true
     } else {
       document.getElementById("option_3").disabled = false
-      document.getElementById("mediaOption3").disabled = false
     }
   }
 

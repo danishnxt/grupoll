@@ -1,0 +1,54 @@
+.app_header{
+  position: fixed;
+  background-color: #d46a6a;
+  height: 40px;
+  left:0;
+  top: 0;
+  width: 100%;
+}
+.footer{
+	position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   height: 40px;
+   background-color: #819a4d;
+   color: white;
+   text-align: center;
+}
+.title1{
+  	text-align: center;
+  	margin: 3%;
+	font-family: 'Oswald', sans-serif;
+	font-size: 2.5em;
+	color: #f39c12;
+
+}
+.background{
+  	background-color: #404040;
+  	position: fixed;
+  	width: 100%;
+    height: 597px;
+    left:0;
+    right: 0;
+
+}
+.inputbar{
+	text-align: center;
+	position: center;
+	width: 10%;
+	background-color:  #ffaa80;
+
+	  box-shadow: inset 0 -2px #ff884d;
+	    border: 0;
+  border-radius: 8px;
+
+
+}
+.what{
+  text-align: center;
+  margin: 2%;
+font-family: 'Oswald', sans-serif;
+font-size: 1.5em;
+color: white;
+}
