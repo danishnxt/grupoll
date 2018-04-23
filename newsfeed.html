@@ -1,21 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Newsfeed</title>
+	<title> GruPoll </title>
 </head>
+
 <body>
-<div id="feed">Newsfeed</div>
+  <button> Logout </button>
+  <div id="feed">Loading...</div>
 	<ul id= "newsfeed" style="list-style-type:none"></ul>
+  <button onclick="test()"> Test </button>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
+
 <script type="text/javascript">
+  // socket.emit('sendNewsFeed5', userID)
+  // socket.on('newsfeedList', data => {
+  //   data.forEach(val => {
+  //     addElement(val)
+  //   })
+  // })
 
 	const addElement = ele => {
-		document.getElementById("newsfeed").innerHTML += "<li>" + ele + "</li>";
+    addElem = "<button>" + ele + "</button>"
+		document.getElementById("newsfeed").innerHTML += "<li>" + addElem + "</li>";
 	};
 
-	
-</script>
+  const test = () => {
+    console.log("click")
+    addElement("Question: What is the sun really like to land on")
+    addElement("Question: What do we need to do here?")
+  }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
 </html>

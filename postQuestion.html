@@ -8,13 +8,17 @@
   <div id="genericText"> What's your question? </div>
   <input id="quesText" > </input>
 
-  <h4> How many answers would you like? </h4>
+  <div>
+    <div> What is your user ID? </div>
+    <input id="userIDText"> </input>
+  </div>
 
   <div>
-    <select id = "selector" onChange = "enabler()">
-      <option> 2 </option>
-      <option> 3 </option>
-    </select>
+     <h4> How many answers would you like? </h4>
+      <select id = "selector" onChange = "enabler()">
+        <option> 2 </option>
+        <option> 3 </option>
+      </select>
   </div>
 
   <div>
@@ -44,12 +48,11 @@
   }
 
   const socket = io();
-  const myUserID = '5adb32fce1144d2c68430c95';
   const myGenericCat = "5adc5269e5ab8524681e7ff5";
 
   const send = () => {
     sendValQ = {
-      userID: myUserID,
+      userID: document.getElementById("userIDText").value,
       questionStatement: document.getElementById("quesText").value,
       questionType: false,
       containsImage: false,
@@ -85,7 +88,6 @@
       alert('something went terribly wrong :( ')
     })
   }
-
 
 </script>
 </html>
