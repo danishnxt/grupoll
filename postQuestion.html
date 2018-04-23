@@ -42,7 +42,28 @@
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
 <script type="text/javascript">
+  BrowserFS.install(window)
+
+  BrowserFS.configure({
+    fs : "LocalStorage"
+  }, e => {
+    if (e) {
+      throw e
+    }
+  })
+
+  const switchToQuestion = (questionID) => {
+    console.log(questionID)
+    fs.writeFile('/current_question.txt', questionID, err => {
+      if (err) {
+        console.log(err)
+      } else {
+        window.open("http://localhost:3000/question", "_self")
+      }
+    })
+  }
 
   const enabler = () => {
     console.log(document.getElementById("selector").value)
@@ -53,8 +74,10 @@
     }
   }
 
-  const socket = io();
-  const myGenericCat = "5adc5269e5ab8524681e7ff5";
+  const socket = io()
+  const fs = require('fs')
+
+  const myGenericCat = "5adc5269e5ab8524681e7ff5"
 
   const send = () => {
     sendValQ = {
@@ -67,7 +90,7 @@
       voiceLink: "",
       date: Date.now(),
       categoryID: myGenericCat,
-      answerTimeLimit: Date.now()+ 86000000
+      answerTimeLimit: Date.now() + 86000000
     }
 
     socket.emit('msgQuestionPostRequest', sendValQ)
@@ -92,6 +115,10 @@
 
     socket.on('msgQuestionPostRequestRejected', payload => {
       alert('something went terribly wrong :( ')
+    })
+
+    socket.on('msgAnswerPostRequestConfirmed', payLoad => {
+      switchToQuestion(payLoad.question_id)
     })
   }
 

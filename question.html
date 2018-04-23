@@ -205,9 +205,8 @@
 
 	fs.readFile('/current_question.txt', (err, contents) => {
 		myQuestionID = contents.toString();
-		console.log("questionID : " + myQuestionID);
 	});
-	
+
 	// socket.emit('msgUserInitialization', { userID : myUserID }); // we don't need this one here at all, we could do this else where
 	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
 		addQuestionStatement(msg.statement);
