@@ -199,7 +199,7 @@ main {
 
 .sidebar {
   height: 100%;
-  width: 26.65em;
+  width: 25em;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -222,7 +222,7 @@ main {
   display: inline-block;
   width: auto;
   margin: 0 auto;
-  margin-top: -5px;
+  margin-top: -0.9375em;
   -webkit-transition: all .7s ease;
   -moz-transition: all .7s ease;
   -ms-transition: all .7s ease;
@@ -378,14 +378,14 @@ nav {
   font-size: 1.8em;
   text-transform: uppercase;
   position: relative;
-  padding-bottom: 7px;
+  padding-bottom: 0.7778em;
 }
 
 .sidebar-anchor:before {
   content: "";
   width: 0;
-  height: 2px;
-  position: absolute;
+  height: 0.125em;
+  position: fixed;
   bottom: 0;
   left: 0;
   background-color: #FFF;
@@ -401,9 +401,9 @@ nav {
 }
 
 .ua {
-  position: absolute;
-  bottom: 20px;
-  left: 60px;
+  position: fixed;
+  bottom: 1.25em;
+  left: 3.75em;
 }
 
 .fa {
@@ -430,13 +430,13 @@ nav {
   transition: all 1s ease;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 30em) {
   .nav-list {
     display: block;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .nav-right {
     position: hidden;
   }

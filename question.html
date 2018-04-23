@@ -51,7 +51,7 @@
                 <li>
                     <a href="#">
                     	<div class='poll'>
-                        <i class="fa fa-pencil fa-2x" style="font-size:48px;color:red; margin-left:15%"></i>
+                        <i class="fa fa-pencil fa-2x" style="font-size:3em;color:red; margin-left:15%;margin-top:0%;margin-bottom:100%"></i>
                         </div>
                         <span class="nav-text">
                         </span>
@@ -61,7 +61,7 @@
                	<li>
                     <a href="#">
                     	<div class='notifications'>
-                        <i class="fa fa-bell-o " style="font-size:48px;color:red;margin-top:200%;margin-left:15%""></i>
+                        <i class="fa fa-bell-o " style="font-size:3em;color:red;margin-top:100%;margin-left:15%; margin-bottom:100%"></i>
                         </div>
                         <span class="nav-text">
                         </span>
@@ -72,7 +72,7 @@
                	<li>
                     <a href="#">
                     	<div class='settingsButton'>
-                        <i id="settings" class="material-icons fa-2x" style="font-size:55px;color:red;margin-top:250%;margin-left:27%">settings</i>
+                        <i id="settings" class="material-icons fa-2x" style="font-size:3.4375em;color:red;margin-top:100%;margin-left:12%;margin-bottom:100%">settings</i>
                         </div>
                         <span class="nav-text">
                         </span>
@@ -87,7 +87,7 @@
                 <li>
                    <a href="#">
                    		<div class = 'powerButton'>
-                         <i id="power" class="fa fa-power-off fa-2x" style="font-size:48px;color:red; margin-bottom:330%; margin-left:15%" ></i>
+                         <i id="power" class="fa fa-power-off fa-2x" style="font-size:3em;color:red; margin-top: 100% ;margin-bottom:100%; margin-left:15%" ></i>
                          </div>
                         <span class="nav-text">
                             
@@ -230,11 +230,11 @@ function vote3() {
 
 	// const myUserID = '5adb32fce1144d2c68430c95';
 
-	let myQuestionID = "";
+	let myQuestionID = "5addaeefc2f104375037fff0";
 
-	fs.readFile('/current_question.txt', (err, contents) => {
+	/*fs.readFile('/current_question.txt', (err, contents) => {
 		myQuestionID = contents.toString();
-	});
+	});*/
 
 	// socket.emit('msgUserInitialization', { userID : myUserID }); // we don't need this one here at all, we could do this else where
 	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
