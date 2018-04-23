@@ -97,6 +97,40 @@ const handleAnswerPostRequest = sock => {
 	});
 };
 
+const handleQuestionRetrieveRequest = sock => {
+	sock.on('msgQuestionRetrieveRequest', msg => {
+		db.pullQuestion(msg.questionID).then(
+			result => {
+				sock.emit('msgQuestionRetrieveRequestConfirmed', result);
+				log.logEntry('Question retrieval for ID ' msg.questionID + ' added');
+			},
+
+			err => {
+				sock.emit('msgQuestionRetrieveRequestRejected', msg);
+				log.logError('Unable to retrieve question with ID ' + msg.questionID);
+			}
+
+			);
+	});
+};
+
+const handleAnswerRetrieveRequest = sock => {
+	sock.on('msgAnswerRetrieveRequest', msg => {
+		db.pullAnswerOptions(msg.questionID).then(
+			result => {
+				sock.emit('msgAnswerRetrieveRequestConfirmed', result);
+				log.logEntry('Answer retrieval for question with ID ' + msg.questionID + ' added'); 
+			},
+
+			err => {
+				sock.emit('msgAnswerRetrieveRequestRejected', msg);
+				log.logError('Unable to retrieve answer for question with ID ' + msg.questionID);
+			}
+
+			);
+	});
+};
+
 const initWebSocketConnection = () => {
 	io.on('connection', sock => {
 		log.logEntry('Client connected');
@@ -108,6 +142,10 @@ const initWebSocketConnection = () => {
 		handleQuestionVoteRequest(sock);
 
 		handleAnswerPostRequest(sock);
+
+		handleQuestionRetrieveRequest(sock);
+
+		handleAnswerRetrieveRequest(sock);
 	})
 };
 
