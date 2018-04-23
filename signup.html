@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup</title>
+</head>
+<body>
+<input id="first_name" placeholder="First Name"></input>
+<input id="last_name" placeholder="Last Name"></input>
+<input id="email" placeholder="Email"></input>
+<input id="username" placeholder="Username"></input>
+<input id="password" placeholder="password" type="password"></input>
+<input id="reenter_password" placeholder="reenter password"></input>
+<button id="signup">Sign Up</button>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
+<script type="text/javascript">
+	BrowserFS.install(window);
+
+	BrowserFS.configure({
+		fs : "LocalStorage"
+	}, e => {
+		if (e) {
+			throw e;
+		}
+	});
+
+	const fs = require('fs');
+	const socket = io();
+
+
+</script>
+
+</html

@@ -28,10 +28,14 @@
 
 	const socket = io();
 
-	const userID = "5adc604f2bd79334dc4d0bcc";
+	let userID = "";
 
-	const addName = (firstName, lastName) => {
-		document.getElementById('name').innerHTML = firstName + " " + lastName;
+	fs.readFile('/current_user.txt', (err, contents) => {
+		userID = contents.toString();
+	});
+
+	const addName = (userName, firstName, lastName) => {
+		document.getElementById('name').innerHTML = firstName + " " + lastName + " (" + userName + ")";
 	};
 
 	const addCurrentQuestion = (statement) => {
@@ -43,7 +47,7 @@
 	};
 
 	socket.on('msgUserInitializationConfirmed', user => {
-		addName(user.first_name, user.last_name);
+		addName(user.username, user.first_name, user.last_name);
 	});
 
 	socket.on('msgUserInitializationRejected', msg => {

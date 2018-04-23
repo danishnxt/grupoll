@@ -9,12 +9,19 @@
 <head>
 </head>
 <body background="background.jpg">
+<main>
 
   <header class="app_header"></header>
   <center>
     <img src="logo.png" class="logo"></img>
+<!-- loading
+    <div id = "qbar" > 
+      <div id="bar"></div>
+      <div id="bar"></div>
+      <div id="bar"></div>
+    </div>-->
+
     <div class="title1">Post Question</div>
-    <div>
   <div class="what" id="genericText" > What's your question? </div>
   <input id="quesText"  class="inputbar" > </input>
   </div>
@@ -99,16 +106,47 @@
         </nav>
 
 
-
-
-
-
-
 </div>
+ <!-- nav-right -->
+<nav>
+      <div class="nav-right hidden-xs">
+        <div class="button" id="btn">
+          <div class="bar top"></div>
+          <div class="bar middle"></div>
+          <div class="bar bottom"></div>
+        </div>
+      </div>
+  </nav>
+
+
 
   <div class="footer"></div>
   </center>
   </div>
+</main>
+<div id='profileBar'>
+  
+
+  <div class="nav-right visible-xs">
+    <div class="button" id="btn">
+      <div class="bar top"></div>
+      <div class="bar middle"></div>
+      <div class="bar bottom"></div>
+    </div>
+  </div>
+  <!-- nav-right -->
+
+  <div class="sidebar">
+    <ul class="sidebar-list">
+      <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 1</a></li>
+      <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 2</a></li>
+      <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 3</a></li>
+      <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 4</a></li>
+    </ul>
+  </div>
+
+
+</div>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>

@@ -33,6 +33,10 @@ const initialize = () => {
 		res.sendFile(__dirname + '/profile.html');
 	});
 
+	app.get('/login', (req, res) => {
+		res.sendFile(__dirname + '/login.html');
+	});
+
 	log.logEntry("Initialized express server.");
 
 	app.use(express.static('content'));
