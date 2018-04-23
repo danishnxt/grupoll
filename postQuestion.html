@@ -13,10 +13,10 @@
   <div class="what" id="genericText" > What's your question? </div>
   <input id="quesText"  class="inputbar" > </input>
 
-  <div>
+<!--   <div>
     <div class="what"> What is your user ID? </div>
     <input id="userIDText" class="inputbar"> </input>
-  </div>
+  </div> -->
 
   <div>
      <h4 class="how"> How many answers would you like? </h4>
@@ -84,9 +84,15 @@
 
   const myGenericCat = "5adc5269e5ab8524681e7ff5"
 
+  let myUserID = "";
+
+  fs.readFile('/current_user.txt', (err, contents) => {
+    myUserID = contents.toString();
+  });  
+
   const send = () => {
     sendValQ = {
-      userID: document.getElementById("userIDText").value,
+      userID: myUserID,
       questionStatement: document.getElementById("quesText").value,
       questionType: false,
       containsImage: false,

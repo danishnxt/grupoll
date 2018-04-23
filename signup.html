@@ -15,5 +15,21 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/browserfs.min.js"></script>
+<script type="text/javascript">
+	BrowserFS.install(window);
+
+	BrowserFS.configure({
+		fs : "LocalStorage"
+	}, e => {
+		if (e) {
+			throw e;
+		}
+	});
+
+	const fs = require('fs');
+	const socket = io();
+
+
+</script>
 
 </html
