@@ -9,17 +9,112 @@
 
 </head>
 <body background="background.jpg">
-<main>
-<div id='app_header'></div>
 
-<div id="question_statement">
-  <div id = "qbar" > 
-	  <div id="bar"></div>
-	  <div id="bar"></div>
-	  <div id="bar"></div>
-  </div>
+<main>
+
+	<div id='app_header'></div>
+
+	<div id="question_statement">
+	  <div id = "qbar" > 
+		  <div id="bar"></div>
+		  <div id="bar"></div>
+		  <div id="bar"></div>
+	  </div>
+	</div>
+
+
+<!--      Here is our menu on the right side             -->
+
+<div id='rightMenu'>
+	
+
+	<div class="area"></div>
+	
+		
+		<nav class="main-menu">
+
+            <ul>
+            	
+                <li>
+                    <a href="http://justinfarrow.com">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Dashboard
+                        </span>
+                    </a>
+                  
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                        <i class="fa fa-laptop fa-2x"></i>
+                        <span class="nav-text">
+                            UI Components
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                       <i class="fa fa-list fa-2x"></i>
+                        <span class="nav-text">
+                            Forms
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                       <i class="fa fa-folder-open fa-2x"></i>
+                        <span class="nav-text">
+                            Pages
+                        </span>
+                    </a>
+                   
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o fa-2x"></i>
+                        <span class="nav-text">
+                            Graphs and Statistics
+                        </span>
+                    </a>
+                </li>
+               
+                <li>
+                   <a href="#">
+                        <i class="fa fa-map-marker fa-2x"></i>
+                        <span class="nav-text">
+                            Maps
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="#">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+
+
+
+
+
+
+
 </div>
 
+
+
+
+
+<!--        right  menu div ends         -->
 
  	<nav>
 	    <div class="nav-right hidden-xs">
@@ -116,7 +211,7 @@
 	};
 
 	const myUserID = '5adb32fce1144d2c68430c95';
-	const myQuestionID = '5addaeefc2f104375037ffea';
+	const myQuestionID = '5addaeefc2f104375037fff0';
 
 	socket.emit('msgUserInitialization', { userID : myUserID });
 
@@ -144,12 +239,34 @@
 
 	let open = 0;
 
+	function toggleLeftBar() {
+		$("main").toggleClass("move-to-right");		
+	}
+
 	function toggleSidebar() {
 	    $(".button").toggleClass("active");
 	    $("main").toggleClass("move-to-left");
 	    $(".sidebar-item").toggleClass("active");
 
   	}
+
+  /*	$(".item-image").hover(function () {
+	    // mouseover event codes...
+		
+		}, function () {
+    	// mouseout event codes...
+	});
+*/
+
+
+
+  	$(".main-menu").on("mouseover",()=>{
+
+  		toggleLeftBar();
+
+  	})
+
+
 
   	$(".button").on("click tap", function() {
     	
