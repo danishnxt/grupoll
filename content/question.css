@@ -454,7 +454,7 @@ nav {
 }
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 .fa-2x {
-font-size: 2em;
+font-size: 4em;
 }
 .fa {
 position: relative;
@@ -467,10 +467,10 @@ font-size:20px;
 }
 
 
-.main-menu:hover,nav.main-menu.expanded {
+/*.main-menu:hover,nav.main-menu.expanded {
 width:250px;
 overflow:visible;
-}
+}*/
 
 .main-menu {
 background:#f39c12;
@@ -480,7 +480,7 @@ top:0;
 bottom:0;
 height:100%;
 left:0;
-width:3.3%;
+width:5%;
 overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
@@ -514,13 +514,13 @@ width:250px;
 }
 
 .main-menu .nav-icon {
-position:relative;
+/*position:relative;
 display:table-cell;
 width:60px;
 height:36px;
 text-align:center;
 vertical-align:middle;
-font-size:18px;
+font-size:18px;*/
 }
 
 .main-menu .nav-text {
@@ -528,7 +528,7 @@ position:relative;
 display:table-cell;
 vertical-align:middle;
 width:190px;
-  font-family: 'Titillium Web', sans-serif;
+sfont-family: 'Titillium Web', sans-serif;
 }
 
 .main-menu>ul.logout {
@@ -563,10 +563,11 @@ outline:0;
 margin:0;
 padding:0;
 }
-.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+/*.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+*/
 color:#fff;
 background-color:#5fa2db;
-}
+}*/
 .area {
 float: left;
 background: #e2e2e2;

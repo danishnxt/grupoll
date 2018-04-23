@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 <head>
 	<title>Question View</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -45,59 +48,42 @@
             <ul>
             	
                 <li>
-                    <a href="http://justinfarrow.com">
-                        <i class="fa fa-home fa-2x"></i>
+                    <a href="#">
+                        <i class="fa fa-pencil fa-2x" style="font-size:48px;color:red; margin-left:15%"></i>
                         <span class="nav-text">
-                            Dashboard
                         </span>
                     </a>
                   
                 </li>
-                <li class="has-subnav">
+               	<li>
                     <a href="#">
-                        <i class="fa fa-laptop fa-2x"></i>
+                        <i class="fa fa-bell-o " style="font-size:48px;color:red;margin-top:200%;margin-left:15%""></i>
                         <span class="nav-text">
-                            UI Components
                         </span>
                     </a>
-                    
+                  
                 </li>
-                <li class="has-subnav">
+
+               	<li>
                     <a href="#">
-                       <i class="fa fa-list fa-2x"></i>
+                    	<div class='settings'>
+                        <i id="settings" class="material-icons fa-2x" style="font-size:55px;color:red;margin-top:250%;margin-left:27%">settings</i>
+                        </div>
                         <span class="nav-text">
-                            Forms
                         </span>
                     </a>
-                    
+                  
                 </li>
-                <li class="has-subnav">
-                    <a href="#">
-                       <i class="fa fa-folder-open fa-2x"></i>
-                        <span class="nav-text">
-                            Pages
-                        </span>
-                    </a>
-                   
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-bar-chart-o fa-2x"></i>
-                        <span class="nav-text">
-                            Graphs and Statistics
-                        </span>
-                    </a>
-                </li>
-               
+                
                 
             </ul>
 
             <ul class="logout">
                 <li>
                    <a href="#">
-                         <i class="fa fa-power-off fa-2x"></i>
+                         <i class="fa fa-power-off fa-2x" style="font-size:48px;color:red;margin-bottom:70%;margin-left:15%" ></i>
                         <span class="nav-text">
-                            Logout
+                            
                         </span>
                     </a>
                 </li>  
@@ -272,6 +258,19 @@
     	toggleSidebar();
     	
   	});
+
+
+  	$(".settings").on("click tap", function() {
+    	
+    	console.log("i clicked settings")
+    	
+  	});
+
+
+
+
+
+
 
   	/*$(document).keyup(function(e) {
     	$('.sidebar').css('opacity','0');
