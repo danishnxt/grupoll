@@ -262,6 +262,17 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
   })
 })
 
+const pullRecentQuestions = () =>  new Promise((resolve, reject) => {
+  // limit for 10 hard coded currently
+  mQuestion.find({answerTimeLimit:{ $gte:Date.now()}}, {limit: 2}, (err, res) => {
+    if(err) {
+      reject(err)
+    } else {
+      resolve(res)
+    }
+  })
+})
+
 // NEW UNTESTED QUERIES =======================================================================================================
 
 const pullVoteExist = (qID, uID) => new Promise((resolve, reject) => {
@@ -351,15 +362,6 @@ module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFrien
 
 // testing ======================================================================================================================
 
-// pullVoteExist("5adb32fce1144d2c68430c95", "5addaeefc2f104375037fff0").then(data => {
-//     console.log(data)
-//   }).catch(erValue => {
-//     if (erValue === "NONE") {
-//       console.log("NONE")
-//     } else {
-//       console.log(erValue)
-//     }
-//   })
-
-// updateVote("5adb32fce1144d2c68430c95", "5addaeefc2f104375037fff0", 1)
-
+pullRecentQuestions().then(data => {
+  console.log(data)
+})
