@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="newsfeed.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <head>
 	<title> GruPoll </title>
 </head>
 
-<body>
-  <button> Logout </button>
-  <div id="feed">Loading...</div>
-	<ul id= "newsfeed" style="list-style-type:none"></ul>
-  <button onclick="test()"> Test </button>
+<body background="background.jpg">
+    <center>
+      <div id='app_header'></div>
+      <img id='logo_img' src='logo.png'>
+	    <ul id= "newsfeed" style="list-style-type:none"></ul>
+      <button id = "option_1">logout</button>
+      <div> Copyright 2018(c) </div>
+    </center>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -16,7 +26,6 @@
 
 <script type="text/javascript">
   BrowserFS.install(window);
-
   BrowserFS.configure({
     fs : "LocalStorage"
   }, e => {
@@ -32,12 +41,12 @@
   const switchToQuestion = (questionID) => {
     console.log(questionID);
     fs.writeFile('/current_question.txt', questionID, err => {
-      window.open("http://localhost:3000/question", "_self");  
+      window.open("http://localhost:3000/question", "_self");
     });
   };
 
 	const addQuestionEntry = (statement, questionID) => {
-    const addElem = "<button onclick=\"switchToQuestion('" + questionID + "');\">" + statement + "</button>";
+    const addElem = "<button id=\"option_2\" onclick=\"switchToQuestion('" + questionID + "');\">" + statement + "</button>";
     console.log(addElem);
 		document.getElementById("newsfeed").innerHTML += "<li>" + addElem + "</li>";
 	};
