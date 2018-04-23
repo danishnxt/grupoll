@@ -143,14 +143,16 @@ const pushVote = (uID, qID, vValue) => new Promise((resolve, reject) => {
 
 // full pulls ===================================================================================================================
 
-// to do -> requires the database logging? We're only querying here, do we actually need anything?
-
 const pullUser = (objID) => new Promise ((resolve,reject) => {
   mUser.findOne({ _id: types.ObjectId(objID) }, (err, res) => {
     if (err) {
       reject(err)
     } else {
-      resolve(res)
+        if (res === null) {
+          reject("null error, value not found")
+        } else {
+          resolve(res)
+        }
       }
   });
 })
@@ -160,17 +162,25 @@ const pullQuestion = (objID) => new Promise ((resolve, reject) => {
     if (err) {
       reject(err)
     } else {
-      resolve(res)
-    }
+      if (res === null) {
+          reject("null error, value not found")
+        } else {
+          resolve(res)
+        }
+      }
   });
 })
 
-const pullAnswers = (questionID) => new Promise ((resolve, reject) => {
-  mAnswer.find({question_id: types.ObjectId(questionID)}, (err, res) => {
+const pullAnswerOptions = (questionID) => new Promise ((resolve, reject) => {
+  mAnswer.findOne({question_id: types.ObjectId(questionID)}, (err, res) => {
     if (err) {
       reject(err)
     } else {
-      resolve(res)
+      if (res === null) {
+          reject("null error, no result found")
+        } else {
+          resolve(res)
+        }
     }
   });
 })
@@ -249,5 +259,5 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
 })
 
 // Module Exports ==================================================================================================================
-module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswers, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
+module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
 

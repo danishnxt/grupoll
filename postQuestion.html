@@ -19,8 +19,12 @@
 
   <div>
     <input id="option_1" > Answer 1 </input>
+  </div>
+  <div>
     <input id="option_2" > Answer 2 </input>
-    <input id="option_3" disabled = true>Answer 3</input>
+  </div>
+  <div>
+    <input id="option_3" disabled = true> Answer 3 </input>
   </div>
 
   <button onClick="send()"> Send the question! </button>
@@ -30,22 +34,20 @@
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 
-  const socket = io();
-
-  const myUserID = '5adb32fce1144d2c68430c95';
-  const myGenericCat = "5adc5269e5ab8524681e7ff5";
-
   const enabler = () => {
-    console.log(document.getElementById("selector").innerHTML)
-    if (document.getElementById("selector").innerHTML === "2") {
-      console.log("2")
+    console.log(document.getElementById("selector").value)
+    if (document.getElementById("selector").value === "2") {
+      document.getElementById("option_3").disabled = true
     } else {
-      console.log("3")
+      document.getElementById("option_3").disabled = false
     }
   }
 
-  const send = () => {
+  const socket = io();
+  const myUserID = '5adb32fce1144d2c68430c95';
+  const myGenericCat = "5adc5269e5ab8524681e7ff5";
 
+  const send = () => {
     sendValQ = {
       userID: myUserID,
       questionStatement: document.getElementById("quesText").value,
@@ -54,7 +56,7 @@
       containsVoice: false,
       imageLink: "",
       voiceLink: "",
-      date: Date.now()
+      date: Date.now(),
       categoryID: myGenericCat,
       answerTimeLimit: Date.now()+300
     }
@@ -67,7 +69,6 @@
       } else {
         ans3 = document.getElementById('option_3').value
       }
-
       sendValA = {
         questionID: payload._id,
         option1: document.getElementById('option_1').value,
@@ -77,17 +78,13 @@
         option2Link: "",
         option3Link: ""
       }
-
       socket.emit('msgAnswerPostRequest', sendValA)
-
     })
 
     socket.on('msgQuestionPostRequestRejected', payload => {
       alert('something went terribly wrong :( ')
     })
   }
-
-
 
 
 </script>
