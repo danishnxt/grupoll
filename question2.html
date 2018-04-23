@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="question.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<head>
+	<title>Question View</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body background="background.jpg">
+
+<main>
+
+	<div id='app_header'></div>
+
+	<div id = 'grupollImage'>
+		<center>
+			<img id='logo_img' src='logo.png'>			
+		</center>
+
+	</div>
+	
+
+	<div id="question_statement">
+	  <div id = "qbar" > 
+		  <div id="bar"></div>
+		  <div id="bar"></div>
+		  <div id="bar"></div>
+	  </div>
+	</div>
+
+
+<!--      Here is our menu on the right side             -->
+
+<div id='rightMenu'>
+	
+
+	<div class="area"></div>
+	
+		
+		<nav class="main-menu">
+
+            <ul>
+            	
+                <li>
+                    <a href="#">
+                    	<div class='poll'>
+                        <i class="fa fa-pencil fa-2x" style="font-size:48px;color:red; margin-left:15%"></i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+                  
+                </li>
+               	<li>
+                    <a href="#">
+                    	<div class='notifications'>
+                        <i class="fa fa-bell-o " style="font-size:48px;color:red;margin-top:200%;margin-left:15%""></i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+                  
+                </li>
+
+               	<li>
+                    <a href="#">
+                    	<div class='settingsButton'>
+                        <i id="settings" class="material-icons fa-2x" style="font-size:55px;color:red;margin-top:250%;margin-left:27%">settings</i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+                  
+                </li>
+                
+                
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="#">
+                   		<div class = 'powerButton'>
+                         <i id="power" class="fa fa-power-off fa-2x" style="font-size:48px;color:red; margin-bottom:330%; margin-left:15%" ></i>
+                         </div>
+                        <span class="nav-text">
+                            
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<!--        right  menu div ends         -->
+
+ 	<nav>
+	    <div class="nav-right hidden-xs">
+	      <div class="button" id="btn">
+	        <div class="bar top"></div>
+	        <div class="bar middle"></div>
+	        <div class="bar bottom"></div>
+	      </div>
+	    </div>
+	    <!-- nav-right -->
+	</nav>
+
+	<!--   <a href="https://codepen.io/tonkec/" class="ua" target="_blank">
+	    <i class="fa fa-user"></i>
+	  </a> -->
+
+<script>
+function vote1() {
+    document.getElementById("option_1").style.background = "red";
+}
+</script>
+<script>
+function vote2() {
+    document.getElementById("option_2").style.background = "red";
+}
+</script>
+<script>
+function vote3() {
+    document.getElementById("option_3").style.background = "red";
+}
+</script>
+
+<center>
+	<div>
+		<button onclick="vote1()" id="option_1" onCLick>...</button>
+	</div>
+	
+		<span style="10px"></span>
+	
+	<div>
+		<button onclick="vote2()" id="option_2">...</button>
+	</div>
+	
+	<div>
+		<button onclick="vote3()" id="option_3">...</button>
+	</div>
+</center>
+
+<div id='footer'></div>
+
+
+</main>
+
+<div id='profileBar'>
+	
+
+	<div class="nav-right visible-xs">
+	  <div class="button" id="btn">
+	    <div class="bar top"></div>
+	    <div class="bar middle"></div>
+	    <div class="bar bottom"></div>
+	  </div>
+	</div>
+	<!-- nav-right -->
+
+	<div class="sidebar">
+	  <ul class="sidebar-list">
+	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 1</a></li>
+	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 2</a></li>
+	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 3</a></li>
+	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 4</a></li>
+	  </ul>
+	</div>
+
+
+</div>
+
+<!-- <a href="#">
+	<div id='backButton'>
+	        <i id="back" class="material-icons" style="font-size:55px; color:red;"> arrow_back</i> 
+	</div>
+</a> -->
+
+
+
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	const socket = io();
+	const addQuestionStatement = statement => {
+
+		document.getElementById('question_statement').innerHTML = '<center>'+'<h2 id= question >' + statement + '</h2>' + '</center>';
+		
+		document.getElementById('option_1').style.visibility = 'visible';
+		document.getElementById('option_2').style.visibility = 'visible';
+		document.getElementById('option_3').style.visibility = 'visible';
+						
+
+	};
+	const addAnswerOptions = (o1, o2, o3) => {
+		document.getElementById('option_1').innerHTML = o1;
+		document.getElementById('option_2').innerHTML = o2;
+		document.getElementById('option_3').innerHTML = o3;
+	};
+
+	const myUserID = '5adb32fce1144d2c68430c95';
+	const myQuestionID = '5addaeefc2f104375037fff0';
+
+	socket.emit('msgUserInitialization', { userID : myUserID });
+
+	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
+		addQuestionStatement(msg.statement);
+	});
+
+	socket.on('msgAnswerRetrieveRequestConfirmed', msg => {
+		addAnswerOptions(msg.option_1, msg.option_2, msg.option_3);
+	});
+
+	socket.emit('msgQuestionRetrieveRequest', { questionID : myQuestionID });
+	socket.emit('msgAnswerRetrieveRequest', { questionID : myQuestionID });
+
+	// side bar left
+
+	function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+	}
+	function w3_close() {
+	    document.getElementById("mySidebar").style.display = "none";
+	}
+
+	// side bar right
+
+	let open = 0;
+
+	function toggleLeftBar() {
+		$("main").toggleClass("move-to-right");		
+	}
+
+	function toggleSidebar() {
+	    $(".button").toggleClass("active");
+	    $("main").toggleClass("move-to-left");
+	    $(".sidebar-item").toggleClass("active");
+
+  	}
+
+
+
+
+  	$(".main-menu").on("mouseover",()=>{
+
+  		toggleLeftBar();
+
+  	})
+
+
+
+  	$(".button").on("click tap", function() {
+    	
+  
+    	if(open==0){
+    		$('.sidebar').css('opacity','100');
+    		open=1;
+    	}
+    	else if(open == 1){
+    		$('.sidebar').css('opacity','0');
+    		open=0;
+    	}
+
+
+    	toggleSidebar();
+    	
+  	});
+
+
+  	$(".settingsButton").on("click tap", function() {
+    	
+    	console.log("i clicked settings")
+    	
+  	});
+
+  	$(".powerButton").on("click tap", function() {
+    	
+    	console.log("i logged out")
+    	
+  	});
+
+  	$(".poll").on("click tap", function() {
+    	
+    	console.log("going to add poll")
+    	
+  	});
+
+  	$(".notifications").on("click tap", function() {
+    	
+    	console.log("clicked on notifications")
+    	
+  	});
+
+
+
+
+
+
+
+  	/*$(document).keyup(function(e) {
+    	$('.sidebar').css('opacity','0');
+    	if (e.keyCode === 27) {
+	      	$('.sidebar').css('opacity','0');
+	      	toggleSidebar();
+    	}
+
+  	});*/
+
+
+</script>
+
+</html>
