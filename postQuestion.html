@@ -196,9 +196,15 @@
 
   const myGenericCat = "5adc5269e5ab8524681e7ff5"
 
+  let myUserID = "";
+
+  fs.readFile('/current_user.txt', (err, contents) => {
+    myUserID = contents.toString();
+  });
+
   const send = () => {
     sendValQ = {
-      userID: document.getElementById("userIDText").value,
+      userID: myUserID,
       questionStatement: document.getElementById("quesText").value,
       questionType: false,
       containsImage: false,

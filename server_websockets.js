@@ -147,7 +147,7 @@ const handleUserFeedRetrieveRequest = sock => {
 
 const handleUserLoginRequest = sock => {
 	sock.on('msgUserLoginRequest', msg => {
-		console.log('Username ' + msg.userName + ' password ' + msg.password);
+			// console.log('Username ' + msg.userName + ' password ' + msg.password);
 		db.pullUserAuthenticate(msg.userName, msg.password).then(
 			result => {
 				sock.emit('msgUserLoginRequestConfirmed', result);
@@ -157,6 +157,32 @@ const handleUserLoginRequest = sock => {
 			err => {
 				sock.emit('msgUserLoginRejected');
 				log.logWebSocketsError('User login failed for username ' + msg.password);
+			}
+		);
+	});
+};
+
+const handleUserSignupRequest = sock => {
+	sock.on('msgUserSignupRequest', msg => {
+		db.pushUser(
+			msg.userName,
+			msg.email,
+			msg.profileImageExists,
+			msg.profileImageLink,
+			msg.firstName,
+			msg.lastName,
+			msg.country,
+			msg.gender,
+			msg.passwordHash
+		).then(
+			result => {
+				sock.emit('msgUserSignupRequestConfirmed', result);
+				log.logWebSocketsEntry('User signup successful for username ' + msg.userName);
+			},
+
+			err => {
+				sock.emit('msgUserSignupRequestRejected', msg);
+				log.logWebSocketsError('User signup failed for username ' + msg.userName);
 			}
 		);
 	});
@@ -174,6 +200,7 @@ const initWebSocketConnection = () => {
 		handleAnswerRetrieveRequest(sock);
 		handleUserFeedRetrieveRequest(sock);
 		handleUserLoginRequest(sock);
+		handleUserSignupRequest(sock);
 	})
 };
 

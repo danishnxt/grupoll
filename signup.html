@@ -10,7 +10,7 @@
 <input id="username" placeholder="Username"></input>
 <input id="password" placeholder="password" type="password"></input>
 <input id="reenter_password" placeholder="reenter password"></input>
-<button id="signup">Sign Up</button>
+<button id="signup" onclick="handleSignup();">Sign Up</button>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -28,6 +28,34 @@
 
 	const fs = require('fs');
 	const socket = io();
+
+
+	const handleSignup = () => {
+		msg = {
+			userName : document.getElementById("username").value,
+			email : document.getElementById("email").value,
+			profileImageExists : false,
+			profileImageLink : "",
+			firstName : document.getElementById("first_name").value,
+			lastName : document.getElementById("last_name").value,
+			country : "",
+			gender : 0,
+			passwordHash : document.getElementById("password").value
+		};
+
+		socket.emit('msgUserSignupRequest', msg);
+	}
+
+	socket.on('msgUserSignupRequestConfirmed', msg => {
+		fs.writeFile('current_user.txt', msg._id, err => {
+			if (err) {
+				console.log(err);
+				alert('Failed to locally store user with ID' + msg._id);
+			} else {
+				window.open("http://localhost:3000/profile", "_self");
+			}
+		});
+	});
 
 
 </script>
