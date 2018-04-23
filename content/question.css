@@ -1,0 +1,139 @@
+
+#qbar {
+  position: relative;
+  margin-top: 450px;
+  width: 100%;
+  height: 6px;
+  background-color: #fdba2c;
+}
+.bar {
+  content: "";
+  display: inline;
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: 50%;
+  text-align: center;
+}
+.bar:nth-child(1) {
+  background-color: #da4733;
+  animation: loading 3s linear infinite;
+}
+.bar:nth-child(2) {
+  background-color: #3b78e7;
+  animation: loading 3s linear 1s infinite;
+}
+.bar:nth-child(3) {
+  background-color: #fdba2c;
+  animation: loading 3s linear 2s infinite;
+}
+@keyframes loading {
+    from {left: 50%; width: 0;z-index:100;}
+    33.3333% {left: 0; width: 100%;z-index: 10;}
+    to {left: 0; width: 100%;}
+}
+
+
+#question{
+
+	color:white;
+	margin-top: 200px;
+
+}
+
+
+
+
+
+/* #Sun Flower Button
+==================================================*/
+#option_1 {
+  visibility: hidden;
+  position: relative;
+  border-radius: 8px;
+  vertical-align: top;
+  margin-right: 15px;
+  margin-top: 100px;
+  width: 20%;
+  height: 60px;
+  padding: 0;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #f1c40f;
+  border: 0;
+  border-bottom: 2px solid #e2b607;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #e2b607;
+  box-shadow: inset 0 -2px #e2b607;
+}
+#option_1:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* #Orange Flat Button
+==================================================*/
+#option_2 {
+  visibility: hidden;
+  border-radius: 8px;
+  position: relative;
+  vertical-align: top;
+  margin-right: 15px;
+  margin-top: 15px;
+  width: 20%;
+  height: 60px;
+  padding: 0;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #f39c12;
+  border: 0;
+  border-bottom: 2px solid #e8930c;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #e8930c;
+  box-shadow: inset 0 -2px #e8930c;
+}
+#option_2:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* #Carrot Flat Button
+==================================================*/
+#option_3{
+  visibility: hidden;
+  position: relative;
+  border-radius: 8px;
+  vertical-align: top;
+  margin-right: 15px;
+  margin-top: 15px;
+  width: 20%;
+  height: 60px;
+  padding: 0;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #e67e22;
+  border: 0;
+  border-bottom: 2px solid #da751c;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #da751c;
+  box-shadow: inset 0 -2px #da751c;
+}
+#option_3:active {
+  
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+

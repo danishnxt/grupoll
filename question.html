@@ -1,34 +1,63 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="question.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
 	<title>Question View</title>
 </head>
-<body>
-<div id="question_statement">Loading...</div>
+<body background="background.jpg">
+<div id="question_statement">
+  <div id = "qbar" > 
+	  <div class="bar"></div>
+	  <div class="bar"></div>
+	  <div class="bar"></div>
+  </div>
+</div>
+
+
+
+
+<center>
+<div>
 <button id="option_1">...</button>
+</div>
+<span style="10px"></span>
+<div>
 <button id="option_2">...</button>
+</div>
+<div>
 <button id="option_3">...</button>
-<img src="danish.png"></img>
+</div>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 	const socket = io();
-
 	const addQuestionStatement = statement => {
 
-		document.getElementById('question_statement').innerHTML = statement;
-	};
+		document.getElementById('question_statement').innerHTML = '<center>'+'<h2 id= question >' + statement + '</h2>' + '</center>';
+		
+		document.getElementById('option_1').style.visibility = 'visible';
+		document.getElementById('option_2').style.visibility = 'visible';
+		document.getElementById('option_3').style.visibility = 'visible';
+						
 
+
+		// the for loop causes the problem
+		/*for(int i=0; i<3; i++){
+			document.getElementById(`option_${i+1}`).style.visibility = 'visible';
+
+		}*/
+
+	};
 	const addAnswerOptions = (o1, o2, o3) => {
 		document.getElementById('option_1').innerHTML = o1;
 		document.getElementById('option_2').innerHTML = o2;
 		document.getElementById('option_3').innerHTML = o3;
 	};
-
 	const myUserID = '5adb32fce1144d2c68430c95';
 	socket.emit('msgUserInitialization', { userID : myUserID });
-
 	const msg = {
 		userID : myUserID,
 		questionStatement : 'Why can\'t Danish get a girlfriend?',
@@ -41,7 +70,6 @@
 		answerTimeLimit : Date.now(),
 		userSeen : false
 	};
-
 	const answerMsg = {
 		option1 : 'He\'s too hot',
 		option2 : 'He\'s too smart',
@@ -50,21 +78,46 @@
 		option2Link : '',
 		option3Link : ''
 	};
-
 	socket.on('msgAnswerPostRequestConfirmed', result => {
 		addAnswerOptions(result.option_1, result.option_2, result.option_3);
 	});
-
 	socket.on('msgQuestionPostRequestConfirmed', result => {
 		addQuestionStatement(result.statement);
-
 		answerMsg.questionID = result._id;
 		socket.emit('msgAnswerPostRequest', answerMsg);
-
 		// socket.emit('msgQuestionVoteRequest', { userID : myUserID, questionID : result._id, value : 1 });
 	});
-
+	
 	socket.emit('msgQuestionPostRequest', msg);
+
+	// side bar left
+
+	function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+	}
+	function w3_close() {
+	    document.getElementById("mySidebar").style.display = "none";
+	}
+
+	// side bar right
+
+	function toggleSidebar() {
+    $(".button").toggleClass("active");
+    $("main").toggleClass("move-to-left");
+    $(".sidebar-item").toggleClass("active");
+  }
+
+  $(".button").on("click tap", function() {
+    toggleSidebar();
+  });
+
+  $(document).keyup(function(e) {
+    if (e.keyCode === 27) {
+      toggleSidebar();
+    }
+  });
+
+
 </script>
 
 </html>
