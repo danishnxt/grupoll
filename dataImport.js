@@ -311,7 +311,7 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 
 // Module Exports ==============================================================================================================
 
-module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist}
+module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist}
 
 // Frag data and run this to repopulate fake data into the database ===========================================================
 

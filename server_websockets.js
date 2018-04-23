@@ -23,7 +23,7 @@ const handleUserInitialization = sock => {
 };
 
 const handleQuestionPostRequest = sock => {
-	log.logWebSocketsEntry('Handing question post request');
+	log.logWebSocketsEntry('Handling question post request');
 
 	sock.on('msgQuestionPostRequest', msg => {
 		db.pushQuestion(

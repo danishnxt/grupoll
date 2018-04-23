@@ -25,8 +25,8 @@ const initialize = () => {
 		res.sendFile(__dirname + '/question.html');
 	});
 
-	app.get('/newsfeed', (req, res) => {
-		res.sendFile(__dirname + '/newsfeed.html');
+	app.get('/newsFeed', (req, res) => {
+		res.sendFile(__dirname + '/newsFeed.html');
 	});
 
 	log.logEntry("Initialized express server.");

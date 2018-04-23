@@ -15,32 +15,39 @@
 <script src="/browserfs.min.js"></script>
 
 <script type="text/javascript">
+  BrowserFS.install(window);
 
-	const addElement = ele => {
-    addElem = "<button>" + ele + "</button>"
+  BrowserFS.configure({
+    fs : "LocalStorage"
+  }, e => {
+    if (e) {
+      throw e;
+    }
+  });
+
+  const socket = io();
+
+  const fs = require('fs');
+
+  const switchToQuestion = (questionID) => {
+    console.log(questionID);
+    fs.writeFile('/current_question.txt', questionID, err => {
+      window.open("http://localhost:3000/question");  
+    });
+  };
+
+	const addQuestionEntry = (statement, questionID) => {
+    const addElem = "<button onclick=\"switchToQuestion('" + questionID + "');\">" + statement + "</button>";
+    console.log(addElem);
 		document.getElementById("newsfeed").innerHTML += "<li>" + addElem + "</li>";
 	};
 
-  const test = () => {
-    console.log("click")
-    addElement("Question: What is the sun really like to land on")
-    addElement("Question: What do we need to do here?")
-  }
+  socket.on('msgUserFeedRetrieveRequestConfirmed', msg => {
+    msg.forEach(val => {
+      addQuestionEntry(val.statement, val._id);
+    });
+  });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  socket.emit('msgUserFeedRetrieveRequest', {});
 </script>
 </html>
