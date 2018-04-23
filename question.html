@@ -5,30 +5,86 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
 	<title>Question View</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body background="background.jpg">
+<main>
+<div id='app_header'></div>
+
 <div id="question_statement">
   <div id = "qbar" > 
-	  <div class="bar"></div>
-	  <div class="bar"></div>
-	  <div class="bar"></div>
+	  <div id="bar"></div>
+	  <div id="bar"></div>
+	  <div id="bar"></div>
   </div>
 </div>
 
 
+ <nav>
+	    <div class="nav-right hidden-xs">
+	      <div class="button" id="btn">
+	        <div class="bar top"></div>
+	        <div class="bar middle"></div>
+	        <div class="bar bottom"></div>
+	      </div>
+	    </div>
+	    <!-- nav-right -->
+	  </nav>
+
+	  <a href="https://codepen.io/tonkec/" class="ua" target="_blank">
+	    <i class="fa fa-user"></i>
+	  </a>
+
 
 
 <center>
-<div>
-<button id="option_1">...</button>
+	<div>
+		<button id="option_1">...</button>
+	</div>
+	
+		<span style="10px"></span>
+	
+	<div>
+		<button id="option_2">...</button>
+	</div>
+	
+	<div>
+		<button id="option_3">...</button>
+	</div>
+</center>
+
+</main>
+
+<div id='profileBar'>
+	
+
+	<div class="nav-right visible-xs">
+	  <div class="button" id="btn">
+	    <div class="bar top"></div>
+	    <div class="bar middle"></div>
+	    <div class="bar bottom"></div>
+	  </div>
+	</div>
+	<!-- nav-right -->
+
+	<div class="sidebar">
+	  <ul class="sidebar-list">
+	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 1</a></li>
+	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 2</a></li>
+	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 3</a></li>
+	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 4</a></li>
+	  </ul>
+	</div>
+
+
 </div>
-<span style="10px"></span>
-<div>
-<button id="option_2">...</button>
-</div>
-<div>
-<button id="option_3">...</button>
-</div>
+
+
+
+<div id='footer'></div>
+
+
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -102,20 +158,20 @@
 	// side bar right
 
 	function toggleSidebar() {
-    $(".button").toggleClass("active");
-    $("main").toggleClass("move-to-left");
-    $(".sidebar-item").toggleClass("active");
-  }
+	    $(".button").toggleClass("active");
+	    $("main").toggleClass("move-to-left");
+	    $(".sidebar-item").toggleClass("active");
+  	}
 
-  $(".button").on("click tap", function() {
-    toggleSidebar();
-  });
+  	$(".button").on("click tap", function() {
+    	toggleSidebar();
+  	});
 
-  $(document).keyup(function(e) {
-    if (e.keyCode === 27) {
-      toggleSidebar();
-    }
-  });
+  	$(document).keyup(function(e) {
+    	if (e.keyCode === 27) {
+      	toggleSidebar();
+    	}
+  	});
 
 
 </script>
