@@ -29,6 +29,10 @@ const initialize = () => {
 		res.sendFile(__dirname + '/newsFeed.html');
 	});
 
+	app.get('/profile', (req, res) => {
+		res.sendFile(__dirname + '/profile.html');
+	});
+
 	log.logEntry("Initialized express server.");
 
 	app.use(express.static('content'));

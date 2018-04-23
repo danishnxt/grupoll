@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+</head>
+
+<body>
+	<div id="profile_picture">Loading...</div>
+	<div id="name">...</div>
+	<div id="current_question">...</div>
+</body>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
+<script type="text/javascript">
+	BrowserFS.install(window);
+
+	BrowserFS.configure({
+		fs : "LocalStorage"
+	}, e => {
+		if (e) {
+			throw e;
+		}
+	});
+
+	const fs = require('fs');
+
+	const socket = io();
+
+	const userID = "5adc604f2bd79334dc4d0bcc";
+
+	const addName = (firstName, lastName) => {
+		document.getElementById('name').innerHTML = firstName + " " + lastName;
+	};
+
+	const addCurrentQuestion = (statement) => {
+		document.getElementById('current_question').innerHTML = statement;
+	};
+
+	const addProfilePicture = (profileImage) => {
+		document.getElementById('profile_picture').innerHTML = profileImage;
+	};
+
+	socket.on('msgUserInitializationConfirmed', user => {
+		addName(user.first_name, user.last_name);
+	});
+
+	socket.on('msgUserInitializationRejected', msg => {
+		alert('User initialization failed for user with ID ' + userID);
+	});
+
+
+	socket.emit('msgUserInitialization', { userID : userID });
+
+</script>
+</html>
