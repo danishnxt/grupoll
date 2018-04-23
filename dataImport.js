@@ -163,6 +163,21 @@ const pullUser = (objID) => new Promise ((resolve,reject) => {
   });
 })
 
+const pullUserAuthenticate = (objID, password) => new Promise ((resolve,reject) => {
+  mUser.findOne({ _id: types.ObjectId(objID), password_hash: password}, (err, res) => {
+    if (err) {
+      reject(err)
+    } else {
+        if (res === null) {
+          reject("null error, value not found")
+        } else {
+          resolve(res)
+        }
+      }
+  });
+})
+
+
 const pullQuestion = (objID) => new Promise ((resolve, reject) => {
   mQuestion.findOne({ _id: types.ObjectId(objID) }, (err, res) => {
     if (err) {
@@ -311,7 +326,7 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 
 // Module Exports ==============================================================================================================
 
-module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist}
+module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate}
 
 // Frag data and run this to repopulate fake data into the database ===========================================================
 
@@ -362,7 +377,3 @@ module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pu
 // })
 
 // testing ======================================================================================================================
-
-pullRecentQuestions().then(data => {
-  console.log(data)
-})
