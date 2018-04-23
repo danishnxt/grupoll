@@ -3,6 +3,8 @@ Schema = mgs.Schema
 
 const mUser = new Schema({
   username: {type: String},
+  profile_image_exists: {type: Boolean},
+  profile_image_link: {type: String},
   email: {type: String},
   first_name: {type: String},
   last_name: {type: String},
