@@ -163,8 +163,8 @@ const pullUser = (objID) => new Promise ((resolve,reject) => {
   });
 })
 
-const pullUserAuthenticate = (objID, password) => new Promise ((resolve,reject) => {
-  mUser.findOne({ _id: types.ObjectId(objID), password_hash: password}, (err, res) => {
+const pullUserAuthenticate = (userN, password) => new Promise ((resolve,reject) => {
+  mUser.findOne({ username: userN, password_hash: password}, (err, res) => {
     if (err) {
       reject(err)
     } else {
