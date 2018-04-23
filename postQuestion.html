@@ -23,12 +23,15 @@
 
   <div>
     <input id="option_1" > Answer 1 </input>
+    <button> Upload Media </button>
   </div>
   <div>
     <input id="option_2" > Answer 2 </input>
+    <button> Upload Media </button>
   </div>
   <div>
     <input id="option_3" disabled = true> Answer 3 </input>
+    <button id = "mediaOption3" disabled = true> Upload Media </button>
   </div>
 
   <button onClick="send()"> Send the question! </button>
@@ -42,8 +45,10 @@
     console.log(document.getElementById("selector").value)
     if (document.getElementById("selector").value === "2") {
       document.getElementById("option_3").disabled = true
+      document.getElementById("mediaOption3").disabled = true
     } else {
       document.getElementById("option_3").disabled = false
+      document.getElementById("mediaOption3").disabled = false
     }
   }
 

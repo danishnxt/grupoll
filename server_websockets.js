@@ -119,7 +119,7 @@ const handleAnswerRetrieveRequest = sock => {
 		db.pullAnswerOptions(msg.questionID).then(
 			result => {
 				sock.emit('msgAnswerRetrieveRequestConfirmed', result);
-				log.logEntry('Answer retrieval for question with ID ' + msg.questionID + ' added'); 
+				log.logEntry('Answer retrieval for question with ID ' + msg.questionID + ' added');
 			},
 
 			err => {
@@ -136,15 +136,11 @@ const initWebSocketConnection = () => {
 		log.logEntry('Client connected');
 
 		handleUserInitialization(sock);
-
+		handleUserNewsFeed(sock);
 		handleQuestionPostRequest(sock);
-
 		handleQuestionVoteRequest(sock);
-
 		handleAnswerPostRequest(sock);
-
 		handleQuestionRetrieveRequest(sock);
-
 		handleAnswerRetrieveRequest(sock);
 	})
 };

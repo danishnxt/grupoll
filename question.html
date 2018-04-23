@@ -21,13 +21,13 @@
 
 	<div id = 'grupollImage'>
 		<center>
-			<img id='logo_img' src='logo.png'>			
+			<img id='logo_img' src='logo.png'>
 		</center>
 	</div>
 
 
 	<div id="question_statement">
-	  <div id = "qbar" > 
+	  <div id = "qbar" >
 		  <div id="bar"></div>
 		  <div id="bar"></div>
 		  <div id="bar"></div>
@@ -38,22 +38,22 @@
 <!--      Here is our menu on the right side             -->
 
 <div id='rightMenu'>
-	
+
 
 	<div class="area"></div>
-	
-		
+
+
 		<nav class="main-menu">
 
             <ul>
-            	
+
                 <li>
                     <a href="#">
                         <i class="fa fa-pencil fa-2x" style="font-size:48px;color:red; margin-left:15%"></i>
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
                	<li>
                     <a href="#">
@@ -61,7 +61,7 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
 
                	<li>
@@ -72,10 +72,10 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
-                
-                
+
+
             </ul>
 
             <ul class="logout">
@@ -83,10 +83,10 @@
                    <a href="#">
                          <i class="fa fa-power-off fa-2x" style="font-size:48px;color:red;margin-bottom:70%;margin-left:15%" ></i>
                         <span class="nav-text">
-                            
+
                         </span>
                     </a>
-                </li>  
+                </li>
             </ul>
         </nav>
 
@@ -125,13 +125,13 @@
 	<div>
 		<button id="option_1">...</button>
 	</div>
-	
+
 		<span style="10px"></span>
-	
+
 	<div>
 		<button id="option_2">...</button>
 	</div>
-	
+
 	<div>
 		<button id="option_3">...</button>
 	</div>
@@ -143,7 +143,7 @@
 </main>
 
 <div id='profileBar'>
-	
+
 
 	<div class="nav-right visible-xs">
 	  <div class="button" id="btn">
@@ -166,10 +166,6 @@
 
 </div>
 
-
-
-
-
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -178,13 +174,11 @@
 	const addQuestionStatement = statement => {
 
 		document.getElementById('question_statement').innerHTML = '<center>'+'<h2 id= question >' + statement + '</h2>' + '</center>';
-		
 		document.getElementById('option_1').style.visibility = 'visible';
 		document.getElementById('option_2').style.visibility = 'visible';
 		document.getElementById('option_3').style.visibility = 'visible';
-						
-
 	};
+
 	const addAnswerOptions = (o1, o2, o3) => {
 		document.getElementById('option_1').innerHTML = o1;
 		document.getElementById('option_2').innerHTML = o2;
@@ -193,9 +187,7 @@
 
 	const myUserID = '5adb32fce1144d2c68430c95';
 	const myQuestionID = '5addaeefc2f104375037fff0';
-
-	socket.emit('msgUserInitialization', { userID : myUserID });
-
+	socket.emit('msgUserInitialization', { userID : myUserID }); // we don't need this one here at all, we could do this else where
 	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
 		addQuestionStatement(msg.statement);
 	});
@@ -221,29 +213,21 @@
 	let open = 0;
 
 	function toggleLeftBar() {
-		$("main").toggleClass("move-to-right");		
+		$("main").toggleClass("move-to-right");
 	}
 
 	function toggleSidebar() {
 	    $(".button").toggleClass("active");
 	    $("main").toggleClass("move-to-left");
 	    $(".sidebar-item").toggleClass("active");
-
   	}
 
-
-
-
   	$(".main-menu").on("mouseover",()=>{
-
   		toggleLeftBar();
-
   	})
 
-
-
   	$(".button").on("click tap", function() {
-    	
+
     	//$('.sidebar').css({'opacity','100'});
     	if(open==0){
     		$('.sidebar').css('opacity','100');
@@ -253,23 +237,13 @@
     		$('.sidebar').css('opacity','0');
     		open=0;
     	}
-
-
     	toggleSidebar();
-    	
   	});
 
 
   	$(".settings").on("click tap", function() {
-    	
     	console.log("i clicked settings")
-    	
   	});
-
-
-
-
-
 
 
   	/*$(document).keyup(function(e) {

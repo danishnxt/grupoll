@@ -262,7 +262,8 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
   })
 })
 
-// question will
+// NEW UNTESTED QUERIES =======================================================================================================
+
 const pullVoteExist = (qID, uID) => new Promise((resolve, reject) => {
   mVote.findOne({question_id:types.ObjectId(qID), user_id:types.ObjectId(uID)}, (err, res) => {
     if(err){
@@ -271,7 +272,26 @@ const pullVoteExist = (qID, uID) => new Promise((resolve, reject) => {
       if (res === null) {
         reject("NONE")
       } else {
-        resolve("EXISTS") // MESSAGE TO TIRMAZI -> CHECK HERE FOR A CHANGE IN THE WAY REJECTIONS ARE HANDLED
+        resolve("EXISTS") // MESSAGE TO TIRMAZI -> CHECK HERE FOR A CHANGE IN THE WAY REJECTIONS ARE HANDLED //
+      }
+    }
+  })
+})
+
+const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
+
+  // there is the one unqiue case here that the request will be slightly off by a few ms in which case we'll miss
+  // a question but this is such an edge case that we can probably ignore it for the time being
+
+  curTime = Date.Now()
+  mQuestion.findOne({user_id:types.ObjectId(uID), answerTimeLimit: {$gte:curTime}}, '_id', (err, res) => {
+    if(err){
+      reject(err)
+    } else {
+      if(res === null) {
+        resolve("ALLOW")
+      } else {
+        reject("DISALLOW")
       }
     }
   })
@@ -279,7 +299,7 @@ const pullVoteExist = (qID, uID) => new Promise((resolve, reject) => {
 
 // Module Exports ==============================================================================================================
 
-module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote}
+module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist}
 
 // Frag data and run this to repopulate fake data into the database ===========================================================
 
@@ -331,15 +351,15 @@ module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFrien
 
 // testing ======================================================================================================================
 
-pullVoteExist("5adb32fce1144d2c68430c95", "5addaeefc2f104375037fff0").then(data => {
-    console.log(data)
-  }).catch(erValue => {
-    if (erValue === "NONE") {
-      console.log("NONE")
-    } else {
-      console.log(erValue)
-    }
-  })
+// pullVoteExist("5adb32fce1144d2c68430c95", "5addaeefc2f104375037fff0").then(data => {
+//     console.log(data)
+//   }).catch(erValue => {
+//     if (erValue === "NONE") {
+//       console.log("NONE")
+//     } else {
+//       console.log(erValue)
+//     }
+//   })
 
-updateVote("5adb32fce1144d2c68430c95", "5addaeefc2f104375037fff0", 1)
+// updateVote("5adb32fce1144d2c68430c95", "5addaeefc2f104375037fff0", 1)
 
