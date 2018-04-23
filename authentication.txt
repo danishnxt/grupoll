@@ -3,8 +3,8 @@ danishnxt@gmail.com
 GruP@ll123
 
 <  - DB username login- >
-danishnxt
-LA1KewxpRjawxjVy
+mongo "mongodb+srv://nxtcluster1-hy2py.mongodb.net/test" --username danishnxt
+qwertyuiop123098
 
 =================================
 
@@ -29,3 +29,6 @@ c = pushFriend(dani // Aleee)
 d = pushFriend(Izy // Tirmi)
 e = pushFriend(dani // Izy)
 f = pushFriend(5adc604f2bd79334dc4d0bcc // 5adb32fce1144d2c68430c95)
+
+
+

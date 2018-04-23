@@ -141,6 +141,12 @@ const pushVote = (uID, qID, vValue) => new Promise((resolve, reject) => {
   })
 })
 
+const updateVote = (uID, qID, vValue) => new Promise ((resolve, reject) => {
+  mVote.update({question_id:types.ObjectId(uID), user_id:types.ObjectId(qID) }, { $set : {value:vValue} } , () => {
+    console.log("update Complete!")
+  })
+})
+
 // full pulls ===================================================================================================================
 
 const pullUser = (objID) => new Promise ((resolve,reject) => {
@@ -182,12 +188,10 @@ const pullAnswerOptions = (questionID) => new Promise ((resolve, reject) => {
           resolve(res)
         }
     }
-  });
+   });
 })
 
-// queries =========================================================================================================================
-
-  // TO TIRMAZI ->> CAN WE DO THIS ANY BETTER? //
+// queries ======================================================================================================================
 
 const pullFriends = (userID) => new Promise ((resolve, reject) => {
 
@@ -245,7 +249,7 @@ const pullVotes = (questionID) => new Promise ((resolve, reject) => {
 
 // pull users that match questionParameters
 const pullParamUsers = (questionID) => {
-  // belay this order for the time being
+  // belay this for the time being
 }
 
 const pullByGender = (gVal) => new Promise((resolve, reject) => {
@@ -258,8 +262,26 @@ const pullByGender = (gVal) => new Promise((resolve, reject) => {
   })
 })
 
-// Module Exports ==================================================================================================================
-module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser}
+// question will
+const pullVoteExist = (qID, uID) => new Promise((resolve, reject) => {
+  mVote.findOne({question_id:types.ObjectId(qID), user_id:types.ObjectId(uID)}, (err, res) => {
+    if(err){
+      reject(err)
+    } else {
+      if (res === null) {
+        reject("NONE")
+      } else {
+        resolve("EXISTS") // MESSAGE TO TIRMAZI -> CHECK HERE FOR A CHANGE IN THE WAY REJECTIONS ARE HANDLED
+      }
+    }
+  })
+})
+
+// Module Exports ==============================================================================================================
+
+module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote}
+
+// Frag data and run this to repopulate fake data into the database ===========================================================
 
 // a = pushQuestion("5adb32fce1144d2c68430c95", "What is Alinas fav color?")
 // b = pushQuestion("5adc604f2bd79334dc4d0bca", "Why is Ammar so funnny???")
@@ -306,3 +328,18 @@ module.exports = {pushAnswer, pullParamUsers, pullVotes, pullComments, pullFrien
 //     pushVote("5adc604f2bd79334dc4d0bcb", qst._id,2).then(() => {console.log("done")})
 //   })
 // })
+
+// testing ======================================================================================================================
+
+pullVoteExist("5adb32fce1144d2c68430c95", "5addaeefc2f104375037fff0").then(data => {
+    console.log(data)
+  }).catch(erValue => {
+    if (erValue === "NONE") {
+      console.log("NONE")
+    } else {
+      console.log(erValue)
+    }
+  })
+
+updateVote("5adb32fce1144d2c68430c95", "5addaeefc2f104375037fff0", 1)
+
