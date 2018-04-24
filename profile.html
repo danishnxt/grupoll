@@ -56,11 +56,15 @@
 	};
 
 	const addProfilePicture = (profileImage) => {
-		document.getElementById('profile_picture').innerHTML = profileImage;
+		document.getElementById('profile_picture').innerHTML = '<img src="' + profileImage + '"></img>';
 	};
 
 	socket.on('msgUserInitializationConfirmed', user => {
 		addName(user.username, user.first_name, user.last_name);
+
+		if (user.profile_image_exists) {
+			addProfilePicture(user.profile_image_link);
+		}
 	});
 
 	socket.on('msgUserInitializationRejected', msg => {
