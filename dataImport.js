@@ -125,8 +125,8 @@ const pushAnswer = (qID, opt1, opt2, opt3, opt1Link, opt2Link, opt3Link) => new 
 const pushVote = (uID, qID, vValue) => new Promise((resolve, reject) => {
 
   const newVote = new mVote({
-    question_id: types.ObjectId(uID),
-    user_id: types.ObjectId(qID),
+    question_id: types.ObjectId(qID),
+    user_id: types.ObjectId(uID),
     value: vValue
   })
 
