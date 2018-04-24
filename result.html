@@ -72,7 +72,7 @@
 	});
 
 	socket.on('msgQuestionVotesRetrieveRequestConfirmed', msg => {
-		addOptionVotes(calculateVotes());
+		addOptionVotes(calculateVotes(msg));
 	});
 
 	socket.emit('msgQuestionRetrieveRequest', { questionID : myQuestionID });
