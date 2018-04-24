@@ -23,9 +23,10 @@
     <div style="margin-top: 2%">
           <button id="login" class="button-intro button-hover" style="margin: 1%;height: 2.5em;margin-bottom: 2%">LOG IN</button>
         </div>
+
 <div id="id01" class="modal">
-  <form class="modal-content animate" >
-    
+  <div class="modal-content animate" >
+
     <div class="container">
       <div >
       <label for="uname"><b>Username</b></label>
@@ -50,7 +51,7 @@
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="input"  style="color:#e6e6e6;width: 25%;height:2em;margin-bottom: 5%">Cancel</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
-  </form>
+  </div>
 </div>
 
 
@@ -79,7 +80,6 @@
 	const handleLogin = () => {
 		const user_name = document.getElementById("username").value;
 		const passWord = document.getElementById("password").value;
-
 		socket.emit("msgUserLoginRequest", { userName : user_name, password : passWord });
 	};
 
