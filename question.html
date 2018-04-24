@@ -225,7 +225,7 @@
 
 	const conductVote = opt => {
 		socket.emit('msgQuestionVoteRequest', { userID : myUserID, questionID : myQuestionID, value : opt });
-	}	
+	}
 
 	function vote1() {
 	    if(!click)
@@ -253,7 +253,7 @@
 
 	}
 
-	const myUserID = "";
+	let myUserID = "";
 
 	fs.readFile('/current_user.txt', (err, contents) => {
 		myUserID = contents.toString();
