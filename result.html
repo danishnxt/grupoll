@@ -1,13 +1,125 @@
 <!DOCTYPE html>
 <html>
+
+<link rel="stylesheet" type="text/css" href="result.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 <head>
 	<title>Result</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
-<body>
-<div id = "question_statement">Loading...</div>
-<div id="option_1"></div><div id="option_1_votes"></div>
-<div id="option_2"></div><div id="option_2_votes"></div>
-<div id="option_3"></div><div id="option_3_votes"></div>
+<body background="background.jpg">
+
+
+	<div id='app_header'></div>
+	<div id = 'grupollImage'>
+		<center>
+			<img id='logo_img' src='logo.png'>			
+		</center>
+
+	</div>
+
+
+<div id = "question_statement">
+	<div id = "qbar" > 
+		  <div id="bar"></div>
+		  <div id="bar"></div>
+		  <div id="bar"></div>
+	  </div>
+</div>
+
+<div id="option_1"></div> <div id="option_1_votes"></div>
+
+<div id="option_2"></div> <div id="option_2_votes"></div>
+
+<div id="option_3"></div> <div id="option_3_votes"></div>
+
+
+
+
+
+
+<!--      Here is our menu on the left side             -->
+
+<div id='rightMenu'>
+	
+
+	<div class="area"></div>
+	
+		
+		<nav class="main-menu">
+		   <!-- back button here -->
+            <ul>
+            	<li>
+                    <a href="#">
+                    	<div class='back_button'>
+                        <i id = 'back_button' class="fa fa-arrow-left fa-2x" style="font-size:3em;color:red; margin-left:15%;margin-top:0%;margin-bottom:100%"></i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+                  
+                </li>
+
+                <li>
+                    <a href="#">
+                    	<div class='polls'>
+                        <i id='polls' class="fa fa-pencil fa-2x" style="font-size:3em;color:red; margin-left:15%;margin-top:100%;margin-bottom:100%"></i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+                  
+                </li>
+               	<li>
+                    <a href="#">
+                    	<div class='notifs'>
+                        <i id='notifs' class="fa fa-bell-o " style="font-size:3em;color:red;margin-top:100%;margin-left:15%; margin-bottom:100%"></i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+                  
+                </li>
+
+               	<li>
+                    <a href="#">
+                    	<div class='settings'>
+                        <i id="settings" class="material-icons fa-2x" style="font-size:3.4375em;color:red;margin-top:100%;margin-left:12%;margin-bottom:100%">settings</i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+                  
+                </li>
+                
+                
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="#">
+                   		<div class = 'power'>
+                         <i id="power" class="fa fa-power-off fa-2x" style="font-size:3em;color:red; margin-top: 100% ;margin-bottom:100%; margin-left:15%" ></i>
+                         </div>
+                        <span class="nav-text">
+                            
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+</div>
+
+<div id='footer'></div>
+
+
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -78,6 +190,38 @@
 	socket.emit('msgQuestionRetrieveRequest', { questionID : myQuestionID });
 	socket.emit('msgAnswerRetrieveRequest', { questionID : myQuestionID });
 	socket.emit('msgQuestionVotesRetrieveRequest', { questionID : myQuestionID });
+
+	// on click for buttons on the left 
+
+
+
+
+  	$(".back_button").on("click tap", function() {
+    
+    	console.log("i clicked back");
+    	handleBack();
+  	
+  	});
+
+
+  	$(".polls").on("click tap", function() {
+    	console.log("i clicked polls")
+  	});
+
+  	$(".notifs").on("click tap", function() {
+    	console.log("i clicked notifs")
+  	});
+
+  	$(".settings").on("click tap", function() {
+    	console.log("i clicked settings")
+  	});
+
+  	$(".power").on("click tap", function() {
+    	console.log("i clicked power")
+  	});
+
+
+
 </script>
 
 </html>
