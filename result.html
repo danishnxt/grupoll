@@ -48,9 +48,9 @@
 	};
 
 	const addOptionVotes = counts => {
-		document.getElementById('option_1_votes').innerHTML = counts[0];
-		document.getElementById('option_2_votes').innerHTML = counts[1];
-		document.getElementById('option_3_votes').innerHTML = counts[2];
+		document.getElementById('option_1_votes').innerHTML = counts[0].toString();
+		document.getElementById('option_2_votes').innerHTML = counts[1].toString();
+		document.getElementById('option_3_votes').innerHTML = counts[2].toString();
 	};
 
 	const calculateVotes = votes => {
