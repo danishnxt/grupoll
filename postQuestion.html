@@ -17,7 +17,7 @@
   <center>
     <img src="logo.png" class="logo"></img>
 <!-- loading
-    <div id = "qbar" > 
+    <div id = "qbar" >
       <div id="bar"></div>
       <div id="bar"></div>
       <div id="bar"></div>
@@ -60,12 +60,12 @@
                 <li>
                     <a href="#">
                       <div class='back_button'>
-                        <i id = 'back_button' class="fa fa-arrow-left fa-2x" style="font-size:3em;color:red; margin-left:15%;margin-top:0%;margin-bottom:100%"></i>
+                        <i id = 'back_button' onClick = "handleBack();" class="fa fa-arrow-left fa-2x" style="font-size:3em;color:red; margin-left:15%;margin-top:0%;margin-bottom:100%"></i>
                         </div>
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
                 <li>
                     <a href="#">
@@ -75,7 +75,7 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
                 <li>
                     <a href="#">
@@ -85,7 +85,7 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
 
                 <li>
@@ -96,10 +96,10 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
-                
-                
+
+
             </ul>
 
             <ul class="logout">
@@ -109,10 +109,10 @@
                          <i id="power" class="fa fa-power-off fa-2x" style="font-size:3em;color:red; margin-top: 100% ;margin-bottom:100%; margin-left:15%" ></i>
                          </div>
                         <span class="nav-text">
-                            
+
                         </span>
                     </a>
-                </li>  
+                </li>
             </ul>
         </nav>
 
@@ -136,7 +136,7 @@
   </div>
 </main>
 <div id='profileBar'>
-  
+
 
   <div class="nav-right visible-xs">
     <div class="button" id="btn">
@@ -155,12 +155,8 @@
       <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 4</a></li>
     </ul>
   </div>
-
-
 </div>
 </body>
-
-
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/browserfs.min.js"></script>
@@ -175,6 +171,10 @@
     }
   })
 
+  const handleBack() => {
+    window.open("http://52.170.186.150:3000/newsfeed", "_self");
+  }
+
   const switchToQuestion = (questionID) => {
     console.log(questionID)
     fs.writeFile('/current_question.txt', questionID, err => {
@@ -187,16 +187,16 @@
   }
 
   const enabler = () => {
-    
+
     console.log(document.getElementById("selector").value)
 
     if (document.getElementById("selector").value === "2") {
       document.getElementById("option_3").disabled = true
-      document.getElementById("option_3").style.visibility= "hidden" 
+      document.getElementById("option_3").style.visibility= "hidden"
       document.getElementById("third").style.visibility="hidden"
     } else if (document.getElementById("selector").value === "3") {
       document.getElementById("option_3").disabled = false
-      document.getElementById("option_3").style.visibility= "visible" 
+      document.getElementById("option_3").style.visibility= "visible"
       document.getElementById("third").style.visibility="visible"
     }
   }

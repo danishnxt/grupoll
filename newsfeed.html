@@ -15,9 +15,10 @@
     <center>
       <div id='app_header'></div>
       <img id='logo_img' src='logo.png'>
+      <button id = "option_1" onClick = "postHandle()"> Post Question </button>
 	    <ul id= "newsfeed" style="list-style-type:none"></ul>
-      <button id = "option_1"> Back </button>
-      <button id = "option_1"> Logout </button>
+      <button id = "option_1" onClick= "handleBack()"> Back </button>
+      <button id = "option_1" onClick= "handleLogout()"> Logout </button>
       <div> Copyright 2018(c) </div>
     </center>
 </body>
@@ -38,6 +39,18 @@
   const socket = io();
 
   const fs = require('fs');
+
+  const postHandle = () => {
+    window.open("http://52.170.186.150:3000/postQuestion", "_self");
+  }
+
+  const handleBack = () => {
+    window.open("http://52.170.186.150:3000/profile", "_self");
+  }
+
+  const handleLogout = () => {
+    window.open("http://52.170.186.150:3000/splash", "_self");
+  }
 
   const switchToQuestion = (questionID) => {
     console.log(questionID);
