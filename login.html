@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="postQuestion.css">
+<link rel="stylesheet" type="text/css" href="splash.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <head>
 	<title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
-<body>
-	<input id="username" placeholder="Username"></input>
-	<input id="password" placeholder="Password"></input>
-	<button id="login" onclick="handleLogin();">Login</button>
+<body background="background.jpg" >
+<main>
+
+  <header class="app_header" ></header>
+  <center>
+    <img src="logo.png" class="logo" style="margin-top: 5%; margin-bottom: 0.2%"></img>
+    <div style="margin-top: 2%">
+          <button id="login" class="button-intro button-hover" style="margin: 1%;height: 2.5em;margin-bottom: 2%">LOG IN</button>
+        </div>
+<div id="id01" class="modal">
+  <form class="modal-content animate" >
+    
+    <div class="container">
+      <div >
+      <label for="uname"><b>Username</b></label>
+      <input id= "username" type="text" placeholder="Enter Username" class="input" style="margin-top: 7%" name="uname" required></input>
+      </div>
+
+      <div>
+      <label for="psw"><b>Password</b></label>
+      <input id="password" type="password" placeholder="Enter Password" class="input"  name="psw" required>
+      </div>
+
+      <div>
+      <button id="login" onclick="handleLogin();" class="input" style="color:#e6e6e6;width: 25%" type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me</input>
+      </label>
+      </div>
+
+    </div>
+
+    <div class="containerbottom">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="input"  style="color:#e6e6e6;width: 25%;height:2em;margin-bottom: 5%">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+
+    <div class="footer"></div>
+
+</center>
+
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
