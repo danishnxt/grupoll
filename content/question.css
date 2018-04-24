@@ -165,7 +165,7 @@
   box-shadow: inset 0 -0.125em #da751c;
 }
 #option_3:active {
-
+  
   top: 0.0625em;
   outline: none;
   -webkit-box-shadow: none;
@@ -494,13 +494,13 @@ z-index:1000;
 }
 
 .main-menu>ul {
-margin:105% 0;
+margin:100% 0;
 }
 
 .main-menu li {
 position:relative;
 display:block;
-width:250px;
+width:15.625em;
 }
 
 .main-menu li>a {
@@ -510,12 +510,12 @@ width:250px;
   border-spacing:0;
   color: white;
    font-family: arial;
-  font-size: 20px;
+  font-size: 1.25em;
   text-decoration:none;
   -webkit-transform:translateZ(0) scale(1,1);
   -webkit-transition:all .1s linear;
   transition:all .1s linear;
-
+  
 }
 
 .main-menu .nav-icon {
@@ -532,7 +532,7 @@ font-size:18px;*/
 position:relative;
 display:table-cell;
 vertical-align:middle;
-width:190px;
+width:11.875em;
 sfont-family: 'Titillium Web', sans-serif;
 }
 

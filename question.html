@@ -21,78 +21,89 @@
 
 	<div id = 'grupollImage'>
 		<center>
-			<img id='logo_img' src='logo.png'>
+			<img id='logo_img' src='logo.png'>			
 		</center>
 
 	</div>
-
+	
 
 	<div id="question_statement">
-	  <div id = "qbar" >
+	  <div id = "qbar" > 
 		  <div id="bar"></div>
 		  <div id="bar"></div>
 		  <div id="bar"></div>
 	  </div>
 	</div>
 
+
 <!--      Here is our menu on the right side             -->
 
 <div id='rightMenu'>
-
+	
 
 	<div class="area"></div>
-
-
+	
+		
 		<nav class="main-menu">
-
+		   <!-- back button here -->
             <ul>
+            	<li>
+                    <a href="#">
+                    	<div class='back_button'>
+                        <i id = 'back_button' class="fa fa-arrow-left fa-2x" style="font-size:3em;color:red; margin-left:15%;margin-top:0%;margin-bottom:100%"></i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+                  
+                </li>
 
                 <li>
                     <a href="#">
-                    	<div class='poll'>
-                        <i class="fa fa-pencil fa-2x" style="font-size:3em;color:red; margin-left:15%;margin-top:0%;margin-bottom:100%"></i>
+                    	<div class='polls'>
+                        <i id='polls' class="fa fa-pencil fa-2x" style="font-size:3em;color:red; margin-left:15%;margin-top:100%;margin-bottom:100%"></i>
                         </div>
                         <span class="nav-text">
                         </span>
                     </a>
-
+                  
                 </li>
                	<li>
                     <a href="#">
-                    	<div class='notifications'>
-                        <i class="fa fa-bell-o " style="font-size:3em;color:red;margin-top:100%;margin-left:15%; margin-bottom:100%"></i>
+                    	<div class='notifs'>
+                        <i id='notifs' class="fa fa-bell-o " style="font-size:3em;color:red;margin-top:100%;margin-left:15%; margin-bottom:100%"></i>
                         </div>
                         <span class="nav-text">
                         </span>
                     </a>
-
+                  
                 </li>
 
                	<li>
                     <a href="#">
-                    	<div class='settingsButton'>
+                    	<div class='settings'>
                         <i id="settings" class="material-icons fa-2x" style="font-size:3.4375em;color:red;margin-top:100%;margin-left:12%;margin-bottom:100%">settings</i>
                         </div>
                         <span class="nav-text">
                         </span>
                     </a>
-
+                  
                 </li>
-
-
+                
+                
             </ul>
 
             <ul class="logout">
                 <li>
                    <a href="#">
-                   		<div class = 'powerButton'>
+                   		<div class = 'power'>
                          <i id="power" class="fa fa-power-off fa-2x" style="font-size:3em;color:red; margin-top: 100% ;margin-bottom:100%; margin-left:15%" ></i>
                          </div>
                         <span class="nav-text">
-
+                            
                         </span>
                     </a>
-                </li>
+                </li>  
             </ul>
         </nav>
 
@@ -130,7 +141,7 @@
 let click = 0;
 
 function vote1() {
-
+    
     if(!click)
     	document.getElementById("option_1").style.background = "red";
    	click=click+1;
@@ -155,13 +166,13 @@ function vote3() {
 	<div>
 		<button onclick="vote1()" id="option_1" onCLick>...</button>
 	</div>
-
+	
 		<span style="10px"></span>
-
+	
 	<div>
 		<button onclick="vote2()" id="option_2">...</button>
 	</div>
-
+	
 	<div>
 		<button onclick="vote3()" id="option_3">...</button>
 	</div>
@@ -173,7 +184,7 @@ function vote3() {
 </main>
 
 <div id='profileBar'>
-
+	
 
 	<div class="nav-right visible-xs">
 	  <div class="button" id="btn">
@@ -198,7 +209,7 @@ function vote3() {
 
 <!-- <a href="#">
 	<div id='backButton'>
-	        <i id="back" class="material-icons" style="font-size:55px; color:red;"> arrow_back</i>
+	        <i id="back" class="material-icons" style="font-size:55px; color:red;"> arrow_back</i> 
 	</div>
 </a> -->
 
@@ -261,14 +272,17 @@ function vote3() {
 	socket.emit('msgQuestionRetrieveRequest', { questionID : myQuestionID });
 	socket.emit('msgAnswerRetrieveRequest', { questionID : myQuestionID });
 
-	// side bar left
+	
+	// function for handling back 
 
-	function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
+	const handleBack = () => {
+
+		console.log('BACK HANDLED')
 	}
-	function w3_close() {
-	    document.getElementById("mySidebar").style.display = "none";
-	}
+
+
+
+
 
 	// side bar right
 
@@ -303,19 +317,37 @@ function vote3() {
   	});
 
 
+
+  	// on click for buttons on the left 
+
+
+
+
+  	$(".back_button").on("click tap", function() {
+    
+    	console.log("i clicked back");
+    	handleBack();
+  	
+  	});
+
+
+  	$(".polls").on("click tap", function() {
+    	console.log("i clicked polls")
+  	});
+
+  	$(".notifs").on("click tap", function() {
+    	console.log("i clicked notifs")
+  	});
+
   	$(".settings").on("click tap", function() {
     	console.log("i clicked settings")
   	});
 
+  	$(".power").on("click tap", function() {
+    	console.log("i clicked power")
+  	});
 
-  	/*$(document).keyup(function(e) {
-    	$('.sidebar').css('opacity','0');
-    	if (e.keyCode === 27) {
-	      	$('.sidebar').css('opacity','0');
-	      	toggleSidebar();
-    	}
 
-  	});*/
 
 
 </script>
