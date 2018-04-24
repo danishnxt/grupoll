@@ -165,7 +165,7 @@
   box-shadow: inset 0 -0.125em #da751c;
 }
 #option_3:active {
-  
+
   top: 0.0625em;
   outline: none;
   -webkit-box-shadow: none;
@@ -515,7 +515,7 @@ width:250px;
   -webkit-transform:translateZ(0) scale(1,1);
   -webkit-transition:all .1s linear;
   transition:all .1s linear;
-  
+
 }
 
 .main-menu .nav-icon {
