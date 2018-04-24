@@ -4,18 +4,21 @@
 	<title>Profile</title>
 </head>
 
-<body>
-	<div id="profile_picture">Loading...</div>
-	<div id="name">...</div>
-	<div id="current_question">...</div>
+<body background="background.jpg">
+	<center>
+		<h1> Welcome to GruPoll </h1>
+		<div id="profile_picture">... loading ...</div>
+		<h2 id="name">...</h2>
+		<div>
+			<button id = 'option_1'> Go to Your NewsFeed! </button>
+		</div>
+	</center>
 </body>
-
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/browserfs.min.js"></script>
 <script type="text/javascript">
 	BrowserFS.install(window);
-
 	BrowserFS.configure({
 		fs : "LocalStorage"
 	}, e => {
@@ -25,9 +28,7 @@
 	});
 
 	const fs = require('fs');
-
 	const socket = io();
-
 	let userID = "";
 
 	fs.readFile('/current_user.txt', (err, contents) => {
@@ -36,10 +37,6 @@
 
 	const addName = (userName, firstName, lastName) => {
 		document.getElementById('name').innerHTML = firstName + " " + lastName + " (" + userName + ")";
-	};
-
-	const addCurrentQuestion = (statement) => {
-		document.getElementById('current_question').innerHTML = statement;
 	};
 
 	const addProfilePicture = (profileImage) => {
@@ -53,7 +50,6 @@
 	socket.on('msgUserInitializationRejected', msg => {
 		alert('User initialization failed for user with ID ' + userID);
 	});
-
 
 	socket.emit('msgUserInitialization', { userID : userID });
 
