@@ -66,6 +66,7 @@ const handleQuestionVoteRequest = sock => {
 
 			err => {
 				sock.emit('msgQuestionVoteRequestRejected', msg);
+				log.logWebSocketsError('Question vote request failed for question with ID ' + msg.questionID);
 			}
 		);
 	});
@@ -188,6 +189,22 @@ const handleUserSignupRequest = sock => {
 	});
 };
 
+const handleQuestionVotesRetrieveRequest = sock => {
+	sock.on('msgQuestionVotesRetrieveRequest', msg => {
+		db.pullVotes(msg.questionID).then(
+			result => {
+				sock.emit('msgQuestionVotesRetrieveRequestConfirmed', result);
+				log.logWebSocketsEntry('Votes retrieval successful for question with ID' + msg.questionID);
+			}, 
+
+			err => {
+				sock.emit('msgQuestionVotesRetrieveRequestRejected', msg);
+				log.logWebSocketsError('Votes retrieval failed for question with ID ' + msg.questionID);
+			}
+		);
+	});
+};
+
 const initWebSocketConnection = () => {
 	io.on('connection', sock => {
 		log.logWebSocketsEntry('Client connected');
@@ -201,6 +218,7 @@ const initWebSocketConnection = () => {
 		handleUserFeedRetrieveRequest(sock);
 		handleUserLoginRequest(sock);
 		handleUserSignupRequest(sock);
+		handleQuestionVotesRetrieveRequest(sock);
 	})
 };
 

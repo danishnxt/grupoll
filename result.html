@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Result</title>
+</head>
+<body>
+<div id = "question_statement">Loading...</div>
+<div id="option_1"></div><div id="option_1_votes"></div>
+<div id="option_2"></div><div id="option_2_votes"></div>
+<div id="option_3"></div><div id="option_3_votes"></div>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
+
+<script type="text/javascript">
+	BrowserFS.install(window);
+
+	BrowserFS.configure({
+		fs : "LocalStorage"
+	}, e => {
+		if (e) {
+			throw e;
+		}
+	});
+
+	const fs = require('fs');
+
+	const socket = io();
+
+	let myQuestionID = "";
+
+	fs.readFile('/current_question.txt', (err, contents) => {
+		myQuestionID = contents.toString();
+	});
+
+	const addQuestionStatement = statement => {
+		document.getElementById('question_statement').innerHTML = '<center>'+'<h2 id= question >' + statement + '</h2>' + '</center>';
+		document.getElementById('option_1').style.visibility = 'visible';
+		document.getElementById('option_2').style.visibility = 'visible';
+		document.getElementById('option_3').style.visibility = 'visible';
+	};
+
+	const addAnswerOptions = (o1, o2, o3) => {
+		document.getElementById('option_1').innerHTML = o1;
+		document.getElementById('option_2').innerHTML = o2;
+		document.getElementById('option_3').innerHTML = o3;
+	};
+
+	const addOptionVotes = counts => {
+		document.getElementById('option_1_votes').innerHTML = counts[0];
+		document.getElementById('option_2_votes').innerHTML = counts[1];
+		document.getElementById('option_3_votes').innerHTML = counts[2];
+	};
+
+	const calculateVotes = votes => {
+		const voteCount = [0, 0, 0];
+
+		votes.forEach(vote => {
+			voteCount[vote.value] += 1;
+		});
+
+		return voteCount;
+	};
+
+	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
+	addQuestionStatement(msg.statement);
+	});
+
+	socket.on('msgAnswerRetrieveRequestConfirmed', msg => {
+		addAnswerOptions(msg.option_1, msg.option_2, msg.option_3);
+	});
+
+	socket.on('msgQuestionVotesRetrieveRequestConfirmed', msg => {
+		addOptionVotes(calculateVotes());
+	});
+
+	socket.emit('msgQuestionRetrieveRequest', { questionID : myQuestionID });
+	socket.emit('msgAnswerRetrieveRequest', { questionID : myQuestionID });
+</script>
+
+</html>
