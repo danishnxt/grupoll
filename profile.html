@@ -7,18 +7,30 @@
 
 <body background="background.jpg">
 	<center>
-			<h1> Welcome to GruPoll </h1>
+
+		<div id='app_header'></div>
+		<div id = 'grupollImage'>
+			<center>
+				<img id='logo_img' src='logo.png'>
+			</center>
+		</div>
+
+		<h1> Welcome to GruPoll </h1>
+
 		<div id="profile_picture"> ... loading ... </div>
-			<h2 id="name">...</h2>
+		<h2 id="name">...</h2>
+
 		<div>
 			<button id = 'option_1'> Go to Your NewsFeed! </button>
 		</div>
+
 	</center>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/browserfs.min.js"></script>
 <script type="text/javascript">
+
 	BrowserFS.install(window);
 	BrowserFS.configure({
 		fs : "LocalStorage"
