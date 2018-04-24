@@ -20,39 +20,35 @@
 	<div id='app_header'></div>
 	<div id = 'grupollImage'>
 		<center>
-			<img id='logo_img' src='logo.png'>			
+			<img id='logo_img' src='logo.png'>
 		</center>
 
 	</div>
 
 
 <div id = "question_statement">
-	<div id = "qbar" > 
+	<div id = "qbar" >
 		  <div id="bar"></div>
 		  <div id="bar"></div>
 		  <div id="bar"></div>
 	  </div>
 </div>
 
-<div id="option_1"></div> <div id="option_1_votes"></div>
-
-<div id="option_2"></div> <div id="option_2_votes"></div>
-
-<div id="option_3"></div> <div id="option_3_votes"></div>
-
-
-
-
+<center>
+  <div id="option_1" class="option_1"></div> <div id="option_1_votes" class="option_1_v"></div>
+  <div id="option_2" class="option_2"></div> <div id="option_2_votes" class="option_2_v"></div>
+  <div id="option_3" class="option_3"></div> <div id="option_3_votes" class="option_3_v"></div>
+</center>
 
 
 <!--      Here is our menu on the left side             -->
 
 <div id='rightMenu'>
-	
+
 
 	<div class="area"></div>
-	
-		
+
+
 		<nav class="main-menu">
 		   <!-- back button here -->
             <ul>
@@ -64,7 +60,7 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
 
                 <li>
@@ -75,7 +71,7 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
                	<li>
                     <a href="#">
@@ -85,7 +81,7 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
 
                	<li>
@@ -96,10 +92,10 @@
                         <span class="nav-text">
                         </span>
                     </a>
-                  
+
                 </li>
-                
-                
+
+
             </ul>
 
             <ul class="logout">
@@ -109,10 +105,10 @@
                          <i id="power" class="fa fa-power-off fa-2x" style="font-size:3em;color:red; margin-top: 100% ;margin-bottom:100%; margin-left:15%" ></i>
                          </div>
                         <span class="nav-text">
-                            
+
                         </span>
                     </a>
-                </li>  
+                </li>
             </ul>
         </nav>
 </div>
@@ -191,16 +187,16 @@
 	socket.emit('msgAnswerRetrieveRequest', { questionID : myQuestionID });
 	socket.emit('msgQuestionVotesRetrieveRequest', { questionID : myQuestionID });
 
-	// on click for buttons on the left 
+	// on click for buttons on the left
 
 
 
 
   	$(".back_button").on("click tap", function() {
-    
+
     	console.log("i clicked back");
     	handleBack();
-  	
+
   	});
 
 
