@@ -170,6 +170,10 @@
 		return voteCount;
 	};
 
+  const handleBack = () => {
+    window.open("http://52.170.186.150:3000/newsfeed", "_self");
+  }
+
 	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
 	addQuestionStatement(msg.statement);
 	});
