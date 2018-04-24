@@ -20,7 +20,7 @@
 		<h2 id="name" class = "question">...</h2>
 
 		<div>
-			<button id = 'option_1'> Go to Your NewsFeed! </button>
+			<button id = 'option_1' onClick="newsFeedGo()" > Go to Your NewsFeed! </button>
 		</div>
 
 	</center>
@@ -46,6 +46,10 @@
 	fs.readFile('/current_user.txt', (err, contents) => {
 		userID = contents.toString();
 	});
+
+	const newsFeedGo = () => {
+		window.open("http://52.170.186.150:3000/newsfeed", "_self");
+	}
 
 	const addName = (userName, firstName, lastName) => {
 		document.getElementById('name').innerHTML = firstName + " " + lastName + " (" + userName + ")";
