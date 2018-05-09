@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html>
+
+<link rel="stylesheet" type="text/css" href="newsfeed.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <head>
 	<title>Upload File</title>
 </head>
-<body>
+<body background="background.jpg">
+
 	<div id="upload_widget">
-		<form ref="uploadForm"
-				id="uploadForm"
-				action="http://localhost:3000/upload"
-				method="post"
-				enctype="multipart/form-data">
-				<input type="file" name="fileName"/>
-				<input type="submit" value="Upload"/>
-		</form>
+	<center>
+		<div id='app_header'></div>
+  	<div><img id='logo_img' src='logo.png'></div>
+			<form ref="uploadForm"
+					id="uploadForm"
+					action="http://localhost:3000/upload"
+					method="post"
+					enctype="multipart/form-data">
+					<input id="option_1" type="file" name="fileName"/>
+					<input id="option_1" type="submit" value="Upload"/>
+			</form>
+			<div> Copyright 2018(c) </div>
+		</center>
 	</div>
 </body>
 </html>

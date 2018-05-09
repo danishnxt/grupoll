@@ -270,9 +270,9 @@ const handleQuestionVotesRetrieveRequest = sock => {
 const handleNotificationPushRequest = sock => {
 	sock.on('msgNotificationPushRequest', msg => {
 		db.pushNotification(
-			msg.notificationUserID, 
-			msg.notificationType, 
-			msg.notificationContent, 
+			msg.notificationUserID,
+			msg.notificationType,
+			msg.notificationContent,
 			msg.notificationQuest
 		).then(
 			result => {
