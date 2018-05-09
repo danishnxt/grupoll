@@ -9,6 +9,8 @@
 
 <head>
 	<title> GruPoll </title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body background="background.jpg">
@@ -63,7 +65,7 @@
                     <li>
                        <a href="#">
                           <div class = 'power'>
-                             <i id="power" class="material-icons fa-2x" style="font-size:3vw;color:red;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative" >power_settings_new</i>
+                             <i id="power" class="material-icons fa-2x" style="font-size:3vw;color:red;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative;" >power_settings_new</i>
                              </div>
                             <span class="nav-text">
 
@@ -77,10 +79,11 @@
     <center>
       <div id='app_header'></div>
       <div><img id='logo_img' src='logo.png'></div>
-      <button id = "option_1" onClick = "postHandle()"> Post Question </button>
-	    <ul id= "newsfeed" style="list-style-type:none"></ul>
-      <button id = "option_1" onClick= "handleBack()"> Back </button>
-      <button id = "option_1" onClick= "handleLogout()"> Logout </button>
+      <button id = "option_1" onClick = "postHandle()"> Public </button>
+      <button id = "option_1" onClick= "handleBack()"> Friends</button>
+	    <ul id= "newsfeed" style="list-style-type:none"></ul> 
+      <!-- 
+      <button id = "option_1" onClick= "handleLogout()"> Logout </button> -->
       <div> Copyright 2018(c) </div>
     </center>
 </body>
@@ -132,6 +135,24 @@
       addQuestionEntry(val.statement, val._id);
     });
   });
+
+    $(".back_button").on("click tap", function(){
+		handleBack()
+    });
+
+  	$(".polls").on("click tap", function(){
+  		postHandle()
+  	});
+
+  	$(".notifs").on("click tap", function(){});
+
+  	$(".settings").on("click tap", function() {
+    	console.log("i clicked settings")
+  	});
+
+  	$(".power").on("click tap", function(){
+  		handleLogout()
+  	});
 
   socket.emit('msgUserFeedRetrieveRequest', {});
 </script>

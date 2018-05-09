@@ -174,8 +174,17 @@
     }
   })
 
+  
+  const postHandle = () => {
+    window.open("http://localhost:3000/postQuestion", "_self");
+  }
+
   const handleBack = () => {
     window.open("http://localhost:3000/newsfeed", "_self");
+  }
+
+  const handleLogout = () => {
+    window.open("http://localhost:3000/splash", "_self");
   }
 
   const switchToQuestion = (questionID) => {
@@ -292,8 +301,22 @@
     });
 
 
+    $(".back_button").on("click tap", function(){
+    handleBack()
+    });
+
+    $(".polls").on("click tap", function(){
+      postHandle()
+    });
+
+    $(".notifs").on("click tap", function(){});
+
     $(".settings").on("click tap", function() {
       console.log("i clicked settings")
+    });
+
+    $(".power").on("click tap", function(){
+      handleLogout()
     });
 </script>
 </html>

@@ -207,6 +207,19 @@
 	const fs = require('fs');
 
 	const socket = io();
+	
+	const postHandle = () => {
+    	window.open("http://localhost:3000/postQuestion", "_self");
+	}
+
+	const handleBack = () => {
+	    window.open("http://localhost:3000/newsfeed", "_self");
+	}
+
+	const handleLogout = () => {
+	    window.open("http://localhost:3000/splash", "_self");
+	};
+		
 	const addQuestionStatement = statement => {
 
 		document.getElementById('question_statement').innerHTML = '<center>'+'<h2 id= question >' + statement + '</h2>' + '</center>';
@@ -281,14 +294,6 @@
 	socket.emit('msgQuestionRetrieveRequest', { questionID : myQuestionID });
 	socket.emit('msgAnswerRetrieveRequest', { questionID : myQuestionID });
 
-
-	// function for handling back
-
-	const handleBack = () => {
-		window.open("http://localhost:3000/newsfeed", "_self");
-	}
-
-
 	// side bar right
 
 	let open = 0;
@@ -325,31 +330,23 @@
 
   	// on click for buttons on the left
 
+  	$(".back_button").on("click tap", function(){
+		handleBack()
+    });
 
-
-
-  	$(".back_button").on("click tap", function() {
-    	console.log("i clicked back");
-    	handleBack();
+  	$(".polls").on("click tap", function(){
+  		postHandle()
   	});
 
-
-  	$(".polls").on("click tap", function() {
-    	console.log("i clicked polls")
-  	});
-
-  	$(".notifs").on("click tap", function() {
-    	console.log("i clicked notifs")
-  	});
+  	$(".notifs").on("click tap", function(){});
 
   	$(".settings").on("click tap", function() {
     	console.log("i clicked settings")
   	});
 
-  	$(".power").on("click tap", function() {
-    	console.log("i clicked power")
+  	$(".power").on("click tap", function(){
+  		handleLogout()
   	});
-
 
 
 
