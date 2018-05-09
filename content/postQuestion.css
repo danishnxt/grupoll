@@ -93,7 +93,7 @@ text-align: center;
 .answers{
   text-align: center;
   width: 20%;
-  height: 1.5em;
+  height: 1.5e
   background-color: #819a4d;
   box-shadow: inset 0 -2px #009933;
   border: 0;
@@ -456,7 +456,7 @@ nav {
   margin: 0;
   list-style: none;
   position: relative;
-  margin-top: 9.375em;
+  margin-top: 3em;
   text-align: center;
 }
 
