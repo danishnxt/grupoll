@@ -183,6 +183,24 @@ const pushNotification = (notifUserID, notifType, notifContent, notifQuest) => n
 
 // update values ===================================================================================================================
 
+const changeProfilePic = (uID, picP) => new Promise ((resolve, reject) => {
+  mUser.update({_id:uID}, {$set:{profile_image_exists:true, profile_image_link:picP}}, () => {
+    console.log("profile picture changed")
+  })
+})
+
+const changePassword = (uID, passHash) => new Promise ((resolve, reject) => {
+  mUser.update({_id:uID}, {$set:{password_hash:passHash}}, () => {
+    console.log("password changed")
+  })
+})
+
+const changeUsername = (uID, newUN) => new Promise ((resolve, reject) => {
+  mUser.update({_id:uID}, {$set:{username:newUN}}, () => {
+    console.log("userName updated")
+  })
+})
+
 const notificationSeen = (nID, uID) => new Promise ((resolve, reject) => {
   mNotification.update({_id: nID, notif_user_id: uID}, {$set:{notif_seen:true}}, () => {
     log.logDatabaseEntry(uID, " saw notification", nID)
@@ -432,4 +450,4 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 
 // Module Exports ==============================================================================================================
 
-module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest, notificationSeen}
+module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest, notificationSeen, changePassword, changeProfilePic, changeUsername}
