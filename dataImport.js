@@ -183,7 +183,7 @@ const pushNotification = (notifUserID, notifType, notifContent, notifQuest) => n
 
 // update values ===================================================================================================================
 
-const notifcationSeen = (nID, uID) => new Promise ((resolve, reject) => {
+const notificationSeen = (nID, uID) => new Promise ((resolve, reject) => {
   mNotification.update({_id: nID, notif_user_id: uID}, {$set:{notif_seen:true}}, () => {
     log.logDatabaseEntry(uID, " saw notification", nID)
   })
@@ -432,4 +432,4 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 
 // Module Exports ==============================================================================================================
 
-module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest, notifcationSeen}
+module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest, notificationSeen}
