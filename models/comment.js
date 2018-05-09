@@ -4,8 +4,8 @@ Schema = mgs.Schema
 const mComment = new Schema ({
   question_id: {type: Schema.ObjectId, ref: 'mQuestion'},
   user_id: {type: Schema.ObjectId, ref: 'mUser'},
-  statement: String,
-  post_time: Date
+  statement: {type:String},
+  post_time: {type:Date}
 })
 
 module.exports = mgs.model('mComment', mComment)

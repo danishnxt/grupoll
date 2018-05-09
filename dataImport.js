@@ -12,6 +12,7 @@ const mQuesParam = require('./models/questionParam')
 const mUserQues = require('./models/userQuestion')
 const mAnswer = require('./models/answer')
 const mRequest = require('./models/request')
+const mNotification = require('./models/notification')
 
 const log = require('./server_logger');
 const uri = "mongodb+srv://danishnxt:qwertyuiop123098@nxtcluster1-hy2py.mongodb.net/grupoll_DB";
@@ -157,6 +158,29 @@ const pushVote = (uID, qID, vValue) => new Promise((resolve, reject) => {
   })
 })
 
+const pushNotification = (notifUserID, notifType, notifContent, notifQuest) => new Promise ((resolve, reject) => {
+
+  const newNotif = new mNotification({
+    notif_user_id: types.ObjectId(notifUserID),
+    notif_type: notifType,
+    notif_content: notifContent,
+    notif_question_id: notifQuest,
+    notif_time: Date.now(),
+    notif_seen: false
+  })
+
+  newNotif.save((err, obj) => {
+    if (err) {
+      log.logDatabaseError(err);
+      reject(err)
+    } else {
+      log.logDatabaseEntry("New Notification Saved")
+      resolve(obj)
+    }
+  })
+
+})
+
 // update values ===================================================================================================================
 
 const updateVote = (uID, qID, vValue) => new Promise ((resolve, reject) => {
@@ -235,6 +259,19 @@ const pullAnswerOptions = (questionID) => new Promise ((resolve, reject) => {
         }
     }
    });
+})
+
+const pullNotifications = (userID) => new Promise (() => {
+
+  mNotification.find({notif_user_id:userID}, (err, res) => {
+    if (err) {
+      log.logDatabaseError(err)
+      reject(err)
+    } else {
+      log.logDatabaseEntry("Notification for -> ", userID, " pulled")
+      resolve(res)
+    }
+  })
 })
 
 // queries ======================================================================================================================
@@ -388,3 +425,6 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 // Module Exports ==============================================================================================================
 
 module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest}
+
+//
+ast = pullNotifications("5ade47c66470a1365c01306d").then((data) => console.log(data))
