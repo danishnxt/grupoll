@@ -267,6 +267,43 @@ const handleQuestionVotesRetrieveRequest = sock => {
 	});
 };
 
+const handleNotificationPushRequest = sock => {
+	sock.on('msgNotificationPushRequest', msg => {
+		db.pushNotification(
+			msg.notificationUserID, 
+			msg.notificationType, 
+			msg.notificationContent, 
+			msg.notificationQuest
+		).then(
+			result => {
+				sock.emit('msgNotificationPushConfirmed', result);
+				log.logWeSocketsEntry(`Notification push by user ${msg.notificationUserID} confirmed.`);
+			},
+
+			err => {
+				sock.emit('msgNotificationPushRejected', msg);
+				log.logWebSocketsError(`Notification push by user ${msg.notificationUserID} rejected`);
+			}
+		);
+	});
+};
+
+const handleNotificationPullRequest = sock => {
+	sock.on('msgNotificationPullRequest', msg => {
+		db.pullNotifications(msg.notificationUserID, msg => {
+			result => {
+				sock.emit('msgNotificationPullRequestConfirmed', result);
+				log.logWebSocketsEntry(`Notification pulls by user ${msg.notificationUserID} confirmed.`);
+			},
+
+			err => {
+				sock.emit('msgNotificationPullRejected', msg);
+				log.logWebSocketsError(`Notification pulls by user ${msg.notificationUserID} rejected.`);
+			}
+		});
+	});
+};
+
 const initWebSocketConnection = () => {
 	io.on('connection', sock => {
 		log.logWebSocketsEntry('Client connected');
@@ -283,8 +320,9 @@ const initWebSocketConnection = () => {
 		handleUserLoginRequest(sock);
 		handleUserSignupRequest(sock);
 		handleQuestionVotesRetrieveRequest(sock);
-
-	})
+		handleNotificationPushRequest(sock);
+		handleNotificationPullRequest(sock);
+	});
 };
 
 module.exports = { initWebSocketConnection };
