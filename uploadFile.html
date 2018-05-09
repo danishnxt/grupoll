@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Upload File</title>
+</head>
+<body>
+	<div id="upload_widget">
+		<form ref="uploadForm"
+				id="uploadForm"
+				action="http://localhost:3000/upload"
+				method="post"
+				enctype="multipart/form-data">
+				<input type="file" name="fileName"/>
+				<input type="submit" value="Upload"/>
+		</form>
+	</div>
+</body>
+</html>
