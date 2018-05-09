@@ -23,32 +23,48 @@ const handleUserInitialization = sock => {
 };
 
 const handleQuestionPostRequest = sock => {
+
 	log.logWebSocketsEntry('Handling question post request');
-
 	sock.on('msgQuestionPostRequest', msg => {
-		db.pushQuestion(
-			msg.userID,
-			msg.questionStatement,
-			msg.questionType,
-			msg.containsImage,
-			msg.containsVoice,
-			msg.imageLink,
-			msg.voiceLink,
-			msg.date,
-			msg.categoryID,
-			msg.answerTimeLimit,
-			false
-		).then(
-			result => {
-				sock.emit('msgQuestionPostRequestConfirmed', result);
-				log.logWebSocketsEntry('Question posting successful');
-			},
 
-			err => {
-				sock.emit('msgQuestionPostRequestRejected', msg);
-				log.logWebSocketsError('Question posting failed');
+		ast = db.pullActiveQuestion(msg.userID).then((data) => {
+
+			if (data === "null") {
+
+				db.pushQuestion(
+				msg.userID,
+				msg.questionStatement,
+				msg.questionType,
+				msg.containsImage,
+				msg.containsVoice,
+				msg.imageLink,
+				msg.voiceLink,
+				msg.date,
+				msg.categoryID,
+				msg.answerTimeLimit,
+				false
+				).then(
+					result => {
+						sock.emit('msgQuestionPostRequestConfirmed', result);
+						log.logWebSocketsEntry('Question posting successful');
+					},
+
+					err => {
+						sock.emit('msgQuestionPostRequestRejected', msg);
+						log.logWebSocketsError('Question posting failed');
+					}
+				);
+
+			} else {
+				sock.emit('msgQuestionPostRequestBounds'); //
+				log.logWebSocketsError('Question Posting negative, already existing question')
 			}
-		);
+
+		}).catch((err) => {
+			sock.emit('msgQuestionPostRequestRejected', msg);
+			log.logWebSocketsError('Question posting failed');
+		})
+
 	});
 };
 

@@ -97,7 +97,7 @@
     });
 
     b = new Promise ((resolve, reject) => {
-     fs.writeFile('current_Question.txt', curQst, err => {
+     fs.writeFile('current_active_question.txt', curQst, err => {
       if (err) {
         alert('Failed to locally store user curQst Tag' + curQst);
         reject(err)

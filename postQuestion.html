@@ -115,7 +115,7 @@
 
             </ul>
 
-            
+
         </nav>
 
 
@@ -174,7 +174,7 @@
     }
   })
 
-  
+
   const postHandle = () => {
     window.open("http://localhost:3000/postQuestion", "_self");
   }
@@ -237,9 +237,14 @@
       answerTimeLimit: Date.now() + 86000000
     }
 
-
     socket.emit('msgQuestionPostRequest', sendValQ)
     socket.on('msgQuestionPostRequestConfirmed', payload => {
+
+      fs.writeFile('current_active_question.txt', payload._id, err => {
+        if(err) {
+          alert("writing error!")
+        }
+      });
 
       if (document.getElementById('option_3').disabled === true){
         ans3 = ""
@@ -258,6 +263,11 @@
       socket.emit('msgAnswerPostRequest', sendValA)
     })
 
+    socket.on('msgQuestionPostRequestBounds', () => {
+      alert("you've already got a question active!")
+      window.open("http://localhost:3000/newsfeed", "_self")
+    })
+
     socket.on('msgQuestionPostRequestRejected', payload => {
       alert('something went terribly wrong :( ')
     })
@@ -265,9 +275,15 @@
     socket.on('msgAnswerPostRequestConfirmed', payLoad => {
       switchToQuestion(payLoad.question_id)
     })
-  }
-  //}
 
+
+
+  }
+
+
+
+
+  //}
   // side bar right
 
   let open = 0;

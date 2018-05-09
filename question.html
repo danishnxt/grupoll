@@ -104,13 +104,8 @@
 
             </ul>
 
-            
+
         </nav>
-
-
-
-
-
 
 
 </div>
@@ -176,8 +171,6 @@
 	    <li class="sidebar-item"><a href="#" class="sidebar-anchor">Item 4</a></li>
 	  </ul>
 	</div>
-
-
 </div>
 
 <!-- <a href="#">
@@ -185,8 +178,6 @@
 	        <i id="back" class="material-icons" style="font-size:55px; color:red;"> arrow_back</i>
 	</div>
 </a> -->
-
-
 
 </body>
 
@@ -207,7 +198,7 @@
 	const fs = require('fs');
 
 	const socket = io();
-	
+
 	const postHandle = () => {
     	window.open("http://localhost:3000/postQuestion", "_self");
 	}
@@ -219,7 +210,7 @@
 	const handleLogout = () => {
 	    window.open("http://localhost:3000/splash", "_self");
 	};
-		
+
 	const addQuestionStatement = statement => {
 
 		document.getElementById('question_statement').innerHTML = '<center>'+'<h2 id= question >' + statement + '</h2>' + '</center>';
@@ -279,6 +270,7 @@
 	});
 
 	// socket.emit('msgUserInitialization', { userID : myUserID }); // we don't need this one here at all, we could do this else where
+
 	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
 		addQuestionStatement(msg.statement);
 	});
