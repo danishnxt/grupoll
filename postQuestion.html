@@ -172,7 +172,7 @@
   })
 
   const handleBack = () => {
-    window.open("http://52.170.186.150:3000/newsfeed", "_self");
+    window.open("http://localhost:3000/newsfeed", "_self");
   }
 
   const switchToQuestion = (questionID) => {
@@ -181,7 +181,7 @@
       if (err) {
         console.log(err)
       } else {
-        window.open("http://52.170.186.150:3000/question", "_self")
+        window.open("http://localhost:3000/question", "_self")
       }
     })
   }

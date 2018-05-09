@@ -41,21 +41,21 @@
   const fs = require('fs');
 
   const postHandle = () => {
-    window.open("http://52.170.186.150:3000/postQuestion", "_self");
+    window.open("http://localhost:3000/postQuestion", "_self");
   }
 
   const handleBack = () => {
-    window.open("http://52.170.186.150:3000/profile", "_self");
+    window.open("http://localhost:3000/profile", "_self");
   }
 
   const handleLogout = () => {
-    window.open("http://52.170.186.150:3000/splash", "_self");
+    window.open("http://localhost:3000/splash", "_self");
   }
 
   const switchToQuestion = (questionID) => {
     console.log(questionID);
     fs.writeFile('/current_question.txt', questionID, err => {
-      window.open("http://52.170.186.150:3000/question", "_self");
+      window.open("http://localhost:3000/question", "_self");
     });
   };
 

@@ -275,7 +275,7 @@
 	});
 
 	socket.on('msgQuestionVoteRequestConfirmed', msg => {
-		window.open("http://52.170.186.150:3000/result", "_self");
+		window.open("http://localhost:3000/result", "_self");
 	});
 
 	socket.emit('msgQuestionRetrieveRequest', { questionID : myQuestionID });
@@ -285,7 +285,7 @@
 	// function for handling back
 
 	const handleBack = () => {
-		window.open("http://52.170.186.150:3000/newsfeed", "_self");
+		window.open("http://localhost:3000/newsfeed", "_self");
 	}
 
 
