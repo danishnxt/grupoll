@@ -82,7 +82,6 @@ const pushQuestion = (userID, questionStatement, questionType, containsImage, co
 })
 
 
-
 const pushCategory = (cname) => new Promise((resolve, reject) => {
 
   const newCategory = new mCategory({
@@ -158,9 +157,24 @@ const pushVote = (uID, qID, vValue) => new Promise((resolve, reject) => {
   })
 })
 
+// update values ===================================================================================================================
+
 const updateVote = (uID, qID, vValue) => new Promise ((resolve, reject) => {
   mVote.update({question_id:types.ObjectId(uID), user_id:types.ObjectId(qID) }, { $set : {value:vValue} } , () => {
     console.log("update Complete!")
+  })
+})
+
+const updateFriendRequest = (rUser, tUser, updateVal) => new Promise ((resolve, reject) => {
+
+  var x = 0 // rejected
+
+  if (updateVal) {
+    x = 2 // accepted
+  }
+
+  mRequest.update({request_user_id:types.ObjectId(rUser), target_user_id:types.ObjectId(tUser)}, {$set:{status:x}}, () => {
+    console.log("update complete!")
   })
 })
 
@@ -210,7 +224,7 @@ const pullQuestion = (objID) => new Promise ((resolve, reject) => {
 })
 
 const pullAnswerOptions = (questionID) => new Promise ((resolve, reject) => {
-  mAnswer.findOne({question_id: types.ObjectId(questionID)}, (err, res) => {
+  mAnswer.findOne({question_id: types.ObjectId(questionID), status:1}, (err, res) => {
     if (err) {
       reject(err)
     } else {
@@ -225,7 +239,7 @@ const pullAnswerOptions = (questionID) => new Promise ((resolve, reject) => {
 
 // queries ======================================================================================================================
 
-const pullFriendRequests = (usr) => new Promise (() => {
+const pullFriendRequests = (usr) => new Promise ((resolve, reject) => {
 
   mRequest.find({target_user_id:types.ObjectId(usr)}, 'request_user_id', (err, res) => {
 
@@ -233,15 +247,16 @@ const pullFriendRequests = (usr) => new Promise (() => {
       console.log("error hit -> request not found" )
       reject(err)
     } else {
-      console.log("request found") //,
+      console.log("request found")
       resolve(res)
     }
+
   })
 })
 
-const pullUserbyUN = (uName) => new Promise (() => {
+const pullUserbyUN = (uName) => new Promise ((resolve, reject) => {
 
-  mUser.findOne({username: uName}, 'first_name', (err, res) => {
+  mUser.findOne({username: uName}, '_id' , (err, res) => {
       if (err) {
         reject(err)
       } else {
@@ -372,10 +387,4 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 
 // Module Exports ==============================================================================================================
 
-module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate}
-
-// const ast = pullActiveQuestion("5ade47c66470a1365c01306b").then((data) => {
-//   console.log("got something" + " " + data)
-// }).catch(err => {
-//   console.log(err)
-// })
+module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest}

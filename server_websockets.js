@@ -5,25 +5,47 @@ const io = require('socket.io')(init.httpServer);
 const log = require('./server_logger');
 const db = require('./dataImport');
 
-const searchUserFriend = sock => {
-	sock.on('msgSearchUserQuery', (usr, reqUsr) => {
-		console.log("SEARCH INITIATED FOR -> ", msg)
-		db.pullUserbyUN(usr).then(() => {
-			sock.emit('msgSearchUserQueryConfirm', "Request Sent!")
-			db.pushFriendRequest(usr, reqUsr)
+const handleFriendRequest = sock => {
+	sock.on('msgSearchUserRequest', (usr, reqUsr) => {
+
+		console.log("SEARCH INITIATED FOR -> ", usr)
+		db.pullUserbyUN(usr).then((obj) => {
+
+			db.pushFriendRequest(usr, reqUsr).then(() => {
+				sock.emit('msgSearchUserRequestConfirm', "Request Sent!")
+			}).catch(() => {
+				sock.emit('msgSearchUserRequestReject')
+			})
+
 		}).catch((err) => {
 			console.log(err)
-			sock.emit('msgSearchUserQueryReponseFailed')
+			sock.emit('msgSearchUserQueryRequestReject')
 		})
 
 	})
 }
 
-const requestsFind = sock => {
+const handleFriendRequestList = sock => {
 	sock.on('msgFriendRequestQuery', usr => {
-		console.log("usr requests a friend list")
-		db.pullFriendRequests(usr).then((Accept) => {
-			//
+		console.log("User requests a friend request")
+		db.pullFriendRequests(usr).then((list) => {
+
+			console.log(list)
+			proms = []
+			usrs = []
+
+			list.forEach(req => {
+				var a = pullUser(req).then((userData) => {
+					usrs = usrs.concat(userData) // add this to the list
+				}).catch((err) => {
+					console.log(err)
+				})
+				proms = proms.concat(a) // add to the list
+			})
+
+			Promise.all(proms).then(() => {
+				sock.emit(msgFriendRequestResponse, usrs) // send back the list
+			})
 		})
 	})
 }
@@ -147,7 +169,6 @@ const handleQuestionRetrieveRequest = sock => {
 				sock.emit('msgQuestionRetrieveRequestRejected', msg);
 				log.logWebSocketsError('Unable to retrieve question with ID ' + msg.questionID);
 			}
-
 		);
 	});
 };
@@ -159,12 +180,10 @@ const handleAnswerRetrieveRequest = sock => {
 				sock.emit('msgAnswerRetrieveRequestConfirmed', result);
 				log.logWebSocketsEntry('Answer retrieval for question with ID ' + msg.questionID + ' added');
 			},
-
 			err => {
 				sock.emit('msgAnswerRetrieveRequestRejected', msg);
 				log.logWebSocketsError('Unable to retrieve answer for question with ID ' + msg.questionID);
 			}
-
 		);
 	});
 };
@@ -176,7 +195,6 @@ const handleUserFeedRetrieveRequest = sock => {
 				sock.emit('msgUserFeedRetrieveRequestConfirmed', result);
 				log.logWebSocketsEntry('User feed retrieval successful');
 			},
-
 			err => {
 				sock.emit('msgUserFeedRetrieveRequestRejected', msg);
 				log.logWebSocketsError('Unable to retrieve user feed.');
@@ -253,8 +271,8 @@ const initWebSocketConnection = () => {
 	io.on('connection', sock => {
 		log.logWebSocketsEntry('Client connected');
 
-		requestsFind(sock);
-		searchUserFriend(sock);
+		handleFriendRequest(sock);
+		handleFriendRequestList(sock);
 		handleUserInitialization(sock);
 		handleQuestionPostRequest(sock);
 		handleQuestionVoteRequest(sock);
