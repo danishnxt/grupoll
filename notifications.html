@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notifications</title>
+</head>
+<body>
+	<ul id="notificationsList"></ul>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
+<script type="text/javascript">
+	BrowserFS.install(window);
+	BrowserFS.configure({
+		fs : "LocalStorage"
+	}, e => {
+		if (e) {
+			throw e;
+		}
+	});
+
+	const fs = require('fs');
+	const socket = io();
+
+	let userID = "";
+
+	fs.readFile('/current_user.txt', (err, contents) => {
+		userID = contents.toString();
+	});
+
+	const switchToQuestion = (questionID) => {
+		fs.writeFile('/current_question.txt', questionID, err => {
+
+		  console.log(questionID);
+		  fs.readFile('/current_active_question.txt', (err, contents) => {
+		    if (contents.toString() === questionID) {
+		      window.open("http://localhost:3000/result", "_self");
+		    } else {
+		      window.open("http://localhost:3000/question", "_self");
+		    }
+		  })
+		});
+	};	
+
+	const addQuestionNotificationEntry = (userID, statement, questionID) => {
+		const addElem = "From user " + userID + ": <button id=\"option_2\" onclick=\"switchToQuestion('" + questionID + "');\">" + statement + "</button>";
+		document.getElementById('notificationsList').innerHTML += "<li>" + addElem + "</li>";
+	};
+
+	const addStaticNotificationEntry = (userID, statement) => {
+		const addElem = "From user " + userID + ": " + statement;
+		document.getElementById('notificationsList').innerHTML += "<li>" + addElem + "</li>";
+	};
+
+	socket.on('msgNotificationPullRequestConfirmed', msg => {
+		msg.forEach(val => {
+			if (val.notif_type === 2) {
+				addQuestionNotificationEntry(val.notif_user_id, val.notif_content, val.notif_question_id);
+			} else {
+				addStaticNotificationEntry(val.notif_user_id, val.notif_content);
+			}
+		});
+	});
+
+	socket.emit('msgNotificationPullRequest', { notificationUserID: userID });
+
+</script>
+</html>
