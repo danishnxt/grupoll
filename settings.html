@@ -28,6 +28,10 @@
     	</div>
 
 
+        <center id='page_title'>Settings</center>
+
+
+
         <center>
             <div>
                 <button class="box_input" > Username:</button>
@@ -38,24 +42,28 @@
                 <input id= "password" class="answers" value="*******"> </input>
             </div>
             
-            <div id>
+            <div>
                 <button class="box_input" > Add description:</button>
                 <input id= "description" type="text" class="answers" value="add description"> </input>
+                
             </div>
              <div>
                 <button class="box_input" > Add picture </button>
-                <button id= "picture" class="answers" onClick= "upload_image()" > Upload a picture </button>
+                <button id= "picture" class="answersLast" onClick= "upload_image()"> Upload a picture </button>
+                <button id="view_pic" onClick="view_picture()"> <img src="drs.png" style= "outline:none; border-radius:90%; border:0" width=60em height=60em /> </button>
+
             </div>
 
             <div>
-                <button class ="saveChange"> Save Changes </button>
+                <button id="saveChange" class ="saveChange" width=30m> Save Changes </button>
+                
             </div>
 
         </center>
 
 
 
-        <!--      Here is our menu on the right side             -->
+        <!--      Here is our menu on the right side -->
 
         <div id='rightMenu'>
 
@@ -101,7 +109,7 @@
                        	<li>
                             <a href="#">
                             	<div class='settings'>
-                                <i id="settings" class="material-icons fa-2x" style="font-size:3vw;color:red;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative">settings</i>
+                                <i id="settings" class="material-icons fa-2x" style="font-size:3vw;color:grey;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative">settings</i>
                                 </div>
                                 <span class="nav-text">
                                 </span>
