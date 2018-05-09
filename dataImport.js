@@ -183,6 +183,12 @@ const pushNotification = (notifUserID, notifType, notifContent, notifQuest) => n
 
 // update values ===================================================================================================================
 
+const notifcationSeen = (nID, uID) => new Promise ((resolve, reject) => {
+  mNotification.update({_id: nID, notif_user_id: uID}, {$set:{notif_seen:true}}, () => {
+    log.logDatabaseEntry(uID, " saw notification", nID)
+  })
+})
+
 const updateVote = (uID, qID, vValue) => new Promise ((resolve, reject) => {
   mVote.update({question_id:types.ObjectId(uID), user_id:types.ObjectId(qID) }, { $set : {value:vValue} } , () => {
     console.log("update Complete!")
@@ -421,6 +427,8 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
     }
   })
 })
+
+
 
 // Module Exports ==============================================================================================================
 
