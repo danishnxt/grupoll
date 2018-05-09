@@ -11,6 +11,7 @@ const mComment = require('./models/comment')
 const mQuesParam = require('./models/questionParam')
 const mUserQues = require('./models/userQuestion')
 const mAnswer = require('./models/answer')
+const mRequest = require('./models/request')
 
 const log = require('./server_logger');
 const uri = "mongodb+srv://danishnxt:qwertyuiop123098@nxtcluster1-hy2py.mongodb.net/grupoll_DB";
@@ -20,6 +21,23 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // pushes =====================================================================================================================
+
+const pushFriendRequest = (rUser, tUser) => new Promise((resolve, reject) => {
+
+  const newRequest = new mRequest({request_user_id: types.ObjectId(rUser), target_user_id:types.ObjectId(tUser), status: 1})
+
+  newRequest.save((err, obj) => {
+    if (err) {
+      log.logDatabaseError(err);
+      reject(err);
+    } else {
+      log.logDatabaseEntry("New friend request added")
+      resolve(obj)
+    }
+
+  })
+})
+
 
 const pushUser = (uName, uemail, profileImage, profileImageLink, fName, lName, cntry, gndr, hash) => new Promise((resolve, reject) => {
 
@@ -206,6 +224,35 @@ const pullAnswerOptions = (questionID) => new Promise ((resolve, reject) => {
 })
 
 // queries ======================================================================================================================
+
+const pullFriendRequests = (usr) => new Promise (() => {
+
+  mRequest.find({target_user_id:types.ObjectId(usr)}, 'request_user_id', (err, res) => {
+
+    if (err) {
+      console.log("error hit -> request not found" )
+      reject(err)
+    } else {
+      console.log("request found") //,
+      resolve(res)
+    }
+  })
+})
+
+const pullUserbyUN = (uName) => new Promise (() => {
+
+  mUser.findOne({username: uName}, 'first_name', (err, res) => {
+      if (err) {
+        reject(err)
+      } else {
+        if (res === null) {
+          reject("null") // nothing there
+        } else {
+          resolve(res) // send back the details of the user
+        }
+      }
+  })
+})
 
 const pullFriends = (userID) => new Promise ((resolve, reject) => {
 

@@ -5,6 +5,29 @@ const io = require('socket.io')(init.httpServer);
 const log = require('./server_logger');
 const db = require('./dataImport');
 
+const searchUser = sock => {
+
+	sock.on('msgSearchUserQuery', (usr, reqUsr) => {
+		console.log("SEARCH INITIATED FOR -> ", msg)
+		db.pullUserbyUN(usr).then(() => {
+			sock.emit('msgSearchUserQueryConfirm', "Request Sent!")
+			db.pushFriendRequest(usr, reqUsr)
+		}).catch((err) => {
+			console.log(err)
+			sock.emit('msgSearchUserQueryReponseFailed')
+		})
+	})
+}
+
+const requestsFind = sock => {
+	sock.on('msgFriendRequestQuery', usr => {
+		console.log("usr requests a friend list")
+		db.pullFriendRequests(usr).then((Accept) => {
+
+		})
+	})
+}
+
 const handleUserInitialization = sock => {
 	sock.on('msgUserInitialization', msg => {
 		// retrieve user info from database
@@ -230,6 +253,7 @@ const initWebSocketConnection = () => {
 	io.on('connection', sock => {
 		log.logWebSocketsEntry('Client connected');
 
+		handleFriendList(sock);
 		handleUserInitialization(sock);
 		handleQuestionPostRequest(sock);
 		handleQuestionVoteRequest(sock);
@@ -240,6 +264,7 @@ const initWebSocketConnection = () => {
 		handleUserLoginRequest(sock);
 		handleUserSignupRequest(sock);
 		handleQuestionVotesRetrieveRequest(sock);
+
 	})
 };
 

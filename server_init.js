@@ -49,6 +49,10 @@ const initialize = () => {
 		res.sendFile(__dirname + '/result.html');
 	});
 
+	app.get('/settings', (req, res) => {
+		res.sendFile(__dirname + '/settings.html');
+	});
+
 	log.logEntry("Initialized express server.");
 
 	app.use(express.static('content'));

@@ -68,11 +68,10 @@
                              <i id="power" class="material-icons fa-2x" style="font-size:3vw;color:red;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative;" >power_settings_new</i>
                              </div>
                             <span class="nav-text">
-
                             </span>
                         </a>
                     </li>
-                </ul>                
+                </ul>
             </nav>
     </div>
 
@@ -81,8 +80,8 @@
       <div><img id='logo_img' src='logo.png'></div>
       <button id = "option_1" onClick = "postHandle()"> Public </button>
       <button id = "option_1" onClick= "handleBack()"> Friends</button>
-	    <ul id= "newsfeed" style="list-style-type:none"></ul> 
-      <!-- 
+	    <ul id= "newsfeed" style="list-style-type:none"></ul>
+      <!--
       <button id = "option_1" onClick= "handleLogout()"> Logout </button> -->
       <div> Copyright 2018(c) </div>
     </center>
@@ -118,9 +117,17 @@
   }
 
   const switchToQuestion = (questionID) => {
-    console.log(questionID);
     fs.writeFile('/current_question.txt', questionID, err => {
-      window.open("http://localhost:3000/question", "_self");
+
+      console.log(questionID);
+      fs.readFile('/current_active_question.txt', (err, contents) => {
+        if (contents.toString() === questionID) {
+          window.open("http://localhost:3000/result", "_self");
+        } else {
+          window.open("http://localhost:3000/question", "_self");
+        }
+      })
+
     });
   };
 
