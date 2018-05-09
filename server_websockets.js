@@ -92,6 +92,16 @@ const handleQuestionPostRequest = sock => {
 					result => {
 						sock.emit('msgQuestionPostRequestConfirmed', result);
 						log.logWebSocketsEntry('Question posting successful');
+
+						// db.pushNotification(msg.userID, 2, msg.questionStatement, result._id).then(
+						// 	r2 => {
+						// 		log.logWeSocketsEntry('Notification posted for question id ' + result._id);
+						// 	},
+
+						// 	e2 => {
+						// 		log.logWebSocketsError('Failed to post notification for question id ' + result._id);
+						// 	}
+						// );
 					},
 
 					err => {
@@ -122,7 +132,18 @@ const handleQuestionVoteRequest = sock => {
 		).then(
 			result => {
 				sock.emit('msgQuestionVoteRequestConfirmed', result);
-				log.logUserQuestionResponse(msg.userID, msg.questionID)
+				log.logUserQuestionResponse(msg.userID, msg.questionID);
+
+				const notifContent = 'Vote posted for you question.';
+				db.pushNotification(result.user_id, 2, notifContent, msg.questionID).then(
+					r2 => {
+						log.logWebSocketsEntry('Notification for vote of question id ' + msg.questionID + ' pushed.');
+					},
+
+					e2 => {
+						log.logWebSocketsError('Notification push failed for vote of question id ' + msg.questionID);
+					}
+				);
 			},
 
 			err => {
