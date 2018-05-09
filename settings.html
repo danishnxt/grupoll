@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="question.css">
+<link rel="stylesheet" type="text/css" href="settings.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
@@ -27,14 +27,31 @@
 
     	</div>
 
-        <form align='center'>
-            
-            User name:<input type="text" name="Username" value="Old name"><br>
-            Password :<input type="text" name="Password" value="********"><br> 
-            Description:<input type="text" name="description" value="My description"><br>
-            <input type="submit" value="Save Changes">
 
-        </form>
+        <center>
+            <div>
+                <button class="box_input" > Username:</button>
+                <input id= "username" class="answers" value="current name" ></input>
+            </div>
+            <div>
+                <button class="box_input" > Password:</button>
+                <input id= "password" class="answers" value="*******"> </input>
+            </div>
+            
+            <div id>
+                <button class="box_input" > Add description:</button>
+                <input id= "description" type="text" class="answers" value="add description"> </input>
+            </div>
+             <div>
+                <button class="box_input" > Add picture </button>
+                <button id= "picture" class="answers" onClick= "upload_image()" > Upload a picture </button>
+            </div>
+
+            <div>
+                <button class ="saveChange"> Save Changes </button>
+            </div>
+
+        </center>
 
 
 
