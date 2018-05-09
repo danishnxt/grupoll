@@ -83,16 +83,37 @@
 		socket.emit("msgUserLoginRequest", { userName : user_name, password : passWord });
 	};
 
-	socket.on('msgUserLoginRequestConfirmed', msg => {
-		fs.writeFile('current_user.txt', msg._id, err => {
-			if (err) {
-				console.log(err);
-				alert('Failed to locally store user with ID' + msg._id);
-			} else {
-				window.open("http://localhost:3000/profile", "_self");
-			}
-		});
+	socket.on('msgUserLoginRequestConfirmed', (msg, curQst) => {
+
+    a = new Promise((resolve, reject) => {
+      fs.writeFile('current_user.txt', msg._id, err => {
+  			if (err) {
+  				alert('Failed to locally store user with ID' + msg._id);
+          reject(err)
+  			} else {
+          resolve()
+        }
+      })  // self contained
+    });
+
+    b = new Promise ((resolve, reject) => {
+     fs.writeFile('current_Question.txt', curQst, err => {
+      if (err) {
+        alert('Failed to locally store user curQst Tag' + curQst);
+        reject(err)
+      } else {
+        resolve()
+      }
+    })
 	});
+
+  Promise.all([a,b]).then(() => {
+    window.open("http://localhost:3000/profile", "_self");
+  }).catch((err) => {
+    console.log(err)
+  })
+
+})
 
 </script>
 </html>

@@ -151,10 +151,15 @@ const handleUserLoginRequest = sock => {
 			// console.log('Username ' + msg.userName + ' password ' + msg.password);
 		db.pullUserAuthenticate(msg.userName, msg.password).then(
 			result => {
-				sock.emit('msgUserLoginRequestConfirmed', result);
-				log.logWebSocketsEntry('User login successful for username ' + msg.userName);
+				db.pullActiveQuestion(result._id).then(qResult => {
+					sock.emit('msgUserLoginRequestConfirmed', result, qResult);
+					log.logWebSocketsEntry('User active question retrieval successful ' + msg.userName  + qResult);
+				},
+				err => {
+					sock.emit('msgUserLoginRejected');
+					log.logWebSocketsError('Active Question Lookup Failed ' + msg.userName + " " + result._id);
+				})
 			},
-
 			err => {
 				sock.emit('msgUserLoginRejected');
 				log.logWebSocketsError('User login failed for username ' + msg.password);
@@ -195,7 +200,7 @@ const handleQuestionVotesRetrieveRequest = sock => {
 			result => {
 				sock.emit('msgQuestionVotesRetrieveRequestConfirmed', result);
 				log.logWebSocketsEntry('Votes retrieval successful for question with ID' + msg.questionID);
-			}, 
+			},
 
 			err => {
 				sock.emit('msgQuestionVotesRetrieveRequestRejected', msg);

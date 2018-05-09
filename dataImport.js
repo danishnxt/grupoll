@@ -13,7 +13,6 @@ const mUserQues = require('./models/userQuestion')
 const mAnswer = require('./models/answer')
 
 const log = require('./server_logger');
-
 const uri = "mongodb+srv://danishnxt:qwertyuiop123098@nxtcluster1-hy2py.mongodb.net/grupoll_DB";
 mongoose.connect(uri)
 
@@ -310,15 +309,15 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
   // there is the one unqiue case here that the request will be slightly off by a few ms in which case we'll miss
   // a question but this is such an edge case that we can probably ignore it for the time being
 
-  curTime = Date.Now()
+  curTime = Date.now()
   mQuestion.findOne({user_id:types.ObjectId(uID), answer_time_lim: {$gte:curTime}}, '_id', (err, res) => {
     if(err){
       reject(err)
     } else {
       if(res === null) {
-        resolve("ALLOW")
+        resolve("null")
       } else {
-        reject("DISALLOW")
+        resolve(res._id)
       }
     }
   })
@@ -328,52 +327,8 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 
 module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate}
 
-// Frag data and run this to repopulate fake data into the database ===========================================================
-
-// a = pushQuestion("5adb32fce1144d2c68430c95", "What is Alinas fav color?")
-// b = pushQuestion("5adc604f2bd79334dc4d0bca", "Why is Ammar so funnny???")
-// c = pushQuestion("5adc604f2bd79334dc4d0bcb", "Why can't Danish Get a Girlfriend?")
-// d = pushQuestion("5adc604f2bd79334dc4d0bcc", "Why can't Tirmazi chill?")
-// e = pushQuestion("5adc604f2bd79334dc4d0bcd", "Where is Izma?")
-
-// a.then(qst => {
-//   pushAnswer(qst._id, "Red", "blue", "green", "","","").then(() => {
-//     pushVote("5adb32fce1144d2c68430c95", qst._id,1).then(() => {console.log("done")})
-//     pushVote("5adc604f2bd79334dc4d0bcb", qst._id,3).then(() => {console.log("done")})
-//     pushVote("5adc604f2bd79334dc4d0bcd", qst._id,2).then(() => {console.log("done")})
-//   })
+// const ast = pullActiveQuestion("5ade47c66470a1365c01306b").then((data) => {
+//   console.log("got something" + " " + data)
+// }).catch(err => {
+//   console.log(err)
 // })
-
-// b.then(qst => {
-//   pushAnswer(qst._id, "He was born this way!", "He likes pie", "He has funny glasses", "", "", "").then(() => {
-//     pushVote("5adc604f2bd79334dc4d0bcd", qst._id,1).then(() => {console.log("done")})
-//     pushVote("5adb32fce1144d2c68430c95", qst._id,3).then(() => {console.log("done")})
-//     pushVote("5adc604f2bd79334dc4d0bcb", qst._id,2).then(() => {console.log("done")})
-//   })
-// })
-
-// c.then(qst => {
-//   pushAnswer(qst._id, "Because no?", "Because NO?", "because why?!?!", "", "", "").then(() => {
-//     pushVote("5adc604f2bd79334dc4d0bcb", qst._id,1).then(() => {console.log("done")})
-//     pushVote("5adb32fce1144d2c68430c95", qst._id,3).then(() => {console.log("done")})
-//     pushVote("5adc604f2bd79334dc4d0bcd", qst._id,2).then(() => {console.log("done")})
-//   })
-// })
-
-// d.then(qst => {
-//   pushAnswer(qst._id, "He's too smart", "He'd waste potential", "Because Harvard might dump him", "", "", "").then(() => {
-//     pushVote("5adc604f2bd79334dc4d0bcb", qst._id,1).then(() => {console.log("done")})
-//     pushVote("5adc604f2bd79334dc4d0bcd", qst._id,3).then(() => {console.log("done")})
-//     pushVote("5adb32fce1144d2c68430c95", qst._id,2).then(() => {console.log("done")})
-//   })
-// })
-
-// e.then(qst => {
-//   pushAnswer(qst._id, "Outer Space?", "The Desert?", "Trapped with a dragon", "","","").then(() => {
-//     pushVote("5adb32fce1144d2c68430c95", qst._id,1).then(() => {console.log("done")})
-//     pushVote("5adc604f2bd79334dc4d0bcd", qst._id,3).then(() => {console.log("done")})
-//     pushVote("5adc604f2bd79334dc4d0bcb", qst._id,2).then(() => {console.log("done")})
-//   })
-// })
-
-// testing ======================================================================================================================
