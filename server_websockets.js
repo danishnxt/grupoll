@@ -5,8 +5,7 @@ const io = require('socket.io')(init.httpServer);
 const log = require('./server_logger');
 const db = require('./dataImport');
 
-const searchUser = sock => {
-
+const searchUserFriend = sock => {
 	sock.on('msgSearchUserQuery', (usr, reqUsr) => {
 		console.log("SEARCH INITIATED FOR -> ", msg)
 		db.pullUserbyUN(usr).then(() => {
@@ -16,6 +15,7 @@ const searchUser = sock => {
 			console.log(err)
 			sock.emit('msgSearchUserQueryReponseFailed')
 		})
+
 	})
 }
 
@@ -23,7 +23,7 @@ const requestsFind = sock => {
 	sock.on('msgFriendRequestQuery', usr => {
 		console.log("usr requests a friend list")
 		db.pullFriendRequests(usr).then((Accept) => {
-
+			//
 		})
 	})
 }
@@ -253,7 +253,8 @@ const initWebSocketConnection = () => {
 	io.on('connection', sock => {
 		log.logWebSocketsEntry('Client connected');
 
-		handleFriendList(sock);
+		requestsFind(sock);
+		searchUserFriend(sock);
 		handleUserInitialization(sock);
 		handleQuestionPostRequest(sock);
 		handleQuestionVoteRequest(sock);
