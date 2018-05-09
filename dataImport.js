@@ -261,7 +261,7 @@ const pullAnswerOptions = (questionID) => new Promise ((resolve, reject) => {
    });
 })
 
-const pullNotifications = (userID) => new Promise (() => {
+const pullNotifications = (userID) => new Promise ((resolve, reject) => {
 
   mNotification.find({notif_user_id:userID}, (err, res) => {
     if (err) {
@@ -425,6 +425,3 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 // Module Exports ==============================================================================================================
 
 module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest}
-
-//
-ast = pullNotifications("5ade47c66470a1365c01306d").then((data) => console.log(data))
