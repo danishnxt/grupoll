@@ -162,5 +162,46 @@
 
 	socket.emit('msgNotificationPullRequest', { notificationUserID: userID });
 
+  const postHandle = () => {
+      window.open("http://localhost:3000/postQuestion", "_self");
+  }
+
+  const handleBack = () => {
+      window.open("http://localhost:3000/newsfeed", "_self");
+  }
+
+  const handleLogout = () => {
+      window.open("http://localhost:3000/splash", "_self");
+  };
+
+  const handleSettings = () => {
+    window.open("http://localhost:3000/settings", "_self");
+  };
+
+  const handleNotifs = () => {
+    window.open("http://localhost:3000/notifications", "_self");
+  };
+
+
+  $(".back_button").on("click tap", function(){
+    handleBack()
+  });
+
+  $(".polls").on("click tap", function(){
+    postHandle()
+  });
+
+  $(".notifs").on("click tap", function(){
+    handleNotifs();
+  });
+
+  $(".settings").on("click tap", function() {
+    handleSettings();
+  });
+
+  $(".power").on("click tap", function(){
+    handleLogout()
+  });
+
 </script>
 </html>

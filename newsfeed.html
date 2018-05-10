@@ -77,7 +77,12 @@
 
     <center>
       <div id='app_header'></div>
+
       <div><img id='logo_img' src='logo.png'></div>
+
+      <div id='page_title'>News Feed</div>
+
+
 	    <ul id= "newsfeed" style="list-style-type:none"></ul>
       <!--
       <button id = "option_1" onClick= "handleLogout()"> Logout </button> -->
@@ -114,6 +119,14 @@
     window.open("http://localhost:3000/splash", "_self");
   }
 
+  const handleSetting = () => {
+    window.open("http://localhost:3000/settings", "_self");
+  }
+
+  const handleNotifs = () => {
+    window.open("http://localhost:3000/notifications", "_self");
+  }
+
   const switchToQuestion = (questionID) => {
     fs.writeFile('/current_question.txt', questionID, err => {
 
@@ -142,17 +155,19 @@
   });
 
     $(".back_button").on("click tap", function(){
-		handleBack()
+		  handleBack()
     });
 
   	$(".polls").on("click tap", function(){
   		postHandle()
   	});
 
-  	$(".notifs").on("click tap", function(){});
+  	$(".notifs").on("click tap", function(){
+      handleNotifs();
+    });
 
   	$(".settings").on("click tap", function() {
-    	console.log("i clicked settings")
+    	handleSetting();
   	});
 
   	$(".power").on("click tap", function(){

@@ -193,9 +193,13 @@
 	    window.open("http://localhost:3000/splash", "_self");
 	};
 
-  const handleSettings = () => {
+  	const handleSettings = () => {
       window.open("http://localhost:3000/settings", "_self");
-  };
+  	};
+
+  	const handleNotifs = () => {
+      window.open("http://localhost:3000/notifications", "_self");
+  	};
 
 	const addQuestionStatement = statement => {
 		document.getElementById('question_statement').innerHTML = '<center>'+'<h2 id= question >' + statement + '</h2>' + '</center>';
@@ -317,10 +321,12 @@
   		postHandle()
   	});
 
-  	$(".notifs").on("click tap", function(){});
+  	$(".notifs").on("click tap", function(){
+  		handleNotifs();
+  	});
 
   	$(".settings").on("click tap", function() {
-    	console.log("i clicked settings")
+    	handleSettings();
   	});
 
   	$(".power").on("click tap", function(){
