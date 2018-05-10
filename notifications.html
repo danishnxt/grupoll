@@ -21,7 +21,7 @@
   <i id='notifs' class="material-icons fa-2x" style="font-size:7vw;color:#416262;margin-top:2%;margin-left:15%;margin-right:15%;position:relative">notifications_active</i>
                         </div>
     <div class="title1" style="font-size:3em">Notifications</div>
-	<ul id="notificationsList"  class="notifbar">
+	<ul id="notificationsList"  >
 
 
 
@@ -146,10 +146,10 @@
 		    }
 		  })
 		});
-	};	
+	};
 
 	const addQuestionNotificationEntry = (userID, statement, questionID) => {
-		const addElem = "From user " + userName + ": <button id=\"option_2\" onclick=\"switchToQuestion('" + questionID + "');\">" + statement + "</button>";
+		const addElem = "<button id=\"option_2\" onclick=\"switchToQuestion('" + questionID + "');\">" + "From user " + userName + ": " + statement + "</button>";
 		document.getElementById('notificationsList').innerHTML += "<li>" + addElem + "</li>";
 	};
 

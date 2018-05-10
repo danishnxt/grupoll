@@ -31,29 +31,25 @@
         <center id='page_title'>Settings</center>
 
         <center>
+
             <div>
                 <button class="box_input" > Username:</button>
-                <input id= "username" class="answers" value="current name" ></input>
+                <input id= "usernameA" class="answers" value="current name" ></input>
             </div>
+
             <div>
                 <button class="box_input" > Password:</button>
-                <input id= "password" class="answers" value="*******"> </input>
+                <input id= "password" type = "passwordA" class="answers" value="******"> </input>
             </div>
 
-            <div>
-                <button class="box_input" > Add description:</button>
-                <input id= "description" type="text" class="answers" value="add description"> </input>
-
-            </div>
              <div>
                 <button class="box_input" > Add picture </button>
                 <button id= "picture" class="answersLast" onClick= "upload_image()"> Upload a picture </button>
-                <button id="view_pic" onClick="view_picture()"> <img src="drs.png" style= "outline:none; border-radius:90%; border:0" width=60em height=60em /> </button>
-
+                <button id="view_pic" onClick="view_picture()"> <img id = "myPic" src="drs.png" style= "outline:none; border-radius:90%; border:0" width=60em height=60em /> </button>
             </div>
 
             <div>
-                <button id="saveChange" class ="saveChange" width=30m> Save Changes </button>
+                <button id="saveChange" onClick= "handleSubmit()" class ="saveChange" width=30m> Save Changes </button>
 
             </div>
 
@@ -132,10 +128,53 @@
     <div id='footer'></div>
 </body>
 
+<script src="/socket.io/socket.io.js"></script>
+<script src="/browserfs.min.js"></script>
 <script type="text/javascript">
+    BrowserFS.install(window);
 
+    BrowserFS.configure({
+        fs : "LocalStorage"
+    }, e => {
+        if (e) {
+            throw e;
+        }
+    });
 
+    const fs = require('fs');
+    const socket = io();
 
+    var existing = ''
+
+    fs.readFile("current_user.txt", (err, contents) => {
+        socket.emit("msgUserInitialization", {userID:contents})
+    })
+
+    socket.on("msgUserInitializationConfirmed", (usrData) => {
+        window.getElementbyId("usernameA").value = usrData._id
+        window.getElementbyId("passwordA").value = usrData.password_hash
+        window.getElementbyId("myPic").src = profile_image_link
+    })
+
+    // existing values set
+
+    const upload_image = () => {
+        window.open("http://localhost:3000/uploadfile"); // ready
+    }
+
+    const handleSubmit = () => {
+
+        const tempA = window.getElementbyId("usernameA").value
+        const tempB = window.getElementbyId("passwordA").value
+
+        fs.readFile("current_picture.txt", (err, contents) => {
+            socket.emit("msgUpdateSettings", tempA, tempB, contents) // send off
+        })
+
+        socket.on("msgUpdateSettingsConfirm", () => {
+            window.open("http://localhost:3000/newsfeed", "_self"); // ready
+        })
+    }
 
 
 </script>

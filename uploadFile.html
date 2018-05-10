@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<link rel="stylesheet" type="text/css" href="newsfeed.css">
+<link rel="stylesheet" type="text/css" href="upl.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
@@ -22,11 +22,38 @@
 					action="http://localhost:3000/upload"
 					method="post"
 					enctype="multipart/form-data">
-					<input id="option_1" type="file" name="fileName"/>
-					<input id="option_1" type="submit" value="Upload"/>
+					<input id="xyz", class="option_1" type="file" name="fileName"/>
+					<input class="option_1" type="submit" value="Upload" onClick="stuff()"/>
 			</form>
 			<div> Copyright 2018(c) </div>
 		</center>
 	</div>
 </body>
+
+<script src="/browserfs.min.js"></script>
+<script type="text/javascript">
+
+	BrowserFS.install(window);
+	BrowserFS.configure({
+		fs : "LocalStorage"
+	}, e => {
+		if (e) {
+			throw e;
+		}
+	});
+
+	const fs = require('fs');
+
+	const stuff = () => {
+		var x = document.getElementById('xyz').value.substring(12)
+		console.log("file is -> ", x)
+		fs.writeFile("current_picture.txt", x, (err) => {
+			if (err) {
+				console.log(err)
+			}
+		})
+	}
+
+</script>
+
 </html>
