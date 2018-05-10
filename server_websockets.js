@@ -134,7 +134,7 @@ const handleQuestionVoteRequest = sock => {
 				sock.emit('msgQuestionVoteRequestConfirmed', result);
 				log.logUserQuestionResponse(msg.userID, msg.questionID);
 
-				const notifContent = 'Vote posted for you question.';
+				const notifContent = 'Vote posted for your question.';
 				db.pushNotification(result.user_id, 2, notifContent, msg.questionID).then(
 					r2 => {
 						log.logWebSocketsEntry('Notification for vote of question id ' + msg.questionID + ' pushed.');
@@ -297,12 +297,12 @@ const handleNotificationPushRequest = sock => {
 			msg.notificationQuest
 		).then(
 			result => {
-				sock.emit('msgNotificationPushConfirmed', result);
+				sock.emit('msgNotificationPushRequestConfirmed', result);
 				log.logWeSocketsEntry(`Notification push by user ${msg.notificationUserID} confirmed.`);
 			},
 
 			err => {
-				sock.emit('msgNotificationPushRejected', msg);
+				sock.emit('msgNotificationPushRequestRejected', msg);
 				log.logWebSocketsError(`Notification push by user ${msg.notificationUserID} rejected`);
 			}
 		);
@@ -311,17 +311,17 @@ const handleNotificationPushRequest = sock => {
 
 const handleNotificationPullRequest = sock => {
 	sock.on('msgNotificationPullRequest', msg => {
-		db.pullNotifications(msg.notificationUserID, msg => {
+		db.pullNotifications(msg.notificationUserID).then(
 			result => {
 				sock.emit('msgNotificationPullRequestConfirmed', result);
 				log.logWebSocketsEntry(`Notification pulls by user ${msg.notificationUserID} confirmed.`);
 			},
 
 			err => {
-				sock.emit('msgNotificationPullRejected', msg);
+				sock.emit('msgNotificationPullRequestRejected', msg);
 				log.logWebSocketsError(`Notification pulls by user ${msg.notificationUserID} rejected.`);
 			}
-		});
+		);
 	});
 };
 

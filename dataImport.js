@@ -292,7 +292,8 @@ const pullNotifications = (userID) => new Promise ((resolve, reject) => {
       log.logDatabaseError(err)
       reject(err)
     } else {
-      log.logDatabaseEntry("Notification for -> ", userID, " pulled")
+      log.logDatabaseEntry("Notification for -> " + userID + " pulled")
+      // log.logDatabaseEntry(res);
       resolve(res)
     }
   })
