@@ -272,7 +272,7 @@ const pullQuestion = (objID) => new Promise ((resolve, reject) => {
 })
 
 const pullAnswerOptions = (questionID) => new Promise ((resolve, reject) => {
-  mAnswer.findOne({question_id: types.ObjectId(questionID), status:1}, (err, res) => {
+  mAnswer.findOne({question_id: types.ObjectId(questionID)}, (err, res) => {
     if (err) {
       reject(err)
     } else {
@@ -384,11 +384,6 @@ const pullVotes = (questionID) => new Promise ((resolve, reject) => {
   })
 })
 
-// pull users that match questionParameters
-const pullParamUsers = (questionID) => {
-  // belay this for the time being
-}
-
 const pullByGender = (gVal) => new Promise((resolve, reject) => {
   mUser.find({gender:gVal},'_id', (err,res) => {
     if(err){
@@ -450,4 +445,13 @@ const pullActiveQuestion = (uID) => new Promise((resolve, reject) => {
 
 // Module Exports ==============================================================================================================
 
-module.exports = {pullRecentQuestions, pushAnswer, pullParamUsers, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest, notificationSeen, changePassword, changeProfilePic, changeUsername, pullNotifications, pushNotification}
+module.exports = {pullRecentQuestions, pushAnswer, pullVotes, pullComments, pullFriends, pullAnswerOptions, pullQuestion, pullUser, pushVote, pushFriend, pushCategory, pushQuestion, pushUser, updateVote, pullActiveQuestion, pullVoteExist, pullUserAuthenticate, pullUserbyUN, pushFriendRequest, pullFriendRequests, updateFriendRequest, notificationSeen, changePassword, changeProfilePic, changeUsername, pullNotifications, pushNotification}
+
+
+///
+
+ast = pullAnswerOptions("5af387fa211c1332bc7c4f09").then((data) => {
+  console.log(data)
+}).catch(err => {
+  console.log(err)
+})

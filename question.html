@@ -16,32 +16,24 @@
 <body background="background.jpg">
 
 <main>
-
 	<div id='app_header'></div>
-
 	<div id = 'grupollImage'>
 		<center>
 			<img id='logo_img' src='logo.png'>
 		</center>
-
 	</div>
 
-
-	
-
-
-
-	
-
+  <div id="question_statement">
+    <div id = "qbar">
+      <div id="bar"></div>
+      <div id="bar"></div>
+      <div id="bar"></div>
+    </div>
+  </div>
 
 <!--      Here is our menu on the right side             -->
-
 <div id='rightMenu'>
-
-
 	<div class="area"></div>
-
-
 		<nav class="main-menu" style="text-align:center">
 		   <!-- back button here -->
             <ul style="inline-block">
@@ -53,9 +45,7 @@
                         <span class="nav-text">
                         </span>
                     </a>
-
                 </li>
-
                 <li>
                     <a href="#">
                     	<div class='polls'>
@@ -98,14 +88,8 @@
                         </span>
                     </a>
                 </li>
-
-
             </ul>
-
-
         </nav>
-
-
 </div>
 
 
@@ -129,6 +113,7 @@
 	    <i class="fa fa-user"></i>
 	  </a> -->
 <center>
+
 	<div>
 		<button onclick="vote1()" id="option_1" onCLick>...</button>
 	</div>
@@ -194,7 +179,6 @@
 	});
 
 	const fs = require('fs');
-
 	const socket = io();
 
 	const postHandle = () => {
@@ -209,8 +193,11 @@
 	    window.open("http://localhost:3000/splash", "_self");
 	};
 
-	const addQuestionStatement = statement => {
+  const handleSettings = () => {
+      window.open("http://localhost:3000/settings", "_self");
+  };
 
+	const addQuestionStatement = statement => {
 		document.getElementById('question_statement').innerHTML = '<center>'+'<h2 id= question >' + statement + '</h2>' + '</center>';
 		document.getElementById('option_1').style.visibility = 'visible';
 		document.getElementById('option_2').style.visibility = 'visible';
@@ -224,14 +211,12 @@
 	};
 
 	let click = 0;
-
 	const conductVote = opt => {
 		socket.emit('msgQuestionVoteRequest', { userID : myUserID, questionID : myQuestionID, value : opt });
 	}
 
 	function vote1() {
-	    if(!click)
-	    {
+	    if(!click) {
 	    	document.getElementById("option_1").style.background = "red";
 	    	conductVote(0);
 	    }
@@ -239,20 +224,21 @@
 	}
 
 	function vote2() {
-		if(!click){
+		if(!click) {
 	    	document.getElementById("option_2").style.background = "red";
 	    	conductVote(1);
 		}
-	    click=click+1;
 
+	    click=click+1;
 	}
+
 	function vote3() {
 	    if(!click) {
 	    	document.getElementById("option_3").style.background = "red";
 	    	conductVote(2);
 	    }
-	       	click=click+1;
 
+      click=click+1;
 	}
 
 	let myUserID = "";
@@ -269,11 +255,14 @@
 
 	// socket.emit('msgUserInitialization', { userID : myUserID }); // we don't need this one here at all, we could do this else where
 
+
 	socket.on('msgQuestionRetrieveRequestConfirmed', msg => {
+    console.log("yay we got something", msg)
 		addQuestionStatement(msg.statement);
 	});
 
 	socket.on('msgAnswerRetrieveRequestConfirmed', msg => {
+    console.log("yay we got something", msg)
 		addAnswerOptions(msg.option_1, msg.option_2, msg.option_3);
 	});
 
