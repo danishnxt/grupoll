@@ -1,111 +1,4 @@
 
-
-#page_title{
-  text-align: center;
-  margin: -0.5%;
-  top:0;
-  font-family: 'Oswald', sans-serif;
-  font-size: 2.5em;
-  color: #ffbd4a;
-
-}
-
-/*#question{
-  padding-left: 10em;
-  text-align: left;
-}*/
-
-
-#table_header {
-
-  position:relative;
-  width:50%;
-  height:7em;
-  padding-left:5em;
-}
-#table_header > div {
-  float:left;
-  margin:10px;
-}
-
-.Options{
-  text-align: center;
-  padding-left: 7em;
-  margin: 1%;
-  top:0;
-  font-family: 'Oswald', sans-serif;
-  font-size: 2.5em;
-  color: #ffbd4a;
-
-}
-.Votes{
-  text-align: center;
-  margin-left: 20%;
-  padding-left: 7.8em;
-  top:0;
-  font-family: 'Oswald', sans-serif;
-  font-size: 2.5em;
-  color: #ffbd4a;
-
-}
-.Percentage{
-  text-align: center;
-  margin-left: 50%;
-  top:0;
-  font-family: 'Oswald', sans-serif;
-  font-size: 2.5em;
-  color: #ffbd4a;
-
-}
-
-
-
-#main_div_opt1 {
-
-  position:relative;
-  width:50%;
-  height:12em;
-  padding:10px;
-  padding-left:10em;
-}
-
-#main_div_opt1 > div {
-  float:left;
-  margin:10px;
-}
-
-
-#main_div_opt2 {
-
-  position:relative;
-  width:50%;
-  height:12em;
-  padding:10px;
-  padding-left:10em;
-}
-
-#main_div_opt2 > div {
-  float:left;
-  margin:10px;
-}
-
-#main_div_opt3 {
-
-  position:relative;
-  width:50%;
-  height:12em;
-  padding:10px;
-  padding-left:10em;
-
-}
-
-#main_div_opt3 > div {
-  float:left;
-  margin:10px;
-}
-
-
-
 #qbar {
   position: relative;
   margin-top: 15%;
@@ -113,6 +6,7 @@
   height: 0.375em;
   background-color: #fdba2c;
 }
+
 #bar {
   content: "";
   display: inline;
@@ -122,41 +16,40 @@
   left: 50%;
   text-align: center;
 }
+
 #bar:nth-child(1) {
   background-color: #da4733;
   animation: loading 3s linear infinite;
 }
+
 #bar:nth-child(2) {
   background-color: #3b78e7;
   animation: loading 3s linear 1s infinite;
 }
+
 #bar:nth-child(3) {
   background-color: #fdba2c;
   animation: loading 3s linear 2s infinite;
 }
+
 @keyframes loading {
     from {left: 50%; width: 0;z-index:100;}
     33.3333% {left: 0; width: 100%;z-index: 10;}
     to {left: 0; width: 100%;}
 }
 
-
-
-
 #logo_img{
 
-  width: 20%;
-  height: 20%;
-
+  width: 306px;
+  height: 82px;
 }
-
 
 #question{
 
 	color:white;
-	margin-top: 2%;
+	margin-top: 5%;
   font-family: 'Oswald', sans-serif;
-  font-size: 3em;
+  font-size: 300%;
 }
 
 #footer{
@@ -182,10 +75,6 @@
 
 }
 
-
-
-
-
 /* #Sun Flower Button
 ==================================================*/
 .option_1 {
@@ -195,11 +84,10 @@
   vertical-align: top;
   margin-right: 0.9375em;
   margin-top: 3.125em;
-  width: 60%;
+  width: 20%;
   height: 3em;
   padding: 0;
   font-size: 1.375em;
-  font-weight: bold;
   color: white;
   text-align: center;
   text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
@@ -210,7 +98,7 @@
   -webkit-box-shadow: inset 0 -0.125em #e2b607;
   box-shadow: inset 0 -0.125em #e2b607;
 }
-.option_1:active {
+#option_1:active {
   top: 0.0625em;
   outline: none;
   -webkit-box-shadow: none;
@@ -219,18 +107,17 @@
 
 /* #Orange Flat Button
 ==================================================*/
-.option_2 {
+#option_2 {
   visibility: visible;
   border-radius: 0.5em;
   position: relative;
   vertical-align: top;
   margin-right: 0.9375em;
   margin-top: 0.9375em;
-  width: 60%;
+  width: 50%;
   height: 3em;
   padding: 0;
   font-size: 1.375em;
-  font-weight: bold;
   color: white;
   text-align: center;
   text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
@@ -241,7 +128,7 @@
   -webkit-box-shadow: inset 0 -0.125em #e8930c;
   box-shadow: inset 0 -0.125em #e8930c;
 }
-.option_2:active {
+#option_2:active {
   top: 0.0625em;
   outline: none;
   -webkit-box-shadow: none;
@@ -250,18 +137,17 @@
 
 /* #Carrot Flat Button
 ==================================================*/
-.option_3{
+#option_3{
   visibility: visible;
   position: relative;
   border-radius:0.5em ;
   vertical-align: top;
   margin-right: 0.9375em;
   margin-top: 0.9375em;
-  width: 60%;
+  width: 50%;
   height: 3em;
   padding: 0;
   font-size: 1.375em;
-  font-weight: bold;
   color: white;
   text-align: center;
   text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
@@ -272,292 +158,8 @@
   -webkit-box-shadow: inset 0 -0.125em #da751c;
   box-shadow: inset 0 -0.125em #da751c;
 }
-.option_3:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
+#option_3:active {
 
-
-/*for the result values*/
-
-/* #Sun Flower Button
-==================================================*/
-.option_1_v {
-  visibility: visible;
-  position: relative;
-  border-radius: 0.5em;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 3.125em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: #f1c40f;
-  border: 0;
-  border-bottom: 0.125em solid #e2b607;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #e2b607;
-  box-shadow: inset 0 -0.125em #e2b607;
-}
-.option_1_v:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* #Orange Flat Button
-==================================================*/
-.option_2_v {
-  visibility: visible;
-  border-radius: 0.5em;
-  position: relative;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 0.9375em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: #f39c12;
-  border: 0;
-  border-bottom: 0.125em solid #e8930c;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #e8930c;
-  box-shadow: inset 0 -0.125em #e8930c;
-}
-.option_2_v:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* #Carrot Flat Button
-==================================================*/
-.option_3_v{
-  visibility: visible;
-  position: relative;
-  border-radius:0.5em ;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 0.9375em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: #e67e22;
-  border: 0;
-  border-bottom: 0.125em solid #da751c;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #da751c;
-  box-shadow: inset 0 -0.125em #da751c;
-}
-.option_3_v:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-
-/*Here are the ids for percentages*/
-
-.option_1_perc {
-  visibility: visible;
-  position: relative;
-  border-radius: 0.5em;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 3.125em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: #f1c40f;
-  border: 0;
-  border-bottom: 0.125em solid #e2b607;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #e2b607;
-  box-shadow: inset 0 -0.125em #e2b607;
-}
-.option_1_perc:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* #Orange Flat Button
-==================================================*/
-.option_2_perc {
-  visibility: visible;
-  border-radius: 0.5em;
-  position: relative;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 0.9375em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: #f39c12;
-  border: 0;
-  border-bottom: 0.125em solid #e8930c;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #e8930c;
-  box-shadow: inset 0 -0.125em #e8930c;
-}
-.option_2_perc:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* #Carrot Flat Button
-==================================================*/
-.option_3_perc{
-  visibility: visible;
-  position: relative;
-  border-radius:0.5em ;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 0.9375em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: #e67e22;
-  border: 0;
-  border-bottom: 0.125em solid #da751c;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #da751c;
-  box-shadow: inset 0 -0.125em #da751c;
-}
-.option_3_perc:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-
-/* the one who has the most votes*/
-
-
-.tick1 {
-  visibility: visible;
-  position: relative;
-  border-radius: 0.5em;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 3.125em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: green;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: #f1c40f;
-  border: 0;
-  border-bottom: 0.125em solid #e2b607;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #e2b607;
-  box-shadow: inset 0 -0.125em #e2b607;
-}
-.tick1:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* #Orange Flat Button
-==================================================*/
-.tick2 {
-  visibility: visible;
-  border-radius: 0.5em;
-  position: relative;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 0.9375em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: red;
-  border: 0;
-  border-bottom: 0.125em solid #e8930c;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #e8930c;
-  box-shadow: inset 0 -0.125em #e8930c;
-}
-.tick2:active {
-  top: 0.0625em;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* #Carrot Flat Button
-==================================================*/
-.tick3{
-  visibility: visible;
-  position: relative;
-  border-radius:0.5em ;
-  vertical-align: top;
-  margin-right: 0.9375em;
-  margin-top: 0.9375em;
-  width: 7%;
-  height: 3em;
-  padding: 0;
-  font-size: 1.375em;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.25);
-  background: red;
-  border: 0;
-  border-bottom: 0.125em solid #da751c;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 -0.125em #da751c;
-  box-shadow: inset 0 -0.125em #da751c;
-}
-.tick3:active {
   top: 0.0625em;
   outline: none;
   -webkit-box-shadow: none;
@@ -593,7 +195,7 @@ main {
 
 .sidebar {
   height: 100%;
-  width: 25em;
+  width: 26.65em;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -616,7 +218,7 @@ main {
   display: inline-block;
   width: auto;
   margin: 0 auto;
-  margin-top: -0.9375em;
+  margin-top: -5px;
   -webkit-transition: all .7s ease;
   -moz-transition: all .7s ease;
   -ms-transition: all .7s ease;
@@ -772,14 +374,14 @@ nav {
   font-size: 1.8em;
   text-transform: uppercase;
   position: relative;
-  padding-bottom: 0.7778em;
+  padding-bottom: 7px;
 }
 
 .sidebar-anchor:before {
   content: "";
   width: 0;
-  height: 0.125em;
-  position: fixed;
+  height: 2px;
+  position: absolute;
   bottom: 0;
   left: 0;
   background-color: #FFF;
@@ -795,9 +397,9 @@ nav {
 }
 
 .ua {
-  position: fixed;
-  bottom: 1.25em;
-  left: 3.75em;
+  position: absolute;
+  bottom: 20px;
+  left: 60px;
 }
 
 .fa {
@@ -824,13 +426,13 @@ nav {
   transition: all 1s ease;
 }
 
-@media (min-width: 30em) {
+@media (min-width: 480px) {
   .nav-list {
     display: block;
   }
 }
 
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .nav-right {
     position: hidden;
   }
@@ -872,7 +474,7 @@ overflow:visible;
 .main-menu {
 background:#f39c12;
 border-right:1px solid #f39c12;
-position:fixed;
+position:absolute;
 top:0;
 bottom:0;
 height:auto;
@@ -882,7 +484,7 @@ overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
 -webkit-transform:translateZ(0) scale(1,1);
-z-index:1;
+z-index:1000;
 }
 
 .main-menu>ul {

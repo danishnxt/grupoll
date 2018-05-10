@@ -42,7 +42,7 @@ const pushFriendRequest = (rUser, tUser) => new Promise((resolve, reject) => {
 
 const pushUser = (uName, uemail, profileImage, profileImageLink, fName, lName, cntry, gndr, hash) => new Promise((resolve, reject) => {
 
-  const newUser = new mUser({username: uName, profile_image_exists:profileImage, profile_image_link:profileImageLink, email: uemail, first_name: fName, last_name: lName, country: cntry, gender: gndr, passwordHash: hash, question_cnt: 0})
+  const newUser = new mUser({username: uName, profile_image_exists:profileImage, profile_image_link:profileImageLink, email: uemail, first_name: fName, last_name: lName, country: cntry, gender: gndr, password_hash: hash, question_cnt: 0})
 
   newUser.save((err, obj) => {
     if(err) {

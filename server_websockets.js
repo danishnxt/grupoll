@@ -135,21 +135,33 @@ const handleQuestionVoteRequest = sock => {
 				log.logUserQuestionResponse(msg.userID, msg.questionID);
 
 				const notifContent = 'Vote posted for your question.';
-				db.pushNotification(result.user_id, 2, notifContent, msg.questionID).then(
-					r2 => {
-						log.logWebSocketsEntry('Notification for vote of question id ' + msg.questionID + ' pushed.');
+
+				db.pullQuestion(msg.questionID).then(
+					  data => {
+
+						db.pushNotification(data.user_id, 2, notifContent, msg.questionID).then(
+							r2 => {
+								log.logWebSocketsEntry('Notification for vote of question id ' + msg.questionID + ' pushed.');
+							},
+
+							e2 => {
+								log.logWebSocketsError('Notification push failed for vote of question id ' + msg.questionID);
+							}
+						);
 					},
 
-					e2 => {
-						log.logWebSocketsError('Notification push failed for vote of question id ' + msg.questionID);
+					dataerr => {
+						log.logWebSocketsError('Pull Question Failed');
 					}
-				);
+
+				)
 			},
 
 			err => {
 				sock.emit('msgQuestionVoteRequestRejected', msg);
 				log.logWebSocketsError('Question vote request failed for question with ID ' + msg.questionID);
 			}
+
 		);
 	});
 };
@@ -257,7 +269,7 @@ const handleUserSignupRequest = sock => {
 			msg.lastName,
 			msg.country,
 			msg.gender,
-			msg.passwordHash
+			msg.password_hash
 		).then(
 			result => {
 				sock.emit('msgUserSignupRequestConfirmed', result);
@@ -325,6 +337,38 @@ const handleNotificationPullRequest = sock => {
 	});
 };
 
+const handleUpdateSettings = sock => {
+	sock.on('msgUpdateSettings', msg => {
+		db.changeUsername(msg.userID, msg.userName).then(
+			result => {
+				db.changePassword(msg.userID, msg.passWord).then(
+					r2 => {
+						db.changeProfilePic(msg.userID, msg.profilePicture).then(
+							r3 => {
+								sock.emit('msgUpdateSettingsConfirmed');
+								log.logWebSocketsEntry('Settings updated for user ' + msg.userID);
+							},
+
+							e3 => {
+								sock.emit('msgUpdateSettingsRejected');
+								log.logWebSocketsError('Failed to update settings for user ' + msg.userID);
+							}
+					)
+				},
+
+				e2 => {
+					sock.emit('msgUpdateSettingsRejected');
+					log.logWebSocketsError('Failed to update settings for user ' + msg.userID);
+				})
+			},
+
+			error => {
+				sock.emit('msgUpdateSettingsRejected');
+				log.logWebSocketsError('Failed to update settings for user ' + msg.userID);
+			})
+	});
+};
+
 const initWebSocketConnection = () => {
 	io.on('connection', sock => {
 		log.logWebSocketsEntry('Client connected');
@@ -343,6 +387,7 @@ const initWebSocketConnection = () => {
 		handleQuestionVotesRetrieveRequest(sock);
 		handleNotificationPushRequest(sock);
 		handleNotificationPullRequest(sock);
+		handleUpdateSettings(sock);
 	});
 };
 

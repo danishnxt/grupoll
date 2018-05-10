@@ -69,9 +69,9 @@
 			profileImageLink : "",
 			firstName : document.getElementById("first_name").value,
 			lastName : document.getElementById("last_name").value,
-			country : "",
-			gender : 0,
-			passwordHash : document.getElementById("password").value
+			country : "Pak",
+			gender : 1,
+			password_hash : document.getElementById("password").value
 		};
 
 		socket.emit('msgUserSignupRequest', msg);
