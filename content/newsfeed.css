@@ -1,4 +1,16 @@
 
+#page_title{
+  text-align: center;
+  margin: 1%;
+  top:0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5em;
+  color: #ffbd4a;
+
+}
+
+
+
 #qbar {
   position: relative;
   margin-top: 15%;
