@@ -126,14 +126,6 @@
 		userID = contents.toString();
 	});
 
-	let userName = "";
-
-	socket.on('msgUserInitializationConfirmed', user => {
-		userName = user.username;
-	});
-
-	socket.emit('msgUserInitialization', { userID : userID });
-
 	const switchToQuestion = (questionID) => {
 		fs.writeFile('/current_question.txt', questionID, err => {
 
@@ -149,17 +141,16 @@
 	};
 
 	const addQuestionNotificationEntry = (userID, statement, questionID) => {
-		const addElem = "<button id=\"option_2\" onclick=\"switchToQuestion('" + questionID + "');\">" + "From user " + userName + ": " + statement + "</button>";
+		const addElem = "<button id=\"option_2\" onclick=\"switchToQuestion('" + questionID + "');\">" + statement + "</button>";
 		document.getElementById('notificationsList').innerHTML += "<li>" + addElem + "</li>";
 	};
 
 	const addStaticNotificationEntry = (userID, statement) => {
-		const addElem = "From user " + userName + ": " + statement;
+		const addElem = statement;
 		document.getElementById('notificationsList').innerHTML += "<li>" + addElem + "</li>";
 	};
 
 	socket.on('msgNotificationPullRequestConfirmed', msg => {
-		console.log('Hello');
 		msg.forEach(val => {
 			if (val.notif_type === 2) {
 				addQuestionNotificationEntry(val.notif_user_id, val.notif_content, val.notif_question_id);
