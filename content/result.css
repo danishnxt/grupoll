@@ -66,7 +66,7 @@
   width:50%;
   height:12em;
   padding:10px;
-  padding-left:10em; 
+  padding-left:10em;
 }
 
 #main_div_opt1 > div {
@@ -81,7 +81,7 @@
   width:50%;
   height:12em;
   padding:10px;
-  padding-left:10em; 
+  padding-left:10em;
 }
 
 #main_div_opt2 > div {
@@ -95,7 +95,7 @@
   width:50%;
   height:12em;
   padding:10px;
-  padding-left:10em; 
+  padding-left:10em;
 
 }
 
@@ -907,7 +907,7 @@ width:15.625em;
   -webkit-transform:translateZ(0) scale(1,1);
   -webkit-transition:all .1s linear;
   transition:all .1s linear;
-  
+
 }
 
 .main-menu .nav-icon {

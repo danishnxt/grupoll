@@ -26,7 +26,7 @@
 	</div>
 
   <center id='page_title'>Results</center>
-   
+
   <div id = "question_statement">
   	<div id = "qbar" >
   		  <div id="bar"></div>
@@ -36,29 +36,25 @@
   </div>
 
   <center>
-    
+
 
     <div id="table_header">
         <div class="Options "class="Options">Options</div>
         <div class="Votes">Votes</div>
-        <div class = "Percentage">%</div>
     </div>
     <div id="main_div_opt1">
-        <div id="option_1" class="option_1"></div> 
+        <div id="option_1" class="option_1"></div>
         <div id="option_1_votes" class="option_1_v"></div>
-        <div id = "option_1_perc" class = "option_1_perc"> 3%</div>
         <div id = "tick1" class = "tick_1">  </div>
     </div>
     <div id="main_div_opt2">
         <div id="option_2" class="option_2"></div>
         <div id="option_2_votes" class="option_2_v"></div>
-        <div id = "option_2_perc" class = "option_2_perc" > 3%</div>
         <div id = "tick2" class = "tick_2"></div>
     </div>
     <div id="main_div_opt3">
         <div id="option_3" class="option_1"></div>
         <div id="option_3_votes" class="option_3_v"></div>
-        <div id = "option_3_perc" class= "option_3_perc"> 3%</div>
         <div id = "tick3" class = "tick_3"></div>
     </div>
   </center>
@@ -175,11 +171,10 @@
 		document.getElementById('option_1').innerHTML = o1;
 		document.getElementById('option_2').innerHTML = o2;
 		document.getElementById('option_3').innerHTML = o3;
-    
+
     if(o3 == ''){
       document.getElementById('option_3').style.visibility = 'hidden';
       document.getElementById('option_3_votes').style.visibility = 'hidden';
-      document.getElementById('option_3_perc').style.visibility = 'hidden';
       document.getElementById('tick3').style.visibility = "hidden";
     }
 
@@ -193,15 +188,15 @@
 
     let maxim = Math.max(counts[0],counts[1],counts[2]);
     let index = (counts.indexOf(maxim)+1);
-    document.getElementById('tick'+index.toString()).innerHTML= '<img src= tick.png width=60em height=60em />';  
+    document.getElementById('tick'+index.toString()).innerHTML= '<img src= tick.png width=60em height=60em />';
 
 
     /*if(document.getElementById('option_3_votes').style.visibility == "hidden"){
       if(counts[0]>counts[1]){
-        document.getElementById('tick1').innerHTML = '<img src= tick.png width=60em height=60em />';        
+        document.getElementById('tick1').innerHTML = '<img src= tick.png width=60em height=60em />';
       }
       else{
-        document.getElementById('tick2').innerHTML = '<img src= tick.png width=60em height=60em />';        
+        document.getElementById('tick2').innerHTML = '<img src= tick.png width=60em height=60em />';
 
       }
 
@@ -209,10 +204,10 @@
     else{
       let maxim = Math.max(counts[0],counts[1],counts[2]);
       let index = (counts.indexOf(maxim)+1);
-      document.getElementById('tick'+index.toString()).innerHTML= '<img src= tick.png width=60em height=60em />';     
+      document.getElementById('tick'+index.toString()).innerHTML= '<img src= tick.png width=60em height=60em />';
     }
 */
-    
+
 	};
 
 	const calculateVotes = votes => {
@@ -289,25 +284,25 @@
 
     $(function() {
       $('#option_1 div').css('font-size', '1em');
-    
+
       while( $('#option_1 div').height() > $('#option_1').height() ) {
           $('#option_1 div').css('font-size', (parseInt($('#option_1 div').css('font-size')) - 1) + "px" );
       }
-    
+
     });
 
      $(function() {
       $('#option_2 div').css('font-size', '1em');
-    
+
       while( $('#option_2 div').height() > $('#option_2').height() ) {
           $('#option_2 div').css('font-size', (parseInt($('#option_2 div').css('font-size')) - 1) + "px" );
-      }    
+      }
     });
 
 
     $(function() {
       $('#option_3 div').css('font-size', '1em');
-    
+
       while( $('#option_3 div').height() > $('#option_3').height() ) {
           $('#option_3 div').css('font-size', (parseInt($('#option_3 div').css('font-size')) - 1) + "px" );
       }
