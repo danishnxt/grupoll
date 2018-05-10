@@ -1,12 +1,110 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="postQuestion.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <head>
-	<title>Notifications</title>
-</head>
-<body>
-	<ul id="notificationsList"></ul>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+</head>
+<body background="background.jpg">
+<main>
+
+  <header class="app_header"></header>
+  <center>
+  <img src="logo.png" class="logo"></img>
+
+<div class='notifs'>
+  <i id='notifs' class="material-icons fa-2x" style="font-size:7vw;color:#416262;margin-top:2%;margin-left:15%;margin-right:15%;position:relative">notifications_active</i>
+                        </div>
+    <div class="title1" style="font-size:3em">Notifications</div>
+	<ul id="notificationsList"  class="notifbar">
+
+
+
+	 </ul>
+
+
+
+
+<!--LEFT MENU-->
+  <div id='rightMenu'>
+  <div class="area"></div>
+
+    <nav class="main-menu" style="text-align:center">
+       <!-- back button here -->
+            <ul style="inline-block">
+              <li>
+                    <a href="#">
+                      <div class='back_button'>
+                        <i id = 'back_button' class="material-icons fa-2x" style="font-size:3vw;color:red;float:left; margin-left:15%;margin-top:-20%;margin-bottom:100%;margin-right:15%;position:relative">arrow_back</i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+
+                </li>
+
+                <li>
+                    <a href="#">
+                      <div class='polls'>
+                        <i id='polls' class="material-icons fa-2x" style="font-size:3vw;color:red;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative">create</i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="#">
+                      <div class='notifs'>
+                        <i id='notifs' class="material-icons fa-2x" style="font-size:3vw;color:grey;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative">notifications_active</i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+
+                </li>
+
+                <li>
+                    <a href="#">
+                      <div class='settings'>
+                        <i id="settings" class="material-icons fa-2x" style="font-size:3vw;color:red;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative">settings</i>
+                        </div>
+                        <span class="nav-text">
+                        </span>
+                    </a>
+
+                </li>
+
+                <li>
+                   <a href="#">
+                      <div class = 'power'>
+                         <i id="power" class="material-icons fa-2x" style="font-size:3vw;color:red;margin-top:100%;margin-left:15%;margin-right:15%;margin-bottom:100%;position:relative" >power_settings_new</i>
+                         </div>
+                        <span class="nav-text">
+
+                        </span>
+                    </a>
+                </li>
+
+
+            </ul>
+
+
+        </nav>
+
+
+
+</div>
+<div class="footer"></div>
+  </center>
+  </div>
+</main>
+</body>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/browserfs.min.js"></script>
 <script type="text/javascript">
