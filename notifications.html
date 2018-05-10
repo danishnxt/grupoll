@@ -133,9 +133,9 @@
 		  console.log(questionID);
 		  fs.readFile('/current_active_question.txt', (err, contents) => {
 		    if (contents.toString() === questionID) {
-		      window.open("http://localhost:3000/result", "_self");
+		      window.open("http://52.170.186.150:3000/result", "_self");
 		    } else {
-		      window.open("http://localhost:3000/question", "_self");
+		      window.open("http://52.170.186.150:3000/question", "_self");
 		    }
 		  })
 		});
@@ -170,23 +170,23 @@
 	socket.emit('msgNotificationPullRequest', { notificationUserID: userID });
 
   const postHandle = () => {
-      window.open("http://localhost:3000/postQuestion", "_self");
+      window.open("http://52.170.186.150:3000/postQuestion", "_self");
   }
 
   const handleBack = () => {
-      window.open("http://localhost:3000/newsfeed", "_self");
+      window.open("http://52.170.186.150:3000/newsfeed", "_self");
   }
 
   const handleLogout = () => {
-      window.open("http://localhost:3000/splash", "_self");
+      window.open("http://52.170.186.150:3000/splash", "_self");
   };
 
   const handleSettings = () => {
-    window.open("http://localhost:3000/settings", "_self");
+    window.open("http://52.170.186.150:3000/settings", "_self");
   };
 
   const handleNotifs = () => {
-    window.open("http://localhost:3000/notifications", "_self");
+    window.open("http://52.170.186.150:3000/notifications", "_self");
   };
 
 

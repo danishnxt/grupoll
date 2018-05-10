@@ -152,23 +152,23 @@
 
 
   const postHandle = () => {
-      window.open("http://localhost:3000/postQuestion", "_self");
+      window.open("http://52.170.186.150:3000/postQuestion", "_self");
   }
 
   const handleBack = () => {
-      window.open("http://localhost:3000/newsfeed", "_self");
+      window.open("http://52.170.186.150:3000/newsfeed", "_self");
   }
 
   const handleLogout = () => {
-      window.open("http://localhost:3000/splash", "_self");
+      window.open("http://52.170.186.150:3000/splash", "_self");
   };
 
   const handleSettings = () => {
-    window.open("http://localhost:3000/settings", "_self");
+    window.open("http://52.170.186.150:3000/settings", "_self");
   };
 
   const handleNotifs = () => {
-    window.open("http://localhost:3000/notifications", "_self");
+    window.open("http://52.170.186.150:3000/notifications", "_self");
   };
 
   const switchToQuestion = (questionID) => {
@@ -177,7 +177,7 @@
       if (err) {
         console.log(err)
       } else {
-        window.open("http://localhost:3000/result", "_self")
+        window.open("http://52.170.186.150:3000/result", "_self")
       }
     })
   }
@@ -249,7 +249,7 @@
 
     socket.on('msgQuestionPostRequestBounds', () => {
       alert("you've already got a question active!")
-      window.open("http://localhost:3000/newsfeed", "_self")
+      window.open("http://52.170.186.150:3000/newsfeed", "_self")
     })
 
     socket.on('msgQuestionPostRequestRejected', payload => {

@@ -54,7 +54,7 @@
 	});
 
 	const newsFeedGo = () => {
-		window.open("http://localhost:3000/newsfeed", "_self");
+		window.open("http://52.170.186.150:3000/newsfeed", "_self");
 	}
 
 	const addName = (userName, firstName, lastName) => {
@@ -62,7 +62,7 @@
 	};
 
 	const addProfilePicture = (profileImage) => {
-		document.getElementById('profile_picture').innerHTML = '<img src="http://localhost:3000/' + profileImage + '" width=300em height=300em style="outline:none; border-radius:90%; border:0"></img>';
+		document.getElementById('profile_picture').innerHTML = '<img src="http://52.170.186.150:3000/' + profileImage + '" width=300em height=300em style="outline:none; border-radius:90%; border:0"></img>';
 	};
 
 	socket.on('msgUserInitializationConfirmed', user => {
