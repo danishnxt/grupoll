@@ -15,17 +15,17 @@ Questions involving perhaps advice on clothing (A or B) or helping to a recipe t
 
 ### Members: 
 
-Muhammad Tirmazi
-Danish Farid
-Izma Naim Butt
-Muhammad Ammar
-Alina Sarwar
+1. Muhammad Tirmazi
+2. Danish Farid
+3. Izma Naim Butt
+4. Muhammad Ammar
+5. Alina Sarwar
 
-Development Split:
+### Development Split:
 
-Server Backend (Tirmazi)
-Database and Server Backend (Danish)
-FrontEnd (Izma, Alina, Ammar)
+1. Server Backend (Tirmazi)
+2. Database and Server Backend (Danish)
+3. FrontEnd (Izma, Alina, Ammar)
 
 
 // Danish is my homeboy //
